@@ -1,0 +1,31 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.jk</groupId>
+		<artifactId>jobs</artifactId>
+		<version>1.0</version>
+	</parent>
+	<artifactId>jobs-web</artifactId>
+	<name>web</name>
+	<packaging>war</packaging>
+
+	<build>
+		<finalName>jobs</finalName>
+	</build>
+
+	<dependencies>
+		<!-- module action -->
+		<dependency>
+			<groupId>com.jk</groupId>
+			<artifactId>jobs-action</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+
+		<!-- druid -->
+		<dependency>
+			<groupId>com.alibaba</groupId>
+			<artifactId>druid</artifactId>
+		</dependency>
+	</dependencies>
+</project>

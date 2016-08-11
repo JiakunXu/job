@@ -1,0 +1,19 @@
+<!DOCTYPE struts PUBLIC
+ "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+ "http://struts.apache.org/dtds/struts-2.5.dtd">
+<struts>
+	<package name="{http://jobs}jobs$portal"
+		extends="{http://jobs}jobs$framework" namespace="/">
+
+		<!-- 登陆首页 -->
+		<action name="index" class="portalAction" method="index">
+			<result name="success">/mall/portal/index.vm</result>
+		</action>
+		
+		<action name="homepage" class="portalAction" method="homepage">
+			<interceptor-ref name="authenticationStack" />
+			<result name="success">/mall/portal/homepage.vm</result>
+		</action>
+		
+	</package>
+</struts>

@@ -1,0 +1,14 @@
+<!DOCTYPE struts PUBLIC
+ "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+ "http://struts.apache.org/dtds/struts-2.5.dtd">
+<struts>
+	<package name="{http://jobs}jobs$facebook"
+		extends="{http://jobs}jobs$framework" namespace="/facebook">
+
+		<action name="index" class="expressAction" method="index">
+			<interceptor-ref name="authenticationStack" />
+			<result name="success">/mall/facebook/index.vm</result>
+		</action>
+		
+	</package>
+</struts>

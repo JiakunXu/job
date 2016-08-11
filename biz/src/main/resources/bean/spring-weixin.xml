@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans-4.1.xsd">
+	
+	<!-- weixin -->
+	<bean id="accessTokenService" class="com.wideka.weixin.auth.service.impl.AccessTokenServiceImpl"></bean>
+	<bean id="jsapiTicketService" class="com.wideka.weixin.auth.service.impl.JSAPITicketServiceImpl"></bean>
+	<bean id="oauth2Service" class="com.wideka.weixin.auth.service.impl.OAuth2ServiceImpl"></bean>
+	<bean id="refundService" class="com.wideka.weixin.pay.service.impl.RefundServiceImpl"></bean>
+	<bean id="unifiedOrderService" class="com.wideka.weixin.pay.service.impl.UnifiedOrderServiceImpl"></bean>
+	
+</beans>

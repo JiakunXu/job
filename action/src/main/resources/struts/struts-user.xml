@@ -1,0 +1,15 @@
+<!DOCTYPE struts PUBLIC
+ "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+ "http://struts.apache.org/dtds/struts-2.5.dtd">
+<struts>
+	<package name="{http://jobs}jobs$user"
+		extends="{http://jobs}jobs$framework" namespace="/user">
+
+		<!-- 用户基本信息 -->
+		<action name="detail" class="userAction" method="detail">
+			<interceptor-ref name="authenticationStack" />
+			<result name="success">/mall/user/detail.vm</result>
+		</action>
+		
+	</package>
+</struts>

@@ -1,0 +1,35 @@
+<!DOCTYPE struts PUBLIC
+ "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+ "http://struts.apache.org/dtds/struts-2.5.dtd">
+<struts>
+	<package name="{http://jobs}jobs$pay"
+		extends="{http://jobs}jobs$framework" namespace="/pay">
+		
+		<!-- 支付首页 -->
+		<action name="index" class="payAction" method="index">
+			<interceptor-ref name="authenticationStack" />
+			<result name="success">/mall/pay/index.vm</result>
+		</action>
+		
+	</package>
+	
+	<!-- alipay 支付 -->
+	<package name="{http://jobs}jobs$alipay"
+		extends="{http://jobs}jobs$framework" namespace="/alipay">
+		<action name="pay" class="payAction" method="pay">
+			<interceptor-ref name="authenticationStack" />
+		</action>
+	</package>
+	
+	<!-- wx 支付 -->
+	<package name="{http://jobs}jobs$wxpay"
+		extends="{http://jobs}jobs$framework" namespace="/wxpay">
+		<action name="pay" class="payAction" method="pay">
+			<interceptor-ref name="authenticationStack" />
+		</action>
+		<action name="refund" class="payAction" method="refund">
+			<interceptor-ref name="authenticationStack" />
+		</action>
+	</package>
+
+</struts>

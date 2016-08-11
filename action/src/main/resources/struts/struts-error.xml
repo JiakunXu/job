@@ -1,0 +1,13 @@
+<!DOCTYPE struts PUBLIC
+ "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+ "http://struts.apache.org/dtds/struts-2.5.dtd">
+<struts>
+	<package name="{http://jobs}jobs$error"
+		extends="{http://jobs}jobs$framework" namespace="/error">
+		
+		<action name="errorAction" class="errorAction" >
+			<result name="403">/mall/framework/error/403.vm</result>
+			<result name="404">/mall/framework/error/404.vm</result>
+		</action>
+	</package>
+</struts>
