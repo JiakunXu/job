@@ -6,8 +6,8 @@
 		extends="{http://jobs}jobs$framework" namespace="/error">
 		
 		<action name="errorAction" class="errorAction" >
-			<result name="403">/mall/framework/error/403.vm</result>
-			<result name="404">/mall/framework/error/404.vm</result>
+			<result name="403">/jobs/framework/error/403.vm</result>
+			<result name="404">/jobs/framework/error/404.vm</result>
 		</action>
 	</package>
 </struts>

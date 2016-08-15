@@ -8,7 +8,7 @@
 		<!-- 支付首页 -->
 		<action name="index" class="payAction" method="index">
 			<interceptor-ref name="authenticationStack" />
-			<result name="success">/mall/pay/index.vm</result>
+			<result name="success">/jobs/pay/index.vm</result>
 		</action>
 		
 	</package>

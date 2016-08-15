@@ -7,7 +7,7 @@
 
 		<action name="index" class="expressAction" method="index">
 			<interceptor-ref name="authenticationStack" />
-			<result name="success">/mall/facebook/index.vm</result>
+			<result name="success">/jobs/facebook/index.vm</result>
 		</action>
 		
 	</package>

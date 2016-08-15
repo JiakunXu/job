@@ -7,7 +7,7 @@
 
 		<!-- 登陆 -->
 		<action name="login" class="loginAction" method="login">
-			<result name="incorrect">/mall/portal/index.vm</result>
+			<result name="incorrect">/jobs/portal/index.vm</result>
 			<result name="success" type="redirectAction">
 				<param name="actionName">home</param>
 			</result>

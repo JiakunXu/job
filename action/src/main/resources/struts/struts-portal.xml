@@ -7,12 +7,12 @@
 
 		<!-- 登陆首页 -->
 		<action name="index" class="portalAction" method="index">
-			<result name="success">/mall/portal/index.vm</result>
+			<result name="success">/jobs/portal/index.vm</result>
 		</action>
 		
 		<action name="homepage" class="portalAction" method="homepage">
 			<interceptor-ref name="authenticationStack" />
-			<result name="success">/mall/portal/homepage.vm</result>
+			<result name="success">/jobs/portal/homepage.vm</result>
 		</action>
 		
 	</package>

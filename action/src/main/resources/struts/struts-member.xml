@@ -7,7 +7,7 @@
 
 		<action name="index" class="memberAction" method="index">
 			<interceptor-ref name="authenticationStack" />
-			<result name="success">/mall/member/index.vm</result>
+			<result name="success">/jobs/member/index.vm</result>
 		</action>
 		
 	</package>

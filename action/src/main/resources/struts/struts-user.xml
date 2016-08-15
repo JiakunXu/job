@@ -8,7 +8,7 @@
 		<!-- 用户基本信息 -->
 		<action name="detail" class="userAction" method="detail">
 			<interceptor-ref name="authenticationStack" />
-			<result name="success">/mall/user/detail.vm</result>
+			<result name="success">/jobs/user/detail.vm</result>
 		</action>
 		
 	</package>
