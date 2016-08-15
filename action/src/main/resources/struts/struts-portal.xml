@@ -6,7 +6,7 @@
 		extends="{http://jobs}jobs$framework" namespace="/">
 
 		<action name="homepage" class="portalAction" method="homepage">
-			<interceptor-ref name="authenticationStack" />
+			<!-- <interceptor-ref name="authenticationStack" /> -->
 			<result name="success">/jobs/portal/homepage.vm</result>
 		</action>
 		
