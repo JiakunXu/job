@@ -28,15 +28,6 @@ public class PortalAction extends BaseAction {
 	private Ticket ticket;
 
 	/**
-	 * 登录首页.
-	 * 
-	 * @return
-	 */
-	public String index() {
-		return SUCCESS;
-	}
-
-	/**
 	 * 移动商场.
 	 * 
 	 * @return

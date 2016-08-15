@@ -8,7 +8,7 @@
 	<distributable />
 
 	<welcome-file-list>
-		<welcome-file>index.htm</welcome-file>
+		<welcome-file>homepage.htm</welcome-file>
 	</welcome-file-list>
 
 	<context-param>

@@ -5,11 +5,6 @@
 	<package name="{http://jobs}jobs$portal"
 		extends="{http://jobs}jobs$framework" namespace="/">
 
-		<!-- 登陆首页 -->
-		<action name="index" class="portalAction" method="index">
-			<result name="success">/jobs/portal/index.vm</result>
-		</action>
-		
 		<action name="homepage" class="portalAction" method="homepage">
 			<interceptor-ref name="authenticationStack" />
 			<result name="success">/jobs/portal/homepage.vm</result>
