@@ -22,6 +22,7 @@
 	</settings>
 
 	<typeAliases>
+		<package name="com.jk.jobs.api.job.bo" />
 		<package name="com.jk.jobs.api.monitor.bo" />
 		<package name="com.jk.jobs.api.region.bo" />
 		<package name="com.jk.jobs.api.user.bo" />
@@ -55,6 +56,7 @@
 
 	<mappers>
 		<mapper resource="mybatis/global.xml" />
+		<mapper resource="mybatis/mapper-job.xml" />
 		<mapper resource="mybatis/mapper-monitor.action.xml" />
 		<mapper resource="mybatis/mapper-monitor.log.xml" />
 		<mapper resource="mybatis/mapper-monitor.method.xml" />
