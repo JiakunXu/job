@@ -1,6 +1,6 @@
 /* 基本颜色 */
 .color-base {
-  color: #FF5500;
+  color: #2196f3;
 }
 
 /* 链接 */
@@ -31,7 +31,7 @@ a {
 }
 
 .tabbar a.active {
-    color: #ff5500;
+    color: #2196f3;
 }
 
 .tabbar.tabbar-hidden, .tabbar.toolbar-hidden, .toolbar.tabbar-hidden, .toolbar.toolbar-hidden {

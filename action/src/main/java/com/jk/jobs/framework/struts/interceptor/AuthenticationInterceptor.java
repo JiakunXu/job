@@ -9,6 +9,7 @@ import org.apache.struts2.ServletActionContext;
 import org.springframework.stereotype.Component;
 
 import com.jk.jobs.api.ca.ICAService;
+import com.jk.jobs.api.region.bo.Region;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionInvocation;
 import com.opensymphony.xwork2.interceptor.Interceptor;
@@ -25,6 +26,8 @@ public class AuthenticationInterceptor implements Interceptor {
 
 	private static final String OAUTH = "oauth2";
 
+	private static final String REGION = "region";
+
 	private ICAService caService;
 
 	public void destroy() {
@@ -40,7 +43,14 @@ public class AuthenticationInterceptor implements Interceptor {
 		String passport = (String) session.get("ACEGI_SECURITY_LAST_PASSPORT");
 
 		if (StringUtils.isEmpty(passport)) {
-			return OAUTH;
+			// TODO
+			// return OAUTH;
+		}
+
+		Region region = (Region) session.get("ACEGI_SECURITY_LAST_REGION");
+		if (region == null) {
+			// TODO
+			return REGION;
 		}
 
 		return invocation.invoke();

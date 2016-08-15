@@ -1,0 +1,17 @@
+<!DOCTYPE struts PUBLIC
+ "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+ "http://struts.apache.org/dtds/struts-2.5.dtd">
+<struts>
+	<package name="{http://jobs}jobs$region"
+		extends="{http://jobs}jobs$framework" namespace="/region">
+
+		<action name="index" class="regionAction" method="index">
+			<result name="success">/jobs/region/index.vm</result>
+		</action>
+		
+		<action name="select" class="regionAction" method="select">
+			<result name="success" type="redirect">${env.appUrl}/homepage.htm</result>
+		</action>
+		
+	</package>
+</struts>

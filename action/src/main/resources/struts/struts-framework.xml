@@ -46,6 +46,7 @@
 			<result name="oauth2" type="redirect">${env.appUrl}/auth/authorize.htm</result>
 			<result name="resourceResult">/jobs/framework/common/resourceResult.vm</result>
 			<result name="resultMessage">/jobs/framework/common/resultMessage.vm</result>
+			<result name="region" type="redirect">${env.appUrl}/region/index.htm</result>
 		</global-results>
 
 		<global-exception-mappings>

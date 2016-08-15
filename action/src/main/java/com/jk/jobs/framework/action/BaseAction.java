@@ -10,6 +10,7 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.struts2.ServletActionContext;
 
+import com.jk.jobs.api.region.bo.Region;
 import com.jk.jobs.api.user.bo.User;
 import com.jk.jobs.framework.annotation.Decode;
 import com.jk.jobs.framework.bo.SearchInfo;
@@ -126,6 +127,10 @@ public class BaseAction extends ActionSupport {
 	 */
 	public User getUser() {
 		return (User) getSession().getAttribute("ACEGI_SECURITY_LAST_LOGINUSER");
+	}
+
+	public Region getRegion() {
+		return (Region) getSession().getAttribute("ACEGI_SECURITY_LAST_REGION");
 	}
 
 	public String getGmtStart() {

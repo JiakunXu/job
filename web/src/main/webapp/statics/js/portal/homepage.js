@@ -33,11 +33,6 @@ new Swiper('.swiper-container', {
 
 // ==============================
 
-var view_left = myApp.addView('#view-left', {
-			dynamicNavbar : true
-		});
-view_left.router.reloadPage(appUrl + "/item/cat.htm");
-
 var view2 = myApp.addView('#view-2', {
 			dynamicNavbar : true
 		});
@@ -87,35 +82,3 @@ $$('#href-5').on('click', function() {
 		});
 
 // ==============================
-
-function portal_homepage_cart_stats() {
-	$$.get(appUrl + '/cart/stats.htm', {}, function(data) {
-				if (data > 0) {
-					$$('#portal/homepage/cart').addClass('badge bg-red');
-					$$('#portal/homepage/cart').html(data);
-				} else {
-					$$('#portal/homepage/cart').removeClass('badge bg-red');
-					$$('#portal/homepage/cart').html('');
-				}
-			});
-}
-
-portal_homepage_cart_stats();
-
-myApp.onPageInit('portal.homepage', function(page) {
-			portal_homepage_cart_stats();
-		})
-
-function portal_homepage_address() {
-	top.location.href = appUrl + "/address/index.htm";
-}
-
-myApp.addNotification({
-			title : '来自好社惠的消息',
-			subtitle : '',
-			message : '好社惠商城即将上线，敬请期待。',
-			media : '<img width="33" height="33" style="border-radius:100%" src="'
-					+ imgUrl + '/image/portal/logo.jpg">'
-		});
-
-setTimeout("myApp.closeNotification('.notifications')", 3000);

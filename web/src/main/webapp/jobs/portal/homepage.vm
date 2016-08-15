@@ -6,7 +6,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui" />
 		<meta name="apple-mobile-web-app-capable" content="yes" />
 		<meta name="apple-mobile-web-app-status-bar-style" content="black" />
-		<title>好社惠</title>
+		<title>好项目</title>
 		#ICON()
 		#CSSM(["framework7", "iconfont"])
 		<link rel="stylesheet" href="$!{env.imgUrl}/css/portal/homepage.css" />
@@ -37,7 +37,7 @@
 						<!-- We need cool sliding animation on title element, so we have additional "sliding" class -->
 						<div class="center sliding">
 							<i class="iconfont icon-locationfill color-base"></i>
-                            <a class="external" href="$!{env.appUrl}/address/index.htm">$!{address.addName}</a>
+                            <a class="external" href="$!{env.appUrl}/region/index.htm">$!{region.regionName}</a>
 						</div>
 					</div>
 				</div>
@@ -67,22 +67,22 @@
 								<ul class="mui-flex" style="padding: 0; margin-top: 0;">
 									<li class="cell" style="">
 										<a class="component type3" href="$!{env.appUrl}/item/list.htm" style="padding:4px" 0px="" 0px;="" data-ignore-cache="true">
-                                            <img class="" src="$!{env.imgUrl}/image/portal/lxsp.png" width="40" height="40"></img>冷鲜食品
+                                            <img class="" src="$!{env.imgUrl}/image/portal/lxsp.png" width="40" height="40"></img>MM
 										</a>
 									</li>
 									<li class="cell" style="">
 										<a class="component type3" href="" style="padding:4px" 0px="" 0px;="">
-                                            <img class="" src="$!{env.imgUrl}/image/portal/lyfs.png" width="40" height="40"></img>粮油副食
+                                            <img class="" src="$!{env.imgUrl}/image/portal/lyfs.png" width="40" height="40"></img>SD
 										</a>
 									</li>
 									<li class="cell" style="">
                                         <a class="component type3 external" href="$!{env.appUrl}/express/index.htm" style="padding:4px" 0px="" 0px;="">
-                                            <img class="" src="$!{env.imgUrl}/image/portal/kdsf.png" width="40" height="40"></img>快递收发
+                                            <img class="" src="$!{env.imgUrl}/image/portal/kdsf.png" width="40" height="40"></img>FICO
                                         </a>
 									</li>
 									<li class="cell" style="">
                                         <a class="component type3" href="" style="padding:4px" 0px="" 0px;="">
-                                            <img class="" src="$!{env.imgUrl}/image/portal/shjf.png" width="40" height="40"></img>生活缴费
+                                            <img class="" src="$!{env.imgUrl}/image/portal/shjf.png" width="40" height="40"></img>PP
                                         </a>
 									</li>
 								</ul>
@@ -94,7 +94,7 @@
                             </div>
 							
 							<div class="list-block">
-								<div class="ch"><span><i class="ct cw"></i>附近的店铺</span></div>
+								<div class="ch"><span><i class="ct cw"></i>最新项目</span></div>
 							</div>
 							
 							<div class="list-block cards-list media-list">
@@ -174,18 +174,16 @@
 						<span class="tabbar-label">首页</span>
                     </a>
                     <a id="href-2" href="#view-2" class="tab-link">
-                        <i class="icon iconfont icon-goods" style="font-size: 25px;"></i>
-						<span class="tabbar-label">团一团</span>
+                        <i class="icon iconfont icon-repair" style="font-size: 25px;"></i>
+						<span class="tabbar-label">找项目</span>
                     </a>
 					<a id="href-3" href="#view-3" class="tab-link">
                         <i class="icon iconfont icon-group" style="font-size: 25px;"></i>
 						<span class="tabbar-label">社区</span>
                     </a>
 					<a id="href-4" href="#view-4" class="tab-link">
-                        <i class="icon iconfont icon-cart" style="font-size: 25px;">
-							<span id="portal/homepage/cart"></span>
-						</i>
-						<span class="tabbar-label">购物车</span>
+                        <i class="icon iconfont icon-profile" style="font-size: 25px;"></i>
+						<span class="tabbar-label">找人才</span>
                     </a>
 					<a id="href-5" href="#view-5" class="tab-link">
                         <i class="icon iconfont icon-emoji" style="font-size: 25px;"></i>
