@@ -6,7 +6,13 @@
 	
 	<select id="getJobList" parameterType="job" resultType="job">
 	<![CDATA[
-		SELECT t.job_id AS jobId
+		SELECT t.job_id AS jobId,
+			   t.`TITLE`,
+			   t.`SALARY`,
+			   t.`WORK_ADDRESS` AS workAddress,
+			   t.`JOB_NATURE` AS jobNature,
+			   t.`WORK_YEAR` AS workYear,
+			   t.`EDUCATION`
 		  FROM basis_tb_job t
 		 WHERE t.state = 'U'
 	]]>
