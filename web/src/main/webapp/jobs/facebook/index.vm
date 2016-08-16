@@ -3,7 +3,7 @@
 <div class="navbar">
 	<div class="navbar-inner">
 		<div class="left"></div>
-		<div class="center sliding">社区生活</div>
+		<div class="center sliding">社区</div>
 		<div class="right">
 			<!-- Right link contains only icon - additional "icon-only" class-->
 		</div>
@@ -22,8 +22,8 @@
 				</div>
 				<div class="card-content">
 					<div class="card-content-inner">
-						<p>好社惠亭子到社区咯!</p>
-                        <img src="$!{env.imgUrl}/image/ad/LCF_2479.jpg" width="100%"></img>
+						<p>SAP发布新产品!</p>
+                        <img src="$!{env.imgUrl}/image/ad/ad-01.png" width="100%"></img>
 						<p class="color-gray">
 							<i class="iconfont icon-appreciate"></i> 100
 							<i class="iconfont icon-comment" style="margin-left: 20px;"></i> 10</p>
