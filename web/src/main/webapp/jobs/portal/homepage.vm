@@ -214,8 +214,8 @@
 		#JSM(["framework7", "weixin", "common"])
 		#JS_ENV_VAL()
 		<script src="$!{env.imgUrl}/js/portal/homepage.js"></script>
+		<script src="$!{env.imgUrl}/js/job/list.js" async="async"></script>
 		<script src="$!{env.imgUrl}/js/member/index.js" async="async"></script>
-		<script src="$!{env.imgUrl}/js/user/address.js" async="async"></script>
 		<script>
         wx.config({
         			debug : false,

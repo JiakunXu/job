@@ -14,9 +14,6 @@ import com.jk.jobs.framework.action.BaseAction;
 @Scope("request")
 public class FacebookAction extends BaseAction {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 7805255345775229607L;
 
 	/**

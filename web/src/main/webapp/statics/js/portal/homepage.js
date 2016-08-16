@@ -39,7 +39,9 @@ var view2 = myApp.addView('#view-2', {
 $$('#href-2').on('click', function() {
 			if (view2.history.length == 1) {
 				view2.router.load({
-							url : appUrl + "/group/list.htm"
+							url : appUrl + "/job/list.htm",
+							ignoreCache : true,
+							reload : true
 						});
 			}
 		});
@@ -74,9 +76,7 @@ var view5 = myApp.addView('#view-5', {
 $$('#href-5').on('click', function() {
 			if (view5.history.length == 1) {
 				view5.router.load({
-							url : appUrl + "/member/index.htm",
-							ignoreCache : true,
-							reload : true
+							url : appUrl + "/member/index.htm"
 						});
 			}
 		});

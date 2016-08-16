@@ -2,12 +2,12 @@
  "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
  "http://struts.apache.org/dtds/struts-2.5.dtd">
 <struts>
-	<package name="{http://jobs}jobs$facebook"
-		extends="{http://jobs}jobs$framework" namespace="/facebook">
+	<package name="{http://jobs}jobs$job"
+		extends="{http://jobs}jobs$framework" namespace="/job">
 
-		<action name="index" class="facebookAction" method="index">
+		<action name="list" class="jobAction" method="list">
 			<interceptor-ref name="authenticationStack" />
-			<result name="success">/jobs/facebook/index.vm</result>
+			<result name="success">/jobs/job/list.vm</result>
 		</action>
 		
 	</package>
