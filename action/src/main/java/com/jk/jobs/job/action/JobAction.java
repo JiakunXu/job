@@ -27,8 +27,26 @@ public class JobAction extends BaseAction {
 
 	private List<Job> jobList;
 
+	private String jobId;
+
+	private Job job;
+
+	/**
+	 * 
+	 * @return
+	 */
 	public String list() {
 		jobList = jobService.getJobList(new Job());
+
+		return SUCCESS;
+	}
+
+	/**
+	 * 
+	 * @return
+	 */
+	public String detail() {
+		job = jobService.getJob(jobId);
 
 		return SUCCESS;
 	}
@@ -39,6 +57,22 @@ public class JobAction extends BaseAction {
 
 	public void setJobList(List<Job> jobList) {
 		this.jobList = jobList;
+	}
+
+	public String getJobId() {
+		return jobId;
+	}
+
+	public void setJobId(String jobId) {
+		this.jobId = jobId;
+	}
+
+	public Job getJob() {
+		return job;
+	}
+
+	public void setJob(Job job) {
+		this.job = job;
 	}
 
 }

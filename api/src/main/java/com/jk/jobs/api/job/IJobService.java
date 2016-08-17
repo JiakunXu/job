@@ -18,4 +18,11 @@ public interface IJobService {
 	 */
 	List<Job> getJobList(Job job);
 
+	/**
+	 * 
+	 * @param jobId
+	 * @return
+	 */
+	Job getJob(String jobId);
+
 }

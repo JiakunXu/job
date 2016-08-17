@@ -2,6 +2,7 @@ package com.jk.jobs.api.job.bo;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.List;
 
 /**
  * 
@@ -44,6 +45,10 @@ public class Job implements Serializable {
 	private String workYear;
 
 	private String education;
+
+	// >>>>>>>>>>以下是辅助属性<<<<<<<<<<
+
+	private List<JobDetail> jobDetailList;
 
 	public Long getJobId() {
 		return jobId;
@@ -115,6 +120,14 @@ public class Job implements Serializable {
 
 	public void setEducation(String education) {
 		this.education = education;
+	}
+
+	public List<JobDetail> getJobDetailList() {
+		return jobDetailList;
+	}
+
+	public void setJobDetailList(List<JobDetail> jobDetailList) {
+		this.jobDetailList = jobDetailList;
 	}
 
 }

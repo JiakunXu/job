@@ -18,4 +18,11 @@ public interface IJobDao {
 	 */
 	List<Job> getJobList(Job job);
 
+	/**
+	 * 
+	 * @param job
+	 * @return
+	 */
+	Job getJob(Job job);
+
 }

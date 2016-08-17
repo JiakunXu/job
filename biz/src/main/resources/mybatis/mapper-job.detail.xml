@@ -1,0 +1,18 @@
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.jk.jobs.job.dao.IJobDetailDao">
+	
+	<select id="getJobDetailList" parameterType="jobDetail" resultType="jobDetail">
+	<![CDATA[
+		SELECT t.detail_id AS detailId,
+			   t.`CONTENT`
+		  FROM basis_tb_job_detail t
+		 WHERE t.state= 'U'
+		   AND t.job_id= #{jobId}
+		 ORDER BY t.`RANK`
+	]]>
+	</select>
+	
+</mapper>
