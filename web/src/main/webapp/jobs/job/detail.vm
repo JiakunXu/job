@@ -51,7 +51,7 @@
         								</div>
                                     </div>
         							<div class="item-after">
-										<a href="#" data-ignore-cache="true">
+										<a href="$!{env.appUrl}/user/job/resume.htm?jobId=$!{job.jobId}" data-ignore-cache="true">
 											<i class="iconfont icon-selection color-base"></i>
 										</a>
 									</div>

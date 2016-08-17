@@ -23,6 +23,7 @@
 				/ -->
 
 			<interceptor name="authentication" class="authenticationInterceptor" />
+			<interceptor name="role" class="roleInterceptor" />
 			<interceptor name="actionMonitor" class="actionMonitorInterceptor" />
 			
 			<interceptor-stack name="authenticationStack">
@@ -31,6 +32,12 @@
 				<interceptor-ref name="authentication" />
 				<!-- 操作日志 -->
 				<interceptor-ref name="actionMonitor" />
+			</interceptor-stack>
+			
+			<interceptor-stack name="roleStack">
+				<interceptor-ref name="defaultStack" />
+				<interceptor-ref name="decodeParams" />
+				<interceptor-ref name="role" />
 			</interceptor-stack>
 		</interceptors>
 
@@ -47,6 +54,7 @@
 			<result name="resourceResult">/jobs/framework/common/resourceResult.vm</result>
 			<result name="resultMessage">/jobs/framework/common/resultMessage.vm</result>
 			<result name="region" type="redirect">${env.appUrl}/region/index.htm</result>
+			<result name="role" type="redirect">${env.appUrl}/user/role/index.htm</result>
 		</global-results>
 
 		<global-exception-mappings>

@@ -10,6 +10,26 @@
 			<interceptor-ref name="authenticationStack" />
 			<result name="success">/jobs/user/detail.vm</result>
 		</action>
-		
+	</package>
+	
+	<package name="{http://jobs}jobs$user/job"
+		extends="{http://jobs}jobs$framework" namespace="/user/job">
+
+		<!-- 投简历 -->
+		<action name="resume" class="userJobAction" method="resume">
+			<interceptor-ref name="authenticationStack" />
+			<interceptor-ref name="roleStack" />
+			<result name="success">/jobs/user/resume.vm</result>
+		</action>
+	</package>
+	
+	<package name="{http://jobs}jobs$user/role"
+		extends="{http://jobs}jobs$framework" namespace="/user/role">
+
+		<!-- 用户角色信息 -->
+		<action name="index" class="userRoleAction" method="index">
+			<interceptor-ref name="authenticationStack" />
+			<result name="success">/jobs/user/role.vm</result>
+		</action>
 	</package>
 </struts>
