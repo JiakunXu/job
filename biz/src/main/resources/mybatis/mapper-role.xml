@@ -1,0 +1,16 @@
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.jk.jobs.role.dao.IRoleDao">
+	
+	<select id="getRoleList" parameterType="role" resultType="role">
+	<![CDATA[
+		SELECT t.`ROLE_ID` AS roleId,
+			   t.`ROLE_NAME` AS roleName
+		  FROM basis_tb_role t
+		 WHERE t.state = 'U'
+	]]>
+	</select>
+	
+</mapper>

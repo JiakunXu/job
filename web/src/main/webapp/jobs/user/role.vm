@@ -14,7 +14,34 @@
 	<div data-page="user.role" class="page no-tabbar">
 		<!-- Scrollable page content-->
 		<div class="page-content">
-			
+			<div class="list-block">
+				<ul>
+					<li>
+						<div class="item-content">
+							<div class="item-inner">
+								<div class="item-title label">Name</div>
+								<div class="item-input">
+                                    <input type="text" placeholder="Your name"></input>
+								</div>
+							</div>
+						</div>
+					</li>
+					<li>
+						<div class="item-content">
+							<div class="item-inner">
+								<div class="item-title label">Gender</div>
+								<div class="item-input">
+									<select>
+										#foreach($role in $!{roleList})
+										<option value="$!{role.roleId}">$!{role.roleName}</option>
+										#end
+									</select>
+								</div>
+							</div>
+						</div>
+					</li>
+                </ul>
+            </div>
         </div>
     </div>
 </div>
