@@ -1,6 +1,7 @@
 package com.jk.jobs.api.user;
 
 import com.jk.jobs.api.role.bo.Role;
+import com.jk.jobs.framework.bo.BooleanResult;
 
 /**
  * 
@@ -15,5 +16,13 @@ public interface IUserRoleService {
 	 * @return
 	 */
 	Role getRole(Long userId);
+
+	/**
+	 * 
+	 * @param userId
+	 * @param roleId
+	 * @return
+	 */
+	BooleanResult setUserRole(Long userId, String roleId);
 
 }

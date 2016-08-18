@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import com.jk.jobs.api.role.bo.Role;
 import com.jk.jobs.api.user.IUserRoleService;
 import com.jk.jobs.api.user.bo.User;
+import com.jk.jobs.framework.bo.BooleanResult;
 import com.jk.jobs.framework.log.Logger4jCollection;
 import com.jk.jobs.framework.log.Logger4jExtend;
 import com.jk.jobs.framework.util.LogUtil;
@@ -40,6 +41,12 @@ public class UserRoleServiceImpl implements IUserRoleService {
 			logger.error(LogUtil.parserBean(user), e);
 		}
 
+		return null;
+	}
+
+	@Override
+	public BooleanResult setUserRole(Long userId, String roleId) {
+		// TODO Auto-generated method stub
 		return null;
 	}
 

@@ -14,33 +14,38 @@
 	<div data-page="user.role" class="page no-tabbar">
 		<!-- Scrollable page content-->
 		<div class="page-content">
-			<div class="list-block">
-				<ul>
-					<li>
-						<div class="item-content">
-							<div class="item-inner">
-								<div class="item-title label">Name</div>
-								<div class="item-input">
-                                    <input type="text" placeholder="Your name"></input>
-								</div>
-							</div>
-						</div>
-					</li>
-					<li>
-						<div class="item-content">
-							<div class="item-inner">
-								<div class="item-title label">Gender</div>
-								<div class="item-input">
-									<select>
-										#foreach($role in $!{roleList})
-										<option value="$!{role.roleId}">$!{role.roleName}</option>
-										#end
-									</select>
-								</div>
-							</div>
-						</div>
-					</li>
-                </ul>
+			<form id="user/role/set" action="$!{env.appUrl}/user/role/set.htm" method="POST" class="ajax-submit user-role-form">
+    			<div class="list-block">
+    				<ul>
+    					<li>
+    						<div class="item-content">
+    							<div class="item-inner">
+    								<div class="item-title label">Name</div>
+    								<div class="item-input">
+                                        <input type="text" placeholder="Your name"></input>
+    								</div>
+    							</div>
+    						</div>
+    					</li>
+    					<li>
+    						<div class="item-content">
+    							<div class="item-inner">
+    								<div class="item-title label">Gender</div>
+    								<div class="item-input">
+    									<select>
+    										#foreach($role in $!{roleList})
+    										<option value="$!{role.roleId}">$!{role.roleName}</option>
+    										#end
+    									</select>
+    								</div>
+    							</div>
+    						</div>
+    					</li>
+                    </ul>
+                </div>
+            </form>
+			<div class="content-block">
+				<p><a href="javascript:user_role_set();" class="button button-big button-fill weui_btn_primary">确定</a></p>
             </div>
         </div>
     </div>
