@@ -3,6 +3,7 @@ package com.jk.jobs.user.action;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
@@ -44,11 +45,18 @@ public class UserRoleAction extends BaseAction {
 		return SUCCESS;
 	}
 
+	/**
+	 * 
+	 * @return
+	 */
 	public String set() {
 		BooleanResult result = userRoleService.setUserRole(this.getUser().getUserId(), roleId);
 
 		if (result.getResult()) {
-			this.setResourceResult(result.getCode());
+			HttpSession session = this.getSession();
+			session.setAttribute("ACEGI_SECURITY_LAST_USER_ROLE", Long.valueOf(roleId));
+
+			this.setResourceResult((String) session.getAttribute("ACEGI_SECURITY_REDIRECT_URL"));
 		} else {
 			this.getServletResponse().setStatus(599);
 			this.setResourceResult(result.getCode());

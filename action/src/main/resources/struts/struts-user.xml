@@ -31,5 +31,9 @@
 			<interceptor-ref name="authenticationStack" />
 			<result name="success">/jobs/user/role.vm</result>
 		</action>
+		
+		<action name="set" class="userRoleAction" method="set">
+			<interceptor-ref name="authenticationStack" />
+		</action>
 	</package>
 </struts>

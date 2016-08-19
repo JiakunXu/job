@@ -9,7 +9,7 @@
 		SELECT t.id,
 		  t.user_id AS userId,
 		  t.open_id AS openId
-		FROM mall.mall_tb_user_weixin t
+		FROM basis_tb_user_weixin t
 		WHERE t.state  = 'U'
 	]]>
 		<if test="openId != null and openId != ''">
@@ -23,7 +23,7 @@
 	<insert id="createUser" parameterType="user" useGeneratedKeys="true" keyProperty="id">
 	<![CDATA[
 		INSERT
-		INTO mall.mall_tb_user_weixin
+		INTO basis_tb_user_weixin
 		  (
 			USER_ID,
 			OPEN_ID,

@@ -44,7 +44,7 @@ public class AuthenticationInterceptor implements Interceptor {
 
 		if (StringUtils.isEmpty(passport)) {
 			// TODO
-			// return OAUTH;
+			return OAUTH;
 		}
 
 		Region region = (Region) session.get("ACEGI_SECURITY_LAST_REGION");

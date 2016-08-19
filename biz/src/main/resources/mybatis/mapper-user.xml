@@ -10,7 +10,7 @@
 		  t.user_name AS userName,
 		  t.passport,
 		  t.head_img_url AS headImgUrl
-		FROM mall.mall_tb_user t
+		FROM basis_tb_user t
 		WHERE t.state  = 'U'
 		AND t.user_id  = #{userId}
 	]]>
@@ -19,7 +19,7 @@
 	<insert id="createUser" parameterType="user" useGeneratedKeys="true" keyProperty="userId">
 	<![CDATA[
 		INSERT
-		INTO mall.mall_tb_user
+		INTO basis_tb_user
 		  (
 			USER_NAME,
 			PASSPORT,

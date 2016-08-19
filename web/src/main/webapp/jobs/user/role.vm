@@ -32,7 +32,7 @@
     							<div class="item-inner">
     								<div class="item-title label">Gender</div>
     								<div class="item-input">
-    									<select>
+    									<select name="roleId">
     										#foreach($role in $!{roleList})
     										<option value="$!{role.roleId}">$!{role.roleName}</option>
     										#end

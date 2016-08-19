@@ -12,6 +12,8 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
 import com.jk.jobs.api.auth.IAuthService;
+import com.jk.jobs.api.role.bo.Role;
+import com.jk.jobs.api.user.IUserRoleService;
 import com.jk.jobs.api.user.IUserWeixinService;
 import com.jk.jobs.api.user.bo.User;
 import com.jk.jobs.framework.action.BaseAction;
@@ -38,6 +40,9 @@ public class OAuth2Action extends BaseAction {
 
 	@Resource
 	private IUserWeixinService userWeixinService;
+	
+	@Resource
+	private IUserRoleService userRoleService;
 
 	private String redirectUrl;
 
@@ -46,22 +51,25 @@ public class OAuth2Action extends BaseAction {
 	public String authorize() {
 		BooleanResult result = null;
 
-		try {
-			result =
-				authService.authorize(URLEncoder.encode(env.getProperty("appUrl") + "/auth/redirect.htm", "UTF-8"),
-					StringUtils.isBlank(scope) ? "snsapi_base" : scope.trim());
-		} catch (Exception e) {
-			logger.error(e);
-			return ERROR;
-		}
-
-		if (result.getResult()) {
-			redirectUrl = result.getCode();
-
-			return SUCCESS;
-		} else {
-			return ERROR;
-		}
+//		try {
+//			result =
+//				authService.authorize(URLEncoder.encode(env.getProperty("appUrl") + "/auth/redirect.htm", "UTF-8"),
+//					StringUtils.isBlank(scope) ? "snsapi_base" : scope.trim());
+//		} catch (Exception e) {
+//			logger.error(e);
+//			return ERROR;
+//		}
+//
+//		if (result.getResult()) {
+//			redirectUrl = result.getCode();
+//
+//			return SUCCESS;
+//		} else {
+//			return ERROR;
+//		}
+		
+		redirectUrl = env.getProperty("appUrl") + "/auth/redirect.htm";
+		return SUCCESS;
 	}
 
 	public String redirect() {
@@ -70,18 +78,20 @@ public class OAuth2Action extends BaseAction {
 
 		// 用户没有授权 或...
 		if (accessToken == null || StringUtils.isEmpty(accessToken.getOpenId())) {
-			return ERROR;
+			// TODO
+			// return ERROR;
 		}
 
-		// 根据 openId 获得 userId
+		// 根据 openId 获得 userId accessToken.getOpenId()
 		User u =
-			userWeixinService.getUser(accessToken.getAccessToken(), accessToken.getOpenId(), accessToken.getScope());
+			userWeixinService.getUser("accessToken.getAccessToken()", "o5TSVuMYtYaoapBToXayvW3gzhMI", "accessToken.getScope()");
 
 		if (u == null) {
 			return NONE;
 		}
 
 		HttpSession session = this.getSession();
+		
 		session.setAttribute("ACEGI_SECURITY_LAST_PASSPORT", u.getPassport());
 		session.setAttribute("ACEGI_SECURITY_LAST_LOGINUSER", u);
 
@@ -92,6 +102,12 @@ public class OAuth2Action extends BaseAction {
 			ps.setPath("/");
 			ps.setDomain(env.getProperty("domain"));
 			response.addCookie(ps);
+		}
+		
+		// 根据 userId 获得 role
+		Role role = userRoleService.getRole(u.getUserId());
+		if (role != null) {
+			session.setAttribute("ACEGI_SECURITY_LAST_USER_ROLE", role.getRoleId());
 		}
 
 		return SUCCESS;

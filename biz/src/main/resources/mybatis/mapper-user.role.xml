@@ -13,4 +13,30 @@
 	]]>
 	</select>
 	
+	<insert id="createUserRole" parameterType="userRole" useGeneratedKeys="true" keyProperty="id">
+	<![CDATA[
+		INSERT
+		INTO basis_tb_user_role
+		  (
+			USER_ID,
+			ROLE_ID,
+			STATE,
+			CREATE_DATE,
+			CREATE_USER,
+			MODIFY_DATE,
+			MODIFY_USER
+		  )
+		  VALUES
+		  (
+			#{userId},
+			#{roleId},
+			'U',
+			NOW(),
+			#{modifyUser},
+			NOW(),
+			#{modifyUser}
+		  )
+	]]>
+	</insert>
+	
 </mapper>

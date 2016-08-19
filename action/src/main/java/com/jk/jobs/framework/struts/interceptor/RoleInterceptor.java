@@ -10,7 +10,6 @@ import org.apache.commons.lang.StringUtils;
 import org.apache.struts2.ServletActionContext;
 import org.springframework.stereotype.Component;
 
-import com.jk.jobs.api.role.bo.Role;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionInvocation;
 import com.opensymphony.xwork2.interceptor.Interceptor;
@@ -40,9 +39,9 @@ public class RoleInterceptor implements Interceptor {
 
 		@SuppressWarnings("rawtypes")
 		Map session = invocation.getInvocationContext().getSession();
-		Role role = (Role) session.get("ACEGI_SECURITY_LAST_USER_ROLE");
+		Long roleId = (Long) session.get("ACEGI_SECURITY_LAST_USER_ROLE");
 
-		if (role == null) {
+		if (roleId == null) {
 			HttpServletRequest request = ServletActionContext.getRequest();
 			request.getSession().setAttribute("ACEGI_SECURITY_REDIRECT_URL", getUrl());
 
