@@ -12,5 +12,6 @@
 	<include file="struts/struts-member.xml" />
 	<include file="struts/struts-portal.xml" />
 	<include file="struts/struts-region.xml" />
+	<include file="struts/struts-resume.xml" />
 	<include file="struts/struts-user.xml" />
 </struts>

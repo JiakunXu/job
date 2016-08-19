@@ -63,7 +63,7 @@ var view4 = myApp.addView('#view-4', {
 $$('#href-4').on('click', function() {
 			if (view4.history.length == 1) {
 				view4.router.load({
-							url : appUrl + "/cart/index.htm",
+							url : appUrl + "/resume/list.htm",
 							ignoreCache : true,
 							reload : true
 						});
