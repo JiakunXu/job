@@ -15,5 +15,15 @@
 			<result name="success">/jobs/job/detail.vm</result>
 		</action>
 		
+		<action name="template" class="jobAction" method="template">
+			<interceptor-ref name="authenticationStack" />
+			<result name="success">/jobs/job/template.vm</result>
+		</action>
+		
+		<!-- 发布 -->
+		<action name="publish" class="jobAction" method="publish">
+			<interceptor-ref name="authenticationStack" />
+		</action>
+		
 	</package>
 </struts>

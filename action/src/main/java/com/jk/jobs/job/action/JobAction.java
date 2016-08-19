@@ -51,6 +51,21 @@ public class JobAction extends BaseAction {
 		return SUCCESS;
 	}
 
+	/**
+	 * 需求模版.
+	 * 
+	 * @return
+	 */
+	public String template() {
+
+		return SUCCESS;
+	}
+
+	public String publish() {
+
+		return RESOURCE_RESULT;
+	}
+
 	public List<Job> getJobList() {
 		return jobList;
 	}
