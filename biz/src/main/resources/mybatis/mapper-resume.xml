@@ -1,0 +1,15 @@
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.jk.jobs.resume.dao.IResumeDao">
+	
+	<select id="getResumeList" parameterType="resume" resultType="resume">
+	<![CDATA[
+		SELECT t.`RESUME_ID` AS resumeId,
+		  FROM basis_tb_resume t
+		 WHERE t.state = 'U'
+	]]>
+	</select>
+	
+</mapper>
