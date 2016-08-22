@@ -19,7 +19,12 @@
 		<action name="resume" class="userJobAction" method="resume">
 			<interceptor-ref name="authenticationStack" />
 			<interceptor-ref name="roleStack" />
-			<result name="success">/jobs/user/resume.vm</result>
+			<result name="success">/jobs/user/job.vm</result>
+		</action>
+		
+		<action name="deliver" class="userJobAction" method="deliver">
+			<interceptor-ref name="authenticationStack" />
+			<interceptor-ref name="roleStack" />
 		</action>
 	</package>
 	

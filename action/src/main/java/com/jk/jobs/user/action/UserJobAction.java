@@ -35,9 +35,24 @@ public class UserJobAction extends BaseAction {
 	 * @return
 	 */
 	public String resume() {
-		BooleanResult result = userJobService.resume(this.getUser().getUserId(), jobId);
-
 		return SUCCESS;
+	}
+
+	/**
+	 * 
+	 * @return
+	 */
+	public String deliver() {
+		BooleanResult result = userJobService.deliver(this.getUser().getUserId(), jobId);
+
+		if (result.getResult()) {
+			this.setResourceResult("简历投递成功");
+		} else {
+			this.getServletResponse().setStatus(599);
+			this.setResourceResult(result.getCode());
+		}
+
+		return RESOURCE_RESULT;
 	}
 
 	/**

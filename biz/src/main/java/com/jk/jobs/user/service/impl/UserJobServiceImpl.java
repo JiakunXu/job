@@ -34,7 +34,7 @@ public class UserJobServiceImpl implements IUserJobService {
 	private IUserJobDao userJobDao;
 
 	@Override
-	public BooleanResult resume(Long userId, String jobId) {
+	public BooleanResult deliver(Long userId, String jobId) {
 		BooleanResult result = new BooleanResult();
 		result.setResult(false);
 

@@ -68,6 +68,7 @@
 		<mapper resource="mybatis/mapper-resume.detail.xml" />
 		<mapper resource="mybatis/mapper-resume.xml" />
 		<mapper resource="mybatis/mapper-role.xml" />
+		<mapper resource="mybatis/mapper-user.job.xml" />
 		<mapper resource="mybatis/mapper-user.role.xml" />
 		<mapper resource="mybatis/mapper-user.weixin.xml" />
 		<mapper resource="mybatis/mapper-user.xml" />

@@ -19,7 +19,7 @@ public interface IUserJobService {
 	 * @param jobId
 	 * @return
 	 */
-	BooleanResult resume(Long userId, String jobId);
+	BooleanResult deliver(Long userId, String jobId);
 
 	/**
 	 * 
