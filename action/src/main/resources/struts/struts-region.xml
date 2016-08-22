@@ -6,10 +6,12 @@
 		extends="{http://jobs}jobs$framework" namespace="/region">
 
 		<action name="index" class="regionAction" method="index">
+			<interceptor-ref name="authenticationStack" />
 			<result name="success">/jobs/region/index.vm</result>
 		</action>
 		
 		<action name="select" class="regionAction" method="select">
+			<interceptor-ref name="authenticationStack" />
 			<result name="success" type="redirect">${env.appUrl}/homepage.htm</result>
 		</action>
 		
