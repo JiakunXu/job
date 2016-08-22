@@ -13,6 +13,7 @@ import com.jk.jobs.framework.log.Logger4jCollection;
 import com.jk.jobs.framework.log.Logger4jExtend;
 import com.jk.jobs.framework.util.LogUtil;
 import com.jk.jobs.resume.dao.IResumeDao;
+import com.jk.jobs.resume.dao.IResumeDetailDao;
 
 /**
  * 
@@ -26,6 +27,9 @@ public class ResumeServiceImpl implements IResumeService {
 
 	@Resource
 	private IResumeDao resumeDao;
+
+	@Resource
+	private IResumeDetailDao resumeDetailDao;
 
 	@Override
 	public List<Resume> getResumeList(Resume resume) {

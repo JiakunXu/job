@@ -6,7 +6,12 @@
 	
 	<select id="getResumeList" parameterType="resume" resultType="resume">
 	<![CDATA[
-		SELECT t.`RESUME_ID` AS resumeId
+		SELECT t.`RESUME_ID` AS resumeId,
+			   t.`NAME`,
+			   t.`SEX`,
+			   t.`TEL`,
+			   t.`WORK_YEAR` AS workYear,
+			   t.`EDUCATION`
 		  FROM basis_tb_resume t
 		 WHERE t.state = 'U'
 	]]>
@@ -14,7 +19,12 @@
 	
 	<select id="getResume" parameterType="resume" resultType="resume">
 	<![CDATA[
-		SELECT t.`RESUME_ID` AS resumeId
+		SELECT t.`RESUME_ID` AS resumeId,
+			   t.`NAME`,
+			   t.`SEX`,
+			   t.`TEL`,
+			   t.`WORK_YEAR` AS workYear,
+			   t.`EDUCATION`
 		  FROM basis_tb_resume t
 		 WHERE t.state = 'U'
 	]]>

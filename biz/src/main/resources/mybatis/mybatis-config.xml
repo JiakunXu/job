@@ -65,6 +65,7 @@
 		<mapper resource="mybatis/mapper-monitor.log.xml" />
 		<mapper resource="mybatis/mapper-monitor.method.xml" />
 		<mapper resource="mybatis/mapper-region.xml" />
+		<mapper resource="mybatis/mapper-resume.detail.xml" />
 		<mapper resource="mybatis/mapper-resume.xml" />
 		<mapper resource="mybatis/mapper-role.xml" />
 		<mapper resource="mybatis/mapper-user.role.xml" />

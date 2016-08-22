@@ -1,0 +1,17 @@
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.jk.jobs.resume.dao.IResumeDetailDao">
+	
+	<select id="getResumeDetailList" parameterType="resumeDetail" resultType="resumeDetail">
+	<![CDATA[
+		SELECT t.`DETAIL_ID` AS detailId
+		  FROM basis_tb_resume_detail t
+		 WHERE t.state = 'U'
+		   AND t.resume_id = #{resumeId}
+		 ORDER BY t.`RANK`
+	]]>
+	</select>
+	
+</mapper>
