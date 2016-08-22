@@ -18,4 +18,11 @@ public interface IResumeDao {
 	 */
 	List<Resume> getResumeList(Resume resume);
 
+	/**
+	 * 
+	 * @param resume
+	 * @return
+	 */
+	Resume getResume(Resume resume);
+
 }

@@ -18,4 +18,11 @@ public interface IResumeService {
 	 */
 	List<Resume> getResumeList(Resume resume);
 
+	/**
+	 * 
+	 * @param resumeId
+	 * @return
+	 */
+	Resume getResume(String resumeId);
+
 }

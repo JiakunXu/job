@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
+import org.apache.commons.lang.StringUtils;
 import org.springframework.stereotype.Service;
 
 import com.jk.jobs.api.resume.IResumeService;
@@ -34,6 +35,31 @@ public class ResumeServiceImpl implements IResumeService {
 
 		try {
 			return resumeDao.getResumeList(resume);
+		} catch (Exception e) {
+			logger.error(LogUtil.parserBean(resume), e);
+		}
+
+		return null;
+	}
+
+	@Override
+	public Resume getResume(String resumeId) {
+		if (StringUtils.isBlank(resumeId)) {
+			return null;
+		}
+
+		Resume resume = new Resume();
+
+		try {
+			resume.setResumeId(Long.valueOf(resumeId));
+		} catch (NumberFormatException e) {
+			logger.error(e);
+
+			return null;
+		}
+
+		try {
+			return resumeDao.getResume(resume);
 		} catch (Exception e) {
 			logger.error(LogUtil.parserBean(resume), e);
 		}
