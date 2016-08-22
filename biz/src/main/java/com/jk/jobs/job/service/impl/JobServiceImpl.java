@@ -49,6 +49,24 @@ public class JobServiceImpl implements IJobService {
 	}
 
 	@Override
+	public List<Job> getJobList(Long userId) {
+		if (userId == null) {
+			return null;
+		}
+
+		Job job = new Job();
+		job.setUserId(userId);
+
+		try {
+			return jobDao.getJobList(job);
+		} catch (Exception e) {
+			logger.error(LogUtil.parserBean(job), e);
+		}
+
+		return null;
+	}
+
+	@Override
 	public List<Job> getJobList(String[] jobId) {
 		if (jobId == null || jobId.length == 0) {
 			return null;

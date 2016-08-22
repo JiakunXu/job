@@ -16,6 +16,9 @@
 		  FROM basis_tb_job t
 		 WHERE t.state = 'U'
 	]]>
+		<if test="userId != null and userId != ''">
+		<![CDATA[ AND t.user_id = ${userId} ]]>
+		</if>
 		<if test="codes != null and codes.length > 0">
 		<![CDATA[ AND t.job_id IN ]]>
 			<foreach collection="codes" item="code" open="(" close=")" separator=",">#{code}</foreach>

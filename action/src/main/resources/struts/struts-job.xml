@@ -25,5 +25,10 @@
 			<interceptor-ref name="authenticationStack" />
 		</action>
 		
+		<action name="my" class="jobAction" method="my">
+			<interceptor-ref name="authenticationStack" />
+			<result name="success">/jobs/job/my.vm</result>
+		</action>
+		
 	</package>
 </struts>

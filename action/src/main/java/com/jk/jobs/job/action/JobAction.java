@@ -83,6 +83,17 @@ public class JobAction extends BaseAction {
 		return RESOURCE_RESULT;
 	}
 
+	/**
+	 * 我发布的项目.
+	 * 
+	 * @return
+	 */
+	public String my() {
+		jobList = jobService.getJobList(this.getUser().getUserId());
+
+		return SUCCESS;
+	}
+
 	public List<Job> getJobList() {
 		return jobList;
 	}

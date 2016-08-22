@@ -20,6 +20,15 @@ public interface IJobService {
 	List<Job> getJobList(Job job);
 
 	/**
+	 * 我发布的项目.
+	 * 
+	 * @param userId
+	 * @return
+	 */
+	List<Job> getJobList(Long userId);
+
+	/**
+	 * 我投递的项目.
 	 * 
 	 * @param jobId
 	 * @return
