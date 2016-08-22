@@ -15,6 +15,12 @@
 			   t.`EDUCATION`
 		  FROM basis_tb_job t
 		 WHERE t.state = 'U'
+	]]>
+		<if test="codes != null and codes.length > 0">
+		<![CDATA[ AND t.job_id IN ]]>
+			<foreach collection="codes" item="code" open="(" close=")" separator=",">#{code}</foreach>
+		</if>
+	<![CDATA[
 		 ORDER BY `MODIFY_DATE` DESC
 	]]>
 	</select>

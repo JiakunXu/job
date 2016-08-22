@@ -24,6 +24,13 @@ public interface IJobService {
 	 * @param jobId
 	 * @return
 	 */
+	List<Job> getJobList(String[] jobId);
+
+	/**
+	 * 
+	 * @param jobId
+	 * @return
+	 */
 	Job getJob(String jobId);
 
 	/**
@@ -32,6 +39,6 @@ public interface IJobService {
 	 * @param job
 	 * @return
 	 */
-	BooleanResult publishJob(Long userId, Job job);
+	BooleanResult publish(Long userId, Job job);
 
 }

@@ -1,15 +1,16 @@
 package com.jk.jobs.api.job.bo;
 
-import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.List;
+
+import com.jk.jobs.framework.bo.SearchInfo;
 
 /**
  * 
  * @author JiakunXu
  * 
  */
-public class Job implements Serializable {
+public class Job extends SearchInfo {
 
 	private static final long serialVersionUID = -2010210383041214633L;
 

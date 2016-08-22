@@ -49,6 +49,18 @@ public class JobServiceImpl implements IJobService {
 	}
 
 	@Override
+	public List<Job> getJobList(String[] jobId) {
+		if (jobId == null || jobId.length == 0) {
+			return null;
+		}
+
+		Job job = new Job();
+		job.setCodes(jobId);
+
+		return getJobList(job);
+	}
+
+	@Override
 	public Job getJob(String jobId) {
 		if (StringUtils.isBlank(jobId)) {
 			return null;
@@ -95,7 +107,7 @@ public class JobServiceImpl implements IJobService {
 	}
 
 	@Override
-	public BooleanResult publishJob(Long userId, Job job) {
+	public BooleanResult publish(Long userId, Job job) {
 		BooleanResult result = new BooleanResult();
 		result.setResult(false);
 

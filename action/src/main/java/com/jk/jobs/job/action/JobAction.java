@@ -71,7 +71,7 @@ public class JobAction extends BaseAction {
 	}
 
 	public String publish() {
-		BooleanResult result = jobService.publishJob(this.getUser().getUserId(), job);
+		BooleanResult result = jobService.publish(this.getUser().getUserId(), job);
 
 		if (result.getResult()) {
 			this.setResourceResult("发布成功");
