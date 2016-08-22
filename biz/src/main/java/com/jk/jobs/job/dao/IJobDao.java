@@ -25,4 +25,11 @@ public interface IJobDao {
 	 */
 	Job getJob(Job job);
 
+	/**
+	 * 
+	 * @param job
+	 * @return
+	 */
+	int createJob(Job job);
+
 }

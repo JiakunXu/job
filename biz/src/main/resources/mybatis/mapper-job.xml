@@ -15,6 +15,7 @@
 			   t.`EDUCATION`
 		  FROM basis_tb_job t
 		 WHERE t.state = 'U'
+		 ORDER BY `MODIFY_DATE` DESC
 	]]>
 	</select>
 	
@@ -32,5 +33,43 @@
 		   AND t.job_id = #{jobId}
 	]]>
 	</select>
+	
+	<insert id="createJob" parameterType="job" useGeneratedKeys="true" keyProperty="jobId">
+	<![CDATA[
+		INSERT
+		INTO basis_tb_job
+		  (
+			USER_ID,
+			JOB_CID,
+			TITLE,
+			SALARY,
+			WORK_ADDRESS,
+			JOB_NATURE,
+			WORK_YEAR,
+			EDUCATION,
+			STATE,
+			CREATE_DATE,
+			CREATE_USER,
+			MODIFY_DATE,
+			MODIFY_USER
+		  )
+		  VALUES
+		  (
+			#{userId},
+			#{jobCId},
+			#{title},
+			#{salary},
+			#{workAddress},
+			#{jobNature},
+			#{workYear},
+			#{education},
+			'U',
+			NOW(),
+			#{modifyUser},
+			NOW(),
+			#{modifyUser}
+		  )
+	]]>
+	</insert>
 	
 </mapper>

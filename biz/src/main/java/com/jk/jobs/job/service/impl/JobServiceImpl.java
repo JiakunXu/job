@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import com.jk.jobs.api.job.IJobService;
 import com.jk.jobs.api.job.bo.Job;
 import com.jk.jobs.api.job.bo.JobDetail;
+import com.jk.jobs.framework.bo.BooleanResult;
 import com.jk.jobs.framework.log.Logger4jCollection;
 import com.jk.jobs.framework.log.Logger4jExtend;
 import com.jk.jobs.framework.util.LogUtil;
@@ -91,6 +92,37 @@ public class JobServiceImpl implements IJobService {
 		}
 
 		return job;
+	}
+
+	@Override
+	public BooleanResult publishJob(Long userId, Job job) {
+		BooleanResult result = new BooleanResult();
+		result.setResult(false);
+
+		if (userId == null) {
+			result.setCode("用户信息不能为空");
+			return result;
+		}
+
+		if (job == null) {
+			result.setCode("项目信息不能为空");
+			return result;
+		}
+
+		job.setUserId(userId);
+		job.setModifyUser(userId.toString());
+
+		try {
+			jobDao.createJob(job);
+			result.setCode(job.getJobId().toString());
+			result.setResult(true);
+		} catch (Exception e) {
+			logger.error(LogUtil.parserBean(job), e);
+
+			result.setCode("项目信息创建失败，请稍后再试");
+		}
+
+		return result;
 	}
 
 }

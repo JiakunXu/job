@@ -14,6 +14,90 @@
 	<div data-page="job.template" class="page no-tabbar">
 		<!-- Scrollable page content-->
 		<div class="page-content">
+			<form id="job/template/publish" action="$!{env.appUrl}/job/publish.htm" method="POST" class="ajax-submit job-template-form">
+				<input type="hidden" name="tradeNo" value="$!{tradeNo}" />
+				<div class="list-block">
+    				<ul>
+    					<li>
+    						<div class="item-content">
+    							<div class="item-inner">
+    								<div class="item-title label">项目标题</div>
+    								<div class="item-input">
+    									<input type="text" style="font-size: 15px;" name="job.title" placeholder="标题" />
+    								</div>
+    							</div>
+    						</div>
+    					</li>
+						<li>
+    						<div class="item-content">
+    							<div class="item-inner">
+    								<div class="item-title label">项目分类</div>
+    								<div class="item-input">
+    									<select name="job.jobCId">
+    										#foreach($jobCat in $!{jobCatList})
+    										<option value="$!{jobCat.jobCId}">$!{jobCat.jobCName}</option>
+    										#end
+    									</select>
+    								</div>
+    							</div>
+    						</div>
+    					</li>
+						<li>
+    						<div class="item-content">
+    							<div class="item-inner">
+    								<div class="item-title label">项目薪水</div>
+    								<div class="item-input">
+    									<input type="text" style="font-size: 15px;" name="job.salary" placeholder="" />
+    								</div>
+    							</div>
+    						</div>
+    					</li>
+						<li>
+    						<div class="item-content">
+    							<div class="item-inner">
+    								<div class="item-title label">项目地点</div>
+    								<div class="item-input">
+    									<input type="text" style="font-size: 15px;" name="job.workAddress" placeholder="" />
+    								</div>
+    							</div>
+    						</div>
+    					</li>
+						<li>
+    						<div class="item-content">
+    							<div class="item-inner">
+    								<div class="item-title label">工作性质</div>
+    								<div class="item-input">
+    									<input type="text" style="font-size: 15px;" name="job.jobNature" placeholder="" />
+    								</div>
+    							</div>
+    						</div>
+    					</li>
+						<li>
+    						<div class="item-content">
+    							<div class="item-inner">
+    								<div class="item-title label">工作年限</div>
+    								<div class="item-input">
+    									<input type="text" style="font-size: 15px;" name="job.workYear" placeholder="" />
+    								</div>
+    							</div>
+    						</div>
+    					</li>
+						<li>
+    						<div class="item-content">
+    							<div class="item-inner">
+    								<div class="item-title label">最高学历</div>
+    								<div class="item-input">
+    									<input type="text" style="font-size: 15px;" name="job.education" placeholder="" />
+    								</div>
+    							</div>
+    						</div>
+    					</li>
+    				</ul>
+                </div>
+				<div class="content-block">
+    				<a href="javascript:job_template_publish();" class="button button-big button-fill weui_btn_primary">发布</a>
+    			</div>
+			</form>
         </div>
     </div>
 </div>

@@ -7,9 +7,12 @@ import javax.annotation.Resource;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
+import com.jk.jobs.api.job.IJobCatService;
 import com.jk.jobs.api.job.IJobService;
 import com.jk.jobs.api.job.bo.Job;
+import com.jk.jobs.api.job.bo.JobCat;
 import com.jk.jobs.framework.action.BaseAction;
+import com.jk.jobs.framework.bo.BooleanResult;
 
 /**
  * 
@@ -25,11 +28,16 @@ public class JobAction extends BaseAction {
 	@Resource
 	private IJobService jobService;
 
+	@Resource
+	private IJobCatService jobCatService;
+
 	private List<Job> jobList;
 
 	private String jobId;
 
 	private Job job;
+
+	private List<JobCat> jobCatList;
 
 	/**
 	 * 
@@ -57,11 +65,20 @@ public class JobAction extends BaseAction {
 	 * @return
 	 */
 	public String template() {
+		jobCatList = jobCatService.getJobCatList(new JobCat());
 
 		return SUCCESS;
 	}
 
 	public String publish() {
+		BooleanResult result = jobService.publishJob(this.getUser().getUserId(), job);
+
+		if (result.getResult()) {
+			this.setResourceResult("发布成功");
+		} else {
+			this.getServletResponse().setStatus(599);
+			this.setResourceResult(result.getCode());
+		}
 
 		return RESOURCE_RESULT;
 	}
@@ -88,6 +105,14 @@ public class JobAction extends BaseAction {
 
 	public void setJob(Job job) {
 		this.job = job;
+	}
+
+	public List<JobCat> getJobCatList() {
+		return jobCatList;
+	}
+
+	public void setJobCatList(List<JobCat> jobCatList) {
+		this.jobCatList = jobCatList;
 	}
 
 }

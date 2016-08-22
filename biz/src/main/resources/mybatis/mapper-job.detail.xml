@@ -9,8 +9,8 @@
 		SELECT t.detail_id AS detailId,
 			   t.`CONTENT`
 		  FROM basis_tb_job_detail t
-		 WHERE t.state= 'U'
-		   AND t.job_id= #{jobId}
+		 WHERE t.state = 'U'
+		   AND t.job_id = #{jobId}
 		 ORDER BY t.`RANK`
 	]]>
 	</select>

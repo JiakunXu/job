@@ -1,0 +1,16 @@
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.jk.jobs.job.dao.IJobCatDao">
+	
+	<select id="getJobCatList" parameterType="jobCat" resultType="jobCat">
+	<![CDATA[
+		SELECT t.`JOB_CID` AS jobCId,
+			   t.`JOB_CNAME` AS jobCName
+		  FROM basis_tb_job_cat t
+		 WHERE t.state = 'U'
+	]]>
+	</select>
+	
+</mapper>

@@ -46,6 +46,8 @@ public class Job implements Serializable {
 
 	private String education;
 
+	private String modifyUser;
+
 	// >>>>>>>>>>以下是辅助属性<<<<<<<<<<
 
 	private List<JobDetail> jobDetailList;
@@ -120,6 +122,14 @@ public class Job implements Serializable {
 
 	public void setEducation(String education) {
 		this.education = education;
+	}
+
+	public String getModifyUser() {
+		return modifyUser;
+	}
+
+	public void setModifyUser(String modifyUser) {
+		this.modifyUser = modifyUser;
 	}
 
 	public List<JobDetail> getJobDetailList() {
