@@ -102,6 +102,10 @@
 								<ul>
 									<li class="card" style="border-radius: 5px; margin: 10px 5px;">
 										<span class="bw"></span>
+										<div class="card-header" style="font-size: 14px;">
+                							<div class="left">$!{job.userName}</div>
+                							<div class="right"></div>
+                						</div>
 										<div class="card-content">
 											<div class="card-content-inner" style="padding: 3px;">
 												<div class="item-content">
@@ -145,7 +149,6 @@
 										<div class="card-footer" style="min-height: 0; padding: 5px 15px;">
                                             <span style="font-size: 12px;">
 												<i class="iconfont icon-notice" style="font-size: 15px;"></i>
-												包吃包住
 											</span>
 										</div>
 									</li>

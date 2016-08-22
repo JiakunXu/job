@@ -53,6 +53,8 @@ public class Job extends SearchInfo {
 
 	private List<JobDetail> jobDetailList;
 
+	private String userName;
+
 	public Long getJobId() {
 		return jobId;
 	}
@@ -139,6 +141,14 @@ public class Job extends SearchInfo {
 
 	public void setJobDetailList(List<JobDetail> jobDetailList) {
 		this.jobDetailList = jobDetailList;
+	}
+
+	public String getUserName() {
+		return userName;
+	}
+
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
 
 }

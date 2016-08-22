@@ -10,6 +10,8 @@ import org.springframework.stereotype.Service;
 import com.jk.jobs.api.job.IJobService;
 import com.jk.jobs.api.job.bo.Job;
 import com.jk.jobs.api.job.bo.JobDetail;
+import com.jk.jobs.api.user.IUserService;
+import com.jk.jobs.api.user.bo.User;
 import com.jk.jobs.framework.bo.BooleanResult;
 import com.jk.jobs.framework.log.Logger4jCollection;
 import com.jk.jobs.framework.log.Logger4jExtend;
@@ -28,6 +30,9 @@ public class JobServiceImpl implements IJobService {
 	private Logger4jExtend logger = Logger4jCollection.getLogger(JobServiceImpl.class);
 
 	@Resource
+	private IUserService userService;
+
+	@Resource
 	private IJobDao jobDao;
 
 	@Resource
@@ -39,13 +44,26 @@ public class JobServiceImpl implements IJobService {
 			return null;
 		}
 
+		List<Job> jobList = null;
+
 		try {
-			return jobDao.getJobList(job);
+			jobList = jobDao.getJobList(job);
 		} catch (Exception e) {
 			logger.error(LogUtil.parserBean(job), e);
 		}
 
-		return null;
+		if (jobList == null || jobList.size() == 0) {
+			return null;
+		}
+
+		for (Job j : jobList) {
+			User u = userService.getUser(j.getUserId());
+			if (u != null) {
+				j.setUserName(u.getUserName());
+			}
+		}
+
+		return jobList;
 	}
 
 	@Override
@@ -57,13 +75,7 @@ public class JobServiceImpl implements IJobService {
 		Job job = new Job();
 		job.setUserId(userId);
 
-		try {
-			return jobDao.getJobList(job);
-		} catch (Exception e) {
-			logger.error(LogUtil.parserBean(job), e);
-		}
-
-		return null;
+		return getJobList(job);
 	}
 
 	@Override

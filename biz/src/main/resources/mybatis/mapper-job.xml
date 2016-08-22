@@ -6,7 +6,8 @@
 	
 	<select id="getJobList" parameterType="job" resultType="job">
 	<![CDATA[
-		SELECT t.job_id AS jobId,
+		SELECT t.`JOB_ID` AS jobId,
+			   t.`USER_ID` AS userId,
 			   t.`TITLE`,
 			   t.`SALARY`,
 			   t.`WORK_ADDRESS` AS workAddress,
