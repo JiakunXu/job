@@ -67,4 +67,22 @@ public class ResumeServiceImpl implements IResumeService {
 		return null;
 	}
 
+	@Override
+	public Resume getResume(Long userId) {
+		if (userId == null) {
+			return null;
+		}
+
+		Resume resume = new Resume();
+		resume.setUserId(userId);
+
+		try {
+			return resumeDao.getResume(resume);
+		} catch (Exception e) {
+			logger.error(LogUtil.parserBean(resume), e);
+		}
+
+		return null;
+	}
+
 }

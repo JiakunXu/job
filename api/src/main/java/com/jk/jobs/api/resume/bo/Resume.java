@@ -13,12 +13,22 @@ public class Resume extends SearchInfo {
 
 	private Long resumeId;
 
+	private Long userId;
+
 	public Long getResumeId() {
 		return resumeId;
 	}
 
 	public void setResumeId(Long resumeId) {
 		this.resumeId = resumeId;
+	}
+
+	public Long getUserId() {
+		return userId;
+	}
+
+	public void setUserId(Long userId) {
+		this.userId = userId;
 	}
 
 }

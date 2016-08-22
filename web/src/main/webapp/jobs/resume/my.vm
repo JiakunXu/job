@@ -3,7 +3,7 @@
 <div class="navbar">
 	<div class="navbar-inner">
 		<div class="left"><a href="#" class="back link"> <i class="icon icon-back color-gray"></i><span></span></a></div>
-		<div class="center sliding">人才</div>
+		<div class="center sliding">我的简历</div>
 		<div class="right">
 			<!-- Right link contains only icon - additional "icon-only" class-->
 		</div>
@@ -11,11 +11,10 @@
 </div>
 <div class="pages">
 	<!-- Page, data-page contains page name-->
-	<div data-page="resume.detail" class="page no-tabbar">
+	<div data-page="resume.my" class="page no-tabbar">
 		<!-- Scrollable page content-->
 		<div class="page-content">
 			<div class="card" style="border-radius: 5px; margin: 10px 5px;">
-				<span class="bw"></span>
 				<div class="card-content">
 					<div class="card-content-inner" style="padding: 18px;">
     					<div class="list-block media-list">

@@ -15,5 +15,10 @@
 			<result name="success">/jobs/resume/detail.vm</result>
 		</action>
 		
+		<action name="my" class="resumeAction" method="my">
+			<interceptor-ref name="authenticationStack" />
+			<result name="success">/jobs/resume/my.vm</result>
+		</action>
+		
 	</package>
 </struts>

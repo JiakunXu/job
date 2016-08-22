@@ -47,6 +47,12 @@ public class ResumeAction extends BaseAction {
 		return SUCCESS;
 	}
 
+	public String my() {
+		resume = resumeService.getResume(this.getUser().getUserId());
+
+		return SUCCESS;
+	}
+
 	public List<Resume> getResumeList() {
 		return resumeList;
 	}

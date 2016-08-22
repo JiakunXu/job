@@ -17,8 +17,13 @@
 		SELECT t.`RESUME_ID` AS resumeId
 		  FROM basis_tb_resume t
 		 WHERE t.state = 'U'
-		   AND t.resume_id = #{resumeId}
 	]]>
+		<if test="resumeId != null">
+		<![CDATA[ AND t.resume_id = #{resumeId} ]]>
+		</if>
+		<if test="userId != null">
+		<![CDATA[ AND t.user_id = #{userId} ]]>
+		</if>
 	</select>
 	
 </mapper>

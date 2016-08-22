@@ -25,4 +25,11 @@ public interface IResumeService {
 	 */
 	Resume getResume(String resumeId);
 
+	/**
+	 * 
+	 * @param userId
+	 * @return
+	 */
+	Resume getResume(Long userId);
+
 }
