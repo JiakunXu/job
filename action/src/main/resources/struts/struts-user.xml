@@ -26,6 +26,11 @@
 			<interceptor-ref name="authenticationStack" />
 			<interceptor-ref name="roleStack" />
 		</action>
+		
+		<action name="list" class="userJobAction" method="list">
+			<interceptor-ref name="authenticationStack" />
+			<result name="success">/jobs/user/job/list.vm</result>
+		</action>
 	</package>
 	
 	<package name="{http://jobs}jobs$user/role"
