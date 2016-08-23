@@ -29,7 +29,8 @@
 			   t.`JOB_NATURE` AS jobNature,
 			   t.`WORK_YEAR` AS workYear,
 			   t.`EDUCATION`,
-			   t.`REMARK`
+			   t.`REMARK`,
+			   DATE_FORMAT(t.create_date, '%Y-%m-%d %T') AS createDate
 		  FROM basis_tb_job t
 		 WHERE t.state = 'U'
 	]]>

@@ -51,27 +51,27 @@
         								<div class="item-title-row">
 											<div class="row no-gutter" style="width: 100%;">
 												<div class="col-50">
-													<div class="item-subtitle color-gray" style="font-size: 12px;">工作地点：$!{job.workAddress}</div>
+													<div class="item-subtitle">工作地点：$!{job.workAddress}</div>
                                                 </div>
 												<div class="col-50">
-													<div class="item-subtitle color-gray" style="font-size: 12px;">工作性质：$!{job.jobNature}</div>
-                                                </div>
-                                            </div>
-        								</div>
-										<div class="item-title-row">
-											<div class="row no-gutter" style="width: 100%;">
-												<div class="col-50">
-													<div class="item-subtitle color-gray" style="font-size: 12px;">学历：$!{job.education}</div>
-                                                </div>
-												<div class="col-50">
-													<div class="item-subtitle color-gray" style="font-size: 12px;">工作经验：$!{job.workYear}</div>
+													<div class="item-subtitle">工作性质：$!{job.jobNature}</div>
                                                 </div>
                                             </div>
         								</div>
 										<div class="item-title-row">
 											<div class="row no-gutter" style="width: 100%;">
 												<div class="col-50">
-													<div class="item-subtitle color-gray" style="font-size: 12px;">薪水：￥$!formatUtil.getAmountFormat($!{job.salary})</div>
+													<div class="item-subtitle">学历：$!{job.education}</div>
+                                                </div>
+												<div class="col-50">
+													<div class="item-subtitle">工作经验：$!{job.workYear}</div>
+                                                </div>
+                                            </div>
+        								</div>
+										<div class="item-title-row">
+											<div class="row no-gutter" style="width: 100%;">
+												<div class="col-50">
+													<div class="item-subtitle">薪水：￥$!formatUtil.getAmountFormat($!{job.salary})</div>
                                                 </div>
                                             </div>
         								</div>
