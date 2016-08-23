@@ -7,7 +7,10 @@ import javax.annotation.Resource;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
+import com.jk.jobs.api.job.IJobService;
 import com.jk.jobs.api.job.bo.Job;
+import com.jk.jobs.api.resume.IResumeService;
+import com.jk.jobs.api.resume.bo.Resume;
 import com.jk.jobs.api.user.IUserJobService;
 import com.jk.jobs.framework.action.BaseAction;
 import com.jk.jobs.framework.bo.BooleanResult;
@@ -26,7 +29,17 @@ public class UserJobAction extends BaseAction {
 	@Resource
 	private IUserJobService userJobService;
 
+	@Resource
+	private IJobService jobService;
+
+	@Resource
+	private IResumeService resumeService;
+
 	private String jobId;
+
+	private Job job;
+
+	private Resume resume;
 
 	private List<Job> jobList;
 
@@ -35,6 +48,12 @@ public class UserJobAction extends BaseAction {
 	 * @return
 	 */
 	public String resume() {
+		// 项目
+		job = jobService.getJob(jobId);
+
+		// 简历
+		resume = resumeService.getResume(this.getUser().getUserId());
+
 		return SUCCESS;
 	}
 
@@ -72,6 +91,22 @@ public class UserJobAction extends BaseAction {
 
 	public void setJobId(String jobId) {
 		this.jobId = jobId;
+	}
+
+	public Job getJob() {
+		return job;
+	}
+
+	public void setJob(Job job) {
+		this.job = job;
+	}
+
+	public Resume getResume() {
+		return resume;
+	}
+
+	public void setResume(Resume resume) {
+		this.resume = resume;
 	}
 
 	public List<Job> getJobList() {
