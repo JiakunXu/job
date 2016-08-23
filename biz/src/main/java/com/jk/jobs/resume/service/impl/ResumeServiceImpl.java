@@ -63,13 +63,18 @@ public class ResumeServiceImpl implements IResumeService {
 			return null;
 		}
 
-		try {
-			return resumeDao.getResume(resume);
-		} catch (Exception e) {
-			logger.error(LogUtil.parserBean(resume), e);
+		resume = getResume(resume);
+
+		if (resume == null) {
+			return null;
 		}
 
-		return null;
+		ResumeDetail resumeDetail = new ResumeDetail();
+		resumeDetail.setResumeId(resume.getResumeId());
+
+		resume.setResumeDetailList(getResumeDetailList(resumeDetail));
+
+		return resume;
 	}
 
 	@Override
@@ -81,13 +86,7 @@ public class ResumeServiceImpl implements IResumeService {
 		Resume resume = new Resume();
 		resume.setUserId(userId);
 
-		try {
-			resume = resumeDao.getResume(resume);
-		} catch (Exception e) {
-			logger.error(LogUtil.parserBean(resume), e);
-
-			resume = null;
-		}
+		resume = getResume(resume);
 
 		if (resume == null) {
 			return null;
@@ -96,17 +95,29 @@ public class ResumeServiceImpl implements IResumeService {
 		ResumeDetail resumeDetail = new ResumeDetail();
 		resumeDetail.setResumeId(resume.getResumeId());
 
-		List<ResumeDetail> resumeDetailList = null;
+		resume.setResumeDetailList(getResumeDetailList(resumeDetail));
 
+		return resume;
+	}
+
+	private Resume getResume(Resume resume) {
 		try {
-			resumeDetailList = resumeDetailDao.getResumeDetailList(resumeDetail);
+			return resumeDao.getResume(resume);
 		} catch (Exception e) {
 			logger.error(LogUtil.parserBean(resume), e);
 		}
 
-		resume.setResumeDetailList(resumeDetailList);
+		return null;
+	}
 
-		return resume;
+	private List<ResumeDetail> getResumeDetailList(ResumeDetail resumeDetail) {
+		try {
+			return resumeDetailDao.getResumeDetailList(resumeDetail);
+		} catch (Exception e) {
+			logger.error(LogUtil.parserBean(resumeDetail), e);
+		}
+
+		return null;
 	}
 
 }
