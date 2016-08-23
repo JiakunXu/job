@@ -17,6 +17,13 @@ public interface IJobService {
 	 * @param job
 	 * @return
 	 */
+	int getJobCount(Job job);
+
+	/**
+	 * 
+	 * @param job
+	 * @return
+	 */
 	List<Job> getJobList(Job job);
 
 	/**

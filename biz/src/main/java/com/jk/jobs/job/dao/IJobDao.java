@@ -16,6 +16,13 @@ public interface IJobDao {
 	 * @param job
 	 * @return
 	 */
+	int getJobCount(Job job);
+
+	/**
+	 * 
+	 * @param job
+	 * @return
+	 */
 	List<Job> getJobList(Job job);
 
 	/**

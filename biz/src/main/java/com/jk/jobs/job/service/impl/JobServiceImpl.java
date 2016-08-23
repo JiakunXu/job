@@ -39,6 +39,21 @@ public class JobServiceImpl implements IJobService {
 	private IJobDetailDao jobDetailDao;
 
 	@Override
+	public int getJobCount(Job job) {
+		if (job == null) {
+			return 0;
+		}
+
+		try {
+			return jobDao.getJobCount(job);
+		} catch (Exception e) {
+			logger.error(LogUtil.parserBean(job), e);
+		}
+
+		return 0;
+	}
+
+	@Override
 	public List<Job> getJobList(Job job) {
 		if (job == null) {
 			return null;
@@ -75,6 +90,15 @@ public class JobServiceImpl implements IJobService {
 		Job job = new Job();
 		job.setUserId(userId);
 
+		int limit = getJobCount(job);
+
+		if (limit == 0) {
+			return null;
+		}
+
+		job.setLimit(limit);
+		job.setOffset(0);
+
 		return getJobList(job);
 	}
 
@@ -86,6 +110,15 @@ public class JobServiceImpl implements IJobService {
 
 		Job job = new Job();
 		job.setCodes(jobId);
+
+		int limit = getJobCount(job);
+
+		if (limit == 0) {
+			return null;
+		}
+
+		job.setLimit(limit);
+		job.setOffset(0);
 
 		return getJobList(job);
 	}
@@ -118,6 +151,13 @@ public class JobServiceImpl implements IJobService {
 			return null;
 		}
 
+		// 发布
+		User u = userService.getUser(job.getUserId());
+		if (u != null) {
+			job.setUserName(u.getUserName());
+		}
+
+		// 项目介绍
 		JobDetail jobDetail = new JobDetail();
 		jobDetail.setJobId(job.getJobId());
 

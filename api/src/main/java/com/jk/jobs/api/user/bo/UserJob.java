@@ -17,6 +17,11 @@ public class UserJob implements Serializable {
 
 	private Long jobId;
 
+	/**
+	 * 应聘时间.
+	 */
+	private String createDate;
+
 	private String modifyUser;
 
 	public Long getId() {
@@ -41,6 +46,14 @@ public class UserJob implements Serializable {
 
 	public void setJobId(Long jobId) {
 		this.jobId = jobId;
+	}
+
+	public String getCreateDate() {
+		return createDate;
+	}
+
+	public void setCreateDate(String createDate) {
+		this.createDate = createDate;
 	}
 
 	public String getModifyUser() {

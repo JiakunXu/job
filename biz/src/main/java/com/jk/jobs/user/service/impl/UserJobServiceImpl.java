@@ -1,6 +1,8 @@
 package com.jk.jobs.user.service.impl;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 
@@ -89,14 +91,27 @@ public class UserJobServiceImpl implements IUserJobService {
 			return null;
 		}
 
+		Map<Long, UserJob> map = new HashMap<Long, UserJob>();
 		String[] jobId = new String[userJobList.size()];
 		int i = 0;
 
 		for (UserJob uj : userJobList) {
+			map.put(uj.getJobId(), uj);
 			jobId[i++] = uj.getJobId().toString();
 		}
 
-		return jobService.getJobList(jobId);
+		List<Job> jobList = jobService.getJobList(jobId);
+
+		if (jobList == null || jobList.size() == 0) {
+			return null;
+		}
+
+		for (Job job : jobList) {
+			UserJob uj = map.get(job.getJobId());
+			job.setCreateDate(uj.getCreateDate());
+		}
+
+		return jobList;
 	}
 
 	/**

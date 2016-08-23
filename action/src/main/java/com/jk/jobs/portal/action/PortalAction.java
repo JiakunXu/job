@@ -42,7 +42,11 @@ public class PortalAction extends BaseAction {
 	 * @return
 	 */
 	public String homepage() {
-		jobList = jobService.getJobList(new Job());
+		Job j = new Job();
+		j.setLimit(3);
+		j.setOffset(0);
+
+		jobList = jobService.getJobList(j);
 
 		String requestURL = env.getProperty("appUrl") + "/homepage.htm";
 		HttpServletRequest request = getServletRequest();

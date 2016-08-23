@@ -32,7 +32,8 @@
 	
 	<select id="getUserJobList" parameterType="userJob" resultType="userJob">
 	<![CDATA[
-		SELECT t.job_id AS jobId
+		SELECT t.job_id AS jobId,
+			   DATE_FORMAT(t.create_date, '%Y-%m-%d %T') AS createDate
 		  FROM basis_tb_user_job t
 		 WHERE t.state = 'U'
 		   AND t.user_id = #{userId}

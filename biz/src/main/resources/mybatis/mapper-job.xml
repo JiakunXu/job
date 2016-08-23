@@ -4,6 +4,21 @@
 
 <mapper namespace="com.jk.jobs.job.dao.IJobDao">
 	
+	<select id="getJobCount" parameterType="job" resultType="java.lang.Integer">
+	<![CDATA[
+		SELECT COUNT(1)
+		  FROM basis_tb_job t
+		 WHERE t.state = 'U'
+	]]>
+		<if test="userId != null and userId != ''">
+		<![CDATA[ AND t.user_id = ${userId} ]]>
+		</if>
+		<if test="codes != null and codes.length > 0">
+		<![CDATA[ AND t.job_id IN ]]>
+			<foreach collection="codes" item="code" open="(" close=")" separator=",">#{code}</foreach>
+		</if>
+	</select>
+	
 	<select id="getJobList" parameterType="job" resultType="job">
 	<![CDATA[
 		SELECT t.`JOB_ID` AS jobId,
@@ -13,7 +28,8 @@
 			   t.`WORK_ADDRESS` AS workAddress,
 			   t.`JOB_NATURE` AS jobNature,
 			   t.`WORK_YEAR` AS workYear,
-			   t.`EDUCATION`
+			   t.`EDUCATION`,
+			   t.`REMARK`
 		  FROM basis_tb_job t
 		 WHERE t.state = 'U'
 	]]>
@@ -26,18 +42,22 @@
 		</if>
 	<![CDATA[
 		 ORDER BY `MODIFY_DATE` DESC
+		LIMIT ${limit} OFFSET ${offset}
 	]]>
 	</select>
 	
 	<select id="getJob" parameterType="job" resultType="job">
 	<![CDATA[
-		SELECT t.job_id AS jobId,
+		SELECT t.JOB_ID AS jobId,
+			   t.`USER_ID` AS userId,
 			   t.`TITLE`,
 			   t.`SALARY`,
 			   t.`WORK_ADDRESS` AS workAddress,
 			   t.`JOB_NATURE` AS jobNature,
 			   t.`WORK_YEAR` AS workYear,
-			   t.`EDUCATION`
+			   t.`EDUCATION`,
+			   t.`REMARK`,
+			   DATE_FORMAT(t.create_date, '%Y-%m-%d %T') AS createDate
 		  FROM basis_tb_job t
 		 WHERE t.state = 'U'
 		   AND t.job_id = #{jobId}
@@ -57,6 +77,7 @@
 			JOB_NATURE,
 			WORK_YEAR,
 			EDUCATION,
+			REMARK,
 			STATE,
 			CREATE_DATE,
 			CREATE_USER,
@@ -73,6 +94,7 @@
 			#{jobNature},
 			#{workYear},
 			#{education},
+			#{remark},
 			'U',
 			NOW(),
 			#{modifyUser},

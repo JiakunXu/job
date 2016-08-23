@@ -44,7 +44,11 @@ public class JobAction extends BaseAction {
 	 * @return
 	 */
 	public String list() {
-		jobList = jobService.getJobList(new Job());
+		Job j = new Job();
+		j.setLimit(100);
+		j.setOffset(0);
+
+		jobList = jobService.getJobList(j);
 
 		return SUCCESS;
 	}

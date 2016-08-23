@@ -47,6 +47,13 @@ public class Job extends SearchInfo {
 
 	private String education;
 
+	private String remark;
+
+	/**
+	 * 发布时间.
+	 */
+	private String createDate;
+
 	private String modifyUser;
 
 	// >>>>>>>>>>以下是辅助属性<<<<<<<<<<
@@ -125,6 +132,22 @@ public class Job extends SearchInfo {
 
 	public void setEducation(String education) {
 		this.education = education;
+	}
+
+	public String getRemark() {
+		return remark;
+	}
+
+	public void setRemark(String remark) {
+		this.remark = remark;
+	}
+
+	public String getCreateDate() {
+		return createDate;
+	}
+
+	public void setCreateDate(String createDate) {
+		this.createDate = createDate;
 	}
 
 	public String getModifyUser() {

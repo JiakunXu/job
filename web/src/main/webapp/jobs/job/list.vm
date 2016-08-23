@@ -37,35 +37,39 @@
 				<ul>
 					<li class="card" style="border-radius: 5px; margin: 10px 5px;">
 						<span class="bw"></span>
+						<div class="card-header" style="font-size: 14px;">
+							<div class="left"><i class="iconfont icon-cascades" style="font-size: 16px;"></i> $!{job.title}</div>
+							<div class="right"><i class="iconfont icon-post" style="font-size: 14px;"></i> $!{job.userName}</div>
+						</div>
 						<div class="card-content">
 							<div class="card-content-inner" style="padding: 3px;">
 								<div class="item-content">
         							<a class="item-inner" href="$!{env.appUrl}/job/detail.htm?jobId=$!{job.jobId}" data-ignore-cache="true">
         								<div class="item-title-row">
-                                            <div class="item-title">$!{job.title}</div>
-        								</div>
-        								<div class="item-title-row">
 											<div class="row no-gutter" style="width: 100%;">
-												<div class="col-30">
-													<div class="item-subtitle color-gray" style="font-size: 12px;">$!{job.salary}</div>
+												<div class="col-50">
+													<div class="item-subtitle color-gray" style="font-size: 12px;">工作地点：$!{job.workAddress}</div>
                                                 </div>
-												<div class="col-30">
-													<div class="item-subtitle color-gray" style="font-size: 12px;">$!{job.workAddress}</div>
-                                                </div>
-												<div class="col-30">
-													<div class="item-subtitle color-gray" style="font-size: 12px;">$!{job.jobNature}</div>
+												<div class="col-50">
+													<div class="item-subtitle color-gray" style="font-size: 12px;">工作性质：$!{job.jobNature}</div>
                                                 </div>
                                             </div>
         								</div>
 										<div class="item-title-row">
 											<div class="row no-gutter" style="width: 100%;">
-												<div class="col-30">
-													<div class="item-subtitle color-gray" style="font-size: 12px;">$!{job.workYear}</div>
+												<div class="col-50">
+													<div class="item-subtitle color-gray" style="font-size: 12px;">学历：$!{job.education}</div>
                                                 </div>
-												<div class="col-30">
-													<div class="item-subtitle color-gray" style="font-size: 12px;">$!{job.education}</div>
+												<div class="col-50">
+													<div class="item-subtitle color-gray" style="font-size: 12px;">工作经验：$!{job.workYear}</div>
                                                 </div>
-                                                <div class="col-30"></div>
+                                            </div>
+        								</div>
+										<div class="item-title-row">
+											<div class="row no-gutter" style="width: 100%;">
+												<div class="col-50">
+													<div class="item-subtitle color-gray" style="font-size: 12px;">薪水：￥$!formatUtil.getAmountFormat($!{job.salary})</div>
+                                                </div>
                                             </div>
         								</div>
                                     </a>
@@ -79,8 +83,7 @@
 						</div>
 						<div class="card-footer" style="min-height: 0; padding: 5px 15px;">
                             <span style="font-size: 12px;">
-								<i class="iconfont icon-notice" style="font-size: 15px;"></i>
-								包吃包住
+								<i class="iconfont icon-notification" style="font-size: 12px;"></i> $!{job.remark}
 							</span>
 						</div>
 					</li>
