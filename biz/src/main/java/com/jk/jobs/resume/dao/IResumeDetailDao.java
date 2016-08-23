@@ -16,6 +16,6 @@ public interface IResumeDetailDao {
 	 * @param resume
 	 * @return
 	 */
-	List<ResumeDetail> getResumeList(ResumeDetail resumeDetail);
+	List<ResumeDetail> getResumeDetailList(ResumeDetail resumeDetail);
 
 }

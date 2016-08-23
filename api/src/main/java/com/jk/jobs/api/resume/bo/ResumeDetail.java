@@ -15,6 +15,8 @@ public class ResumeDetail implements Serializable {
 
 	private Long resumeId;
 
+	private String content;
+
 	public Long getDetailId() {
 		return detailId;
 	}
@@ -29,6 +31,14 @@ public class ResumeDetail implements Serializable {
 
 	public void setResumeId(Long resumeId) {
 		this.resumeId = resumeId;
+	}
+
+	public String getContent() {
+		return content;
+	}
+
+	public void setContent(String content) {
+		this.content = content;
 	}
 
 }

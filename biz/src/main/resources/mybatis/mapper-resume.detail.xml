@@ -6,7 +6,8 @@
 	
 	<select id="getResumeDetailList" parameterType="resumeDetail" resultType="resumeDetail">
 	<![CDATA[
-		SELECT t.`DETAIL_ID` AS detailId
+		SELECT t.`DETAIL_ID` AS detailId,
+			   t.`CONTENT`
 		  FROM basis_tb_resume_detail t
 		 WHERE t.state = 'U'
 		   AND t.resume_id = #{resumeId}

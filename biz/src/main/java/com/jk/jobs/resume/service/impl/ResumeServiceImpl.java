@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.jk.jobs.api.resume.IResumeService;
 import com.jk.jobs.api.resume.bo.Resume;
+import com.jk.jobs.api.resume.bo.ResumeDetail;
 import com.jk.jobs.framework.log.Logger4jCollection;
 import com.jk.jobs.framework.log.Logger4jExtend;
 import com.jk.jobs.framework.util.LogUtil;
@@ -81,12 +82,31 @@ public class ResumeServiceImpl implements IResumeService {
 		resume.setUserId(userId);
 
 		try {
-			return resumeDao.getResume(resume);
+			resume = resumeDao.getResume(resume);
+		} catch (Exception e) {
+			logger.error(LogUtil.parserBean(resume), e);
+
+			resume = null;
+		}
+
+		if (resume == null) {
+			return null;
+		}
+
+		ResumeDetail resumeDetail = new ResumeDetail();
+		resumeDetail.setResumeId(resume.getResumeId());
+
+		List<ResumeDetail> resumeDetailList = null;
+
+		try {
+			resumeDetailList = resumeDetailDao.getResumeDetailList(resumeDetail);
 		} catch (Exception e) {
 			logger.error(LogUtil.parserBean(resume), e);
 		}
 
-		return null;
+		resume.setResumeDetailList(resumeDetailList);
+
+		return resume;
 	}
 
 }
