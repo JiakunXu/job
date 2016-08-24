@@ -46,6 +46,8 @@ public class PortalAction extends BaseAction {
 		j.setLimit(3);
 		j.setOffset(0);
 
+		j.setType(IJobService.PUBLISH);
+
 		jobList = jobService.getJobList(j);
 
 		String requestURL = env.getProperty("appUrl") + "/homepage.htm";
