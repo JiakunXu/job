@@ -7,8 +7,10 @@ import javax.annotation.Resource;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.stereotype.Service;
 
+import com.jk.jobs.api.job.IJobCatService;
 import com.jk.jobs.api.job.IJobService;
 import com.jk.jobs.api.job.bo.Job;
+import com.jk.jobs.api.job.bo.JobCat;
 import com.jk.jobs.api.job.bo.JobDetail;
 import com.jk.jobs.api.user.IUserService;
 import com.jk.jobs.api.user.bo.User;
@@ -31,6 +33,9 @@ public class JobServiceImpl implements IJobService {
 
 	@Resource
 	private IUserService userService;
+
+	@Resource
+	private IJobCatService jobCatService;
 
 	@Resource
 	private IJobDao jobDao;
@@ -72,9 +77,16 @@ public class JobServiceImpl implements IJobService {
 		}
 
 		for (Job j : jobList) {
+			// 项目发布人
 			User u = userService.getUser(j.getUserId());
 			if (u != null) {
 				j.setUserName(u.getUserName());
+			}
+
+			// 项目类别
+			JobCat c = jobCatService.getJobCat(j.getJobCId());
+			if (c != null) {
+				j.setJobCName(c.getJobCName());
 			}
 		}
 

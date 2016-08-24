@@ -24,6 +24,7 @@
 		SELECT t.`JOB_ID` AS jobId,
 			   t.`USER_ID` AS userId,
 			   t.`TITLE`,
+			   t.`CYCLE`,
 			   t.`SALARY`,
 			   t.`WORK_ADDRESS` AS workAddress,
 			   t.`JOB_NATURE` AS jobNature,
@@ -42,7 +43,7 @@
 			<foreach collection="codes" item="code" open="(" close=")" separator=",">#{code}</foreach>
 		</if>
 	<![CDATA[
-		 ORDER BY `MODIFY_DATE` DESC
+		 ORDER BY `CREATE_DATE` DESC
 		LIMIT ${limit} OFFSET ${offset}
 	]]>
 	</select>
@@ -52,6 +53,7 @@
 		SELECT t.JOB_ID AS jobId,
 			   t.`USER_ID` AS userId,
 			   t.`TITLE`,
+			   t.`CYCLE`,
 			   t.`SALARY`,
 			   t.`WORK_ADDRESS` AS workAddress,
 			   t.`JOB_NATURE` AS jobNature,
@@ -73,6 +75,7 @@
 			USER_ID,
 			JOB_CID,
 			TITLE,
+			CYCLE,
 			SALARY,
 			WORK_ADDRESS,
 			JOB_NATURE,
@@ -90,6 +93,7 @@
 			#{userId},
 			#{jobCId},
 			#{title},
+			#{cycle},
 			#{salary},
 			#{workAddress},
 			#{jobNature},

@@ -18,4 +18,11 @@ public interface IJobCatService {
 	 */
 	List<JobCat> getJobCatList(JobCat jobCat);
 
+	/**
+	 * 
+	 * @param jobCId
+	 * @return
+	 */
+	JobCat getJobCat(Long jobCId);
+
 }

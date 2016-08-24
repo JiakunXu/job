@@ -41,4 +41,22 @@ public class JobCatServiceImpl implements IJobCatService {
 		return null;
 	}
 
+	@Override
+	public JobCat getJobCat(Long jobCId) {
+		if (jobCId == null) {
+			return null;
+		}
+
+		JobCat jobCat = new JobCat();
+		jobCat.setJobCId(jobCId);
+
+		try {
+			return jobCatDao.getJobCat(jobCat);
+		} catch (Exception e) {
+			logger.error(LogUtil.parserBean(jobCat), e);
+		}
+
+		return null;
+	}
+
 }

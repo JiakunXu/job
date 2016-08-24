@@ -1,5 +1,6 @@
 package com.jk.jobs.job.action;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -11,6 +12,7 @@ import com.jk.jobs.api.job.IJobCatService;
 import com.jk.jobs.api.job.IJobService;
 import com.jk.jobs.api.job.bo.Job;
 import com.jk.jobs.api.job.bo.JobCat;
+import com.jk.jobs.api.job.bo.JobDetail;
 import com.jk.jobs.framework.action.BaseAction;
 import com.jk.jobs.framework.bo.BooleanResult;
 
@@ -38,6 +40,8 @@ public class JobAction extends BaseAction {
 	private Job job;
 
 	private List<JobCat> jobCatList;
+
+	private JobDetail jobDetail;
 
 	/**
 	 * 
@@ -75,6 +79,13 @@ public class JobAction extends BaseAction {
 	}
 
 	public String publish() {
+		// TODO
+		if (job != null && jobDetail != null) {
+			List<JobDetail> list = new ArrayList<JobDetail>();
+			list.add(jobDetail);
+			job.setJobDetailList(list);
+		}
+
 		BooleanResult result = jobService.publish(this.getUser().getUserId(), job);
 
 		if (result.getResult()) {
@@ -128,6 +139,14 @@ public class JobAction extends BaseAction {
 
 	public void setJobCatList(List<JobCat> jobCatList) {
 		this.jobCatList = jobCatList;
+	}
+
+	public JobDetail getJobDetail() {
+		return jobDetail;
+	}
+
+	public void setJobDetail(JobDetail jobDetail) {
+		this.jobDetail = jobDetail;
 	}
 
 }

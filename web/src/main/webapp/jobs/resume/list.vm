@@ -45,7 +45,7 @@
 							<div class="item-content">
     							<a class="item-inner" href="$!{env.appUrl}/resume/detail.htm?resumeId=$!{resume.resumeId}" data-ignore-cache="true">
     								<div class="item-title-row">
-										<div class="row no-gutter" style="width: 100%;">
+										<div class="row no-gutter">
 											<div class="col-50">
     											<div class="item-subtitle">学历：$!{resume.education}</div>
                                             </div>
@@ -55,7 +55,7 @@
                                         </div>
     								</div>
 									<div class="item-title-row">
-										<div class="row no-gutter" style="width: 100%;">
+										<div class="row no-gutter">
 											<div class="col-50">
     											<div class="item-subtitle">工作地点：$!{resume.workAddress}</div>
                                             </div>
@@ -65,7 +65,7 @@
                                         </div>
     								</div>
 									<div class="item-title-row">
-    									<div class="row no-gutter" style="width: 100%;">
+    									<div class="row no-gutter">
     										<div class="col-50">
     											<div class="item-subtitle">期望薪水：$!{resume.salary}</div>
                                             </div>

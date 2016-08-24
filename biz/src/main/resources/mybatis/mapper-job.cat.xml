@@ -13,4 +13,14 @@
 	]]>
 	</select>
 	
+	<select id="getJobCat" parameterType="jobCat" resultType="jobCat">
+	<![CDATA[
+		SELECT t.`JOB_CID` AS jobCId,
+			   t.`JOB_CNAME` AS jobCName
+		  FROM basis_tb_job_cat t
+		 WHERE t.state = 'U'
+		   AND t.job_cid = #{jobCId}
+	]]>
+	</select>
+	
 </mapper>

@@ -26,6 +26,11 @@ public class Job extends SearchInfo {
 	private String title;
 
 	/**
+	 * 项目周期（月）.
+	 */
+	private int cycle;
+
+	/**
 	 * 薪水.
 	 */
 	private BigDecimal salary;
@@ -62,6 +67,8 @@ public class Job extends SearchInfo {
 
 	private String userName;
 
+	private String jobCName;
+
 	public Long getJobId() {
 		return jobId;
 	}
@@ -92,6 +99,14 @@ public class Job extends SearchInfo {
 
 	public void setTitle(String title) {
 		this.title = title;
+	}
+
+	public int getCycle() {
+		return cycle;
+	}
+
+	public void setCycle(int cycle) {
+		this.cycle = cycle;
 	}
 
 	public BigDecimal getSalary() {
@@ -172,6 +187,14 @@ public class Job extends SearchInfo {
 
 	public void setUserName(String userName) {
 		this.userName = userName;
+	}
+
+	public String getJobCName() {
+		return jobCName;
+	}
+
+	public void setJobCName(String jobCName) {
+		this.jobCName = jobCName;
 	}
 
 }

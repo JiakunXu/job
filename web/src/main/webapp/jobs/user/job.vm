@@ -25,7 +25,7 @@
     						<li class="item-content">
     							<div class="item-inner">
     								<div class="item-title-row">
-										<div class="row no-gutter" style="width: 100%;">
+										<div class="row no-gutter">
 											<div class="col-50">
 												<div class="item-subtitle">工作地点：$!{job.workAddress}</div>
                                             </div>
@@ -35,7 +35,7 @@
                                         </div>
     								</div>
 									<div class="item-title-row">
-										<div class="row no-gutter" style="width: 100%;">
+										<div class="row no-gutter">
 											<div class="col-50">
 												<div class="item-subtitle">学历：$!{job.education}</div>
                                             </div>
@@ -45,7 +45,7 @@
                                         </div>
     								</div>
 									<div class="item-title-row">
-										<div class="row no-gutter" style="width: 100%;">
+										<div class="row no-gutter">
 											<div class="col-50">
 												<div class="item-subtitle">薪水：￥$!formatUtil.getAmountFormat($!{job.salary})</div>
                                             </div>
@@ -69,7 +69,7 @@
     						<li class="item-content">
     							<div class="item-inner">
 									<div class="item-title-row">
-    									<div class="row no-gutter" style="width: 100%;">
+    									<div class="row no-gutter">
     										<div class="col-50">
     											<div class="item-subtitle">学历：$!{resume.education}</div>
                                             </div>
@@ -79,7 +79,7 @@
                                         </div>
     								</div>
     								<div class="item-title-row">
-    									<div class="row no-gutter" style="width: 100%;">
+    									<div class="row no-gutter">
 											<div class="col-50">
     											<div class="item-subtitle">工作地点：$!{resume.workAddress}</div>
                                             </div>
@@ -89,7 +89,7 @@
                                         </div>
     								</div>
 									<div class="item-title-row">
-    									<div class="row no-gutter" style="width: 100%;">
+    									<div class="row no-gutter">
     										<div class="col-50">
     											<div class="item-subtitle">期望薪水：$!{resume.salary}</div>
                                             </div>

@@ -48,7 +48,7 @@
                                         <div class="item-title">$!{job.title}</div>
     								</div>
     								<div class="item-title-row">
-										<div class="row no-gutter" style="width: 100%;">
+										<div class="row no-gutter">
 											<div class="col-50">
 												<div class="item-subtitle">工作地点：$!{job.workAddress}</div>
                                             </div>
@@ -58,7 +58,7 @@
                                         </div>
     								</div>
 									<div class="item-title-row">
-										<div class="row no-gutter" style="width: 100%;">
+										<div class="row no-gutter">
 											<div class="col-50">
 												<div class="item-subtitle">学历：$!{job.education}</div>
                                             </div>
@@ -68,7 +68,7 @@
                                         </div>
     								</div>
 									<div class="item-title-row">
-										<div class="row no-gutter" style="width: 100%;">
+										<div class="row no-gutter">
 											<div class="col-50">
 												<div class="item-subtitle">薪水：￥$!formatUtil.getAmountFormat($!{job.salary})</div>
                                             </div>

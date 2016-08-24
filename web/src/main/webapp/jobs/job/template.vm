@@ -45,6 +45,21 @@
 						<li>
     						<div class="item-content">
     							<div class="item-inner">
+    								<div class="item-title label">项目周期</div>
+    								<div class="item-input">
+    									<select name="job.cycle">
+    										<option value="1">一个月</option>
+											<option value="3">三个月</option>
+											<option value="6">六个月</option>
+											<option value="12">一年</option>
+    									</select>
+    								</div>
+    							</div>
+    						</div>
+    					</li>
+						<li>
+    						<div class="item-content">
+    							<div class="item-inner">
     								<div class="item-title label">项目薪水</div>
     								<div class="item-input">
     									<input type="text" style="font-size: 15px;" name="job.salary" placeholder="" />
@@ -75,9 +90,14 @@
 						<li>
     						<div class="item-content">
     							<div class="item-inner">
-    								<div class="item-title label">工作年限</div>
+    								<div class="item-title label">工作经验</div>
     								<div class="item-input">
-    									<input type="text" style="font-size: 15px;" name="job.workYear" placeholder="" />
+										<select name="job.workYear">
+    										<option>一年</option>
+											<option>三年</option>
+											<option>五年</option>
+											<option>五年以上</option>
+    									</select>
     								</div>
     							</div>
     						</div>
@@ -87,11 +107,25 @@
     							<div class="item-inner">
     								<div class="item-title label">最高学历</div>
     								<div class="item-input">
-    									<input type="text" style="font-size: 15px;" name="job.education" placeholder="" />
+										<select name="job.education">
+    										<option>本科</option>
+											<option>硕士</option>
+											<option>博士</option>
+    									</select>
     								</div>
     							</div>
     						</div>
     					</li>
+						 <li class="align-top">
+							<div class="item-content">
+								<div class="item-inner">
+									<div class="item-title label">项目介绍</div>
+									<div class="item-input">
+										<textarea name="jobDetail.content"></textarea>
+									</div>
+								</div>
+							</div>
+						 </li>
     				</ul>
                 </div>
 				<div class="content-block">
