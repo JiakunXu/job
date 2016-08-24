@@ -139,6 +139,7 @@
 			   t.modify_user = #{modifyUser},
 			   t.`TYPE` = #{type}
 		 WHERE t.state = 'U'
+		   AND t.`TYPE` <> #{type}
 		   AND t.user_id = #{userId}
 		   AND t.job_id = #{jobId}
 	]]>
