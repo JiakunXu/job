@@ -39,4 +39,18 @@ public interface IJobDao {
 	 */
 	int createJob(Job job);
 
+	/**
+	 * 
+	 * @param job
+	 * @return
+	 */
+	int updateJob(Job job);
+
+	/**
+	 * 
+	 * @param job
+	 * @return
+	 */
+	int revokeJob(Job job);
+
 }

@@ -10,8 +10,11 @@
 		  FROM basis_tb_job t
 		 WHERE t.state = 'U'
 	]]>
-		<if test="userId != null and userId != ''">
-		<![CDATA[ AND t.user_id = ${userId} ]]>
+		<if test="userId != null">
+		<![CDATA[ AND t.user_id = #{userId} ]]>
+		</if>
+		<if test="type != null and type != ''">
+		<![CDATA[ AND t.`TYPE` = #{type} ]]>
 		</if>
 		<if test="codes != null and codes.length > 0">
 		<![CDATA[ AND t.job_id IN ]]>
@@ -32,12 +35,16 @@
 			   t.`WORK_YEAR` AS workYear,
 			   t.`EDUCATION`,
 			   t.`REMARK`,
+			   t.`TYPE`,
 			   DATE_FORMAT(t.create_date, '%Y-%m-%d %T') AS createDate
 		  FROM basis_tb_job t
 		 WHERE t.state = 'U'
 	]]>
-		<if test="userId != null and userId != ''">
-		<![CDATA[ AND t.user_id = ${userId} ]]>
+		<if test="userId != null">
+		<![CDATA[ AND t.user_id = #{userId} ]]>
+		</if>
+		<if test="type != null and type != ''">
+		<![CDATA[ AND t.`TYPE` = #{type} ]]>
 		</if>
 		<if test="codes != null and codes.length > 0">
 		<![CDATA[ AND t.job_id IN ]]>
@@ -62,6 +69,7 @@
 			   t.`WORK_YEAR` AS workYear,
 			   t.`EDUCATION`,
 			   t.`REMARK`,
+			   t.`TYPE`,
 			   DATE_FORMAT(t.create_date, '%Y-%m-%d %T') AS createDate
 		  FROM basis_tb_job t
 		 WHERE t.state = 'U'
@@ -84,6 +92,7 @@
 			WORK_YEAR,
 			EDUCATION,
 			REMARK,
+			TYPE,
 			STATE,
 			CREATE_DATE,
 			CREATE_USER,
@@ -102,6 +111,7 @@
 			#{workYear},
 			#{education},
 			#{remark},
+			#{type},
 			'U',
 			NOW(),
 			#{modifyUser},
@@ -110,5 +120,28 @@
 		  )
 	]]>
 	</insert>
+	
+	<update id="updateJob" parameterType="job">
+	<![CDATA[
+		UPDATE basis_tb_job t
+		   SET t.modify_date = NOW(),
+			   t.modify_user = #{modifyUser}
+		 WHERE t.state = 'U'
+		   AND t.user_id = #{userId}
+		   AND t.job_id = #{jobId}
+	]]>
+	</update>
+	
+	<update id="revokeJob" parameterType="job">
+	<![CDATA[
+		UPDATE basis_tb_job t
+		   SET t.modify_date = NOW(),
+			   t.modify_user = #{modifyUser},
+			   t.`TYPE` = #{type}
+		 WHERE t.state = 'U'
+		   AND t.user_id = #{userId}
+		   AND t.job_id = #{jobId}
+	]]>
+	</update>
 	
 </mapper>

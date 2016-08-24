@@ -30,5 +30,10 @@
 			<result name="success">/jobs/job/my.vm</result>
 		</action>
 		
+		<!-- 撤销 -->
+		<action name="revoke" class="jobAction" method="revoke">
+			<interceptor-ref name="authenticationStack" />
+		</action>
+		
 	</package>
 </struts>

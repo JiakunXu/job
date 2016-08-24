@@ -38,7 +38,7 @@
 						<div class="card-header" style="font-size: 14px;">
 							<div class="left"><i class="iconfont icon-countdown" style="font-size: 16px;"></i> $!{job.createDate}</div>
 							<div class="right">
-								<a href="#">撤销</a>
+								<a href="javascript:job_my_revoke('$!{job.jobId}');">撤销</a>
 							</div>
 						</div>
 						<div class="card-content">
@@ -65,6 +65,10 @@
 				</ul>
 				#end
             </div>
+			
+			<form id="job/my/revoke" action="$!{env.appUrl}/job/revoke.htm" method="POST" class="ajax-submit job-my-form">
+            	<input type="hidden" name="jobId" id="job_my_jobId"/>
+            </form>
         </div>
     </div>
 </div>

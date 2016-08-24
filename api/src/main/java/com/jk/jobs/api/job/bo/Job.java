@@ -55,6 +55,11 @@ public class Job extends SearchInfo {
 	private String remark;
 
 	/**
+	 * 项目审核撤销状态.
+	 */
+	private String type;
+
+	/**
 	 * 发布时间.
 	 */
 	private String createDate;
@@ -155,6 +160,14 @@ public class Job extends SearchInfo {
 
 	public void setRemark(String remark) {
 		this.remark = remark;
+	}
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
 	}
 
 	public String getCreateDate() {

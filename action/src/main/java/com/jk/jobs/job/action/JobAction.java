@@ -52,6 +52,8 @@ public class JobAction extends BaseAction {
 		j.setLimit(100);
 		j.setOffset(0);
 
+		j.setType(IJobService.PUBLISH);
+
 		jobList = jobService.getJobList(j);
 
 		return SUCCESS;
@@ -107,6 +109,24 @@ public class JobAction extends BaseAction {
 		jobList = jobService.getJobList(this.getUser().getUserId());
 
 		return SUCCESS;
+	}
+
+	/**
+	 * 撤销.
+	 * 
+	 * @return
+	 */
+	public String revoke() {
+		BooleanResult result = jobService.revoke(this.getUser().getUserId(), jobId);
+
+		if (result.getResult()) {
+			this.setResourceResult("撤销成功");
+		} else {
+			this.getServletResponse().setStatus(599);
+			this.setResourceResult(result.getCode());
+		}
+
+		return RESOURCE_RESULT;
 	}
 
 	public List<Job> getJobList() {

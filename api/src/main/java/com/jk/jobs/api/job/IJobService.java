@@ -13,6 +13,21 @@ import com.jk.jobs.framework.bo.BooleanResult;
 public interface IJobService {
 
 	/**
+	 * 待发布.
+	 */
+	String TO_PUBLISH = "topublish";
+
+	/**
+	 * 已发布.
+	 */
+	String PUBLISH = "publish";
+
+	/**
+	 * 撤销.
+	 */
+	String REVOKE = "revoke";
+
+	/**
 	 * 
 	 * @param job
 	 * @return
@@ -56,5 +71,14 @@ public interface IJobService {
 	 * @return
 	 */
 	BooleanResult publish(Long userId, Job job);
+
+	/**
+	 * 撤销.
+	 * 
+	 * @param userId
+	 * @param jobId
+	 * @return
+	 */
+	BooleanResult revoke(Long userId, String jobId);
 
 }
