@@ -1,0 +1,27 @@
+<div class="item-title-row">
+	<div class="row no-gutter">
+		<div class="col-50">
+			<div class="item-subtitle">学历：$!{resume.education}</div>
+        </div>
+		<div class="col-50">
+			<div class="item-subtitle">工作经验：$!{resume.workYear}</div>
+        </div>
+    </div>
+</div>
+<div class="item-title-row">
+	<div class="row no-gutter">
+		<div class="col-50">
+			<div class="item-subtitle">工作地点：$!{resume.workAddress}</div>
+        </div>
+		<div class="col-50">
+			<div class="item-subtitle">工作性质：$!{resume.jobNature}</div>
+        </div>
+    </div>
+</div>
+<div class="item-title-row">
+	<div class="row no-gutter">
+		<div class="col-50">
+			<div class="item-subtitle">期望薪水：$!{resume.salary}</div>
+        </div>
+    </div>
+</div>

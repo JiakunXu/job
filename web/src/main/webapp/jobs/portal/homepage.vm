@@ -118,33 +118,7 @@
 										<div class="card-content">
 											<div class="item-content">
                     							<a class="item-inner" href="$!{env.appUrl}/job/detail.htm?jobId=$!{job.jobId}" data-ignore-cache="true">
-                    								<div class="item-title-row">
-														<div class="row no-gutter">
-															<div class="col-50">
-																<div class="item-subtitle">地点：$!{job.workAddress}</div>
-                                                            </div>
-															<div class="col-50">
-																<div class="item-subtitle">工作性质：$!{job.jobNature}</div>
-                                                            </div>
-                                                        </div>
-                    								</div>
-													<div class="item-title-row">
-														<div class="row no-gutter">
-															<div class="col-50">
-																<div class="item-subtitle">学历：$!{job.education}</div>
-                                                            </div>
-															<div class="col-50">
-																<div class="item-subtitle">工作经验：$!{job.workYear}</div>
-                                                            </div>
-                                                        </div>
-                    								</div>
-													<div class="item-title-row">
-														<div class="row no-gutter">
-															<div class="col-50">
-																<div class="item-subtitle">薪水：￥$!formatUtil.getAmountFormat($!{job.salary})</div>
-                                                            </div>
-                                                        </div>
-                    								</div>
+													#parse("/jobs/job/content.vm")
                                                 </a>
 												<div class="item-after">
 													<a href="$!{env.appUrl}/job/detail.htm?jobId=$!{job.jobId}" data-ignore-cache="true">

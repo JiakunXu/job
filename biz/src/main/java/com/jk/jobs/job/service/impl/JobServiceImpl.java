@@ -163,10 +163,16 @@ public class JobServiceImpl implements IJobService {
 			return null;
 		}
 
-		// 发布
+		// 项目发布人
 		User u = userService.getUser(job.getUserId());
 		if (u != null) {
 			job.setUserName(u.getUserName());
+		}
+
+		// 项目类别
+		JobCat c = jobCatService.getJobCat(job.getJobCId());
+		if (c != null) {
+			job.setJobCName(c.getJobCName());
 		}
 
 		// 项目介绍

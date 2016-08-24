@@ -23,6 +23,7 @@
 	<![CDATA[
 		SELECT t.`JOB_ID` AS jobId,
 			   t.`USER_ID` AS userId,
+			   t.`JOB_CID` AS jobCId,
 			   t.`TITLE`,
 			   t.`CYCLE`,
 			   t.`SALARY`,
@@ -52,6 +53,7 @@
 	<![CDATA[
 		SELECT t.JOB_ID AS jobId,
 			   t.`USER_ID` AS userId,
+			   t.`JOB_CID` AS jobCId,
 			   t.`TITLE`,
 			   t.`CYCLE`,
 			   t.`SALARY`,
