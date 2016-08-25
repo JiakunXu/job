@@ -3,16 +3,15 @@
 <div class="navbar">
 	<div class="navbar-inner">
 		<div class="left"><a href="#" class="back link"> <i class="icon icon-back color-gray"></i><span></span></a></div>
-		<div class="center sliding">简历</div>
+		<div class="center sliding">收到的简历</div>
 		<div class="right">
 			<!-- Right link contains only icon - additional "icon-only" class-->
-			<a href="#" class="link icon-only"> <i class="iconfont icon-more color-gray"></i><span></span></a>
 		</div>
 	</div>
 </div>
 <div class="pages">
 	<!-- Page, data-page contains page name-->
-	<div data-page="job.resume.list" class="page">
+	<div data-page="job.resume.list" class="page no-tabbar">
 		<!-- Search bar -->
 		<form data-search-list=".list-block-search" data-search-in=".item-title" class="searchbar searchbar-init item-list-searchbar">
 			<div class="searchbar-input">

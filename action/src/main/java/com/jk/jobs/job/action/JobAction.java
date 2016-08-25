@@ -112,6 +112,16 @@ public class JobAction extends BaseAction {
 	}
 
 	/**
+	 * 项目投的简历.
+	 * 
+	 * @return
+	 */
+	public String resume() {
+
+		return SUCCESS;
+	}
+
+	/**
 	 * 完成.
 	 * 
 	 * @return

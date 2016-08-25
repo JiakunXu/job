@@ -30,6 +30,12 @@
 			<result name="success">/jobs/job/my.vm</result>
 		</action>
 		
+		<!-- 项目简历 -->
+		<action name="resume" class="jobAction" method="resume">
+			<interceptor-ref name="authenticationStack" />
+			<result name="success">/jobs/job/resume/list.vm</result>
+		</action>
+		
 		<!-- 结束 -->
 		<action name="finish" class="jobAction" method="finish">
 			<interceptor-ref name="authenticationStack" />
