@@ -52,7 +52,7 @@
 		</if>
 	<![CDATA[
 		 ORDER BY `CREATE_DATE` DESC
-		LIMIT ${limit} OFFSET ${offset}
+		LIMIT #{limit} OFFSET #{offset}
 	]]>
 	</select>
 	
