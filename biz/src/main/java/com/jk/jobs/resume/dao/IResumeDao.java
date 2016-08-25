@@ -25,4 +25,18 @@ public interface IResumeDao {
 	 */
 	Resume getResume(Resume resume);
 
+	/**
+	 * 
+	 * @param resume
+	 * @return
+	 */
+	int createResume(Resume resume);
+
+	/**
+	 * 
+	 * @param resume
+	 * @return
+	 */
+	int updateResume(Resume resume);
+
 }

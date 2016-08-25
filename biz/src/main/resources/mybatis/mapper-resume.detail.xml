@@ -16,4 +16,45 @@
 	]]>
 	</select>
 	
+	<insert id="createResumeDetail" parameterType="resumeDetail" useGeneratedKeys="true" keyProperty="detailId">
+	<![CDATA[
+		INSERT
+		INTO basis_tb_resume_detail
+		  (
+			RESUME_ID,
+			CONTENT,
+			RANK,
+			STATE,
+			CREATE_DATE,
+			CREATE_USER,
+			MODIFY_DATE,
+			MODIFY_USER
+		  )
+		  VALUES
+		  (
+			#{resumeId},
+			#{content},
+			#{rank},
+			'U',
+			NOW(),
+			#{modifyUser},
+			NOW(),
+			#{modifyUser}
+		  )
+	]]>
+	</insert>
+	
+	<update id="updateResumeDetail" parameterType="resumeDetail">
+	<![CDATA[
+		UPDATE basis_tb_resume_detail t
+		   SET t.modify_date = NOW(),
+			   t.modify_user = #{modifyUser},
+			   t.`CONTENT` = #{content},
+			   t.`RANK` = #{rank}
+		 WHERE t.state = 'U'
+		   AND t.resume_id = #{resumeId}
+		   AND t.detail_id = #{detailId}
+	]]>
+	</update>
+	
 </mapper>

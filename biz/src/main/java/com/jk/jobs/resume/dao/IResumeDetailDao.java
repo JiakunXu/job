@@ -18,4 +18,18 @@ public interface IResumeDetailDao {
 	 */
 	List<ResumeDetail> getResumeDetailList(ResumeDetail resumeDetail);
 
+	/**
+	 * 
+	 * @param resumeDetail
+	 * @return
+	 */
+	int createResumeDetail(ResumeDetail resumeDetail);
+
+	/**
+	 * 
+	 * @param resumeDetail
+	 * @return
+	 */
+	int updateResumeDetail(ResumeDetail resumeDetail);
+
 }

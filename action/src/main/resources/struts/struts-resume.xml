@@ -20,5 +20,14 @@
 			<result name="success">/jobs/resume/my.vm</result>
 		</action>
 		
+		<action name="edit" class="resumeAction" method="edit">
+			<interceptor-ref name="authenticationStack" />
+			<result name="success">/jobs/resume/edit.vm</result>
+		</action>
+		
+		<action name="saveOrUpdate" class="resumeAction" method="saveOrUpdate">
+			<interceptor-ref name="authenticationStack" />
+		</action>
+		
 	</package>
 </struts>

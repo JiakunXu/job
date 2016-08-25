@@ -1,0 +1,101 @@
+<!-- We don't need full layout here, because this page will be parsed with Ajax-->
+<!-- Top Navbar-->
+<div class="navbar">
+	<div class="navbar-inner">
+		<div class="left"><a href="#" class="back link"> <i class="icon icon-back color-gray"></i><span></span></a></div>
+		<div class="center sliding">我的简历</div>
+		<div class="right">
+			<!-- Right link contains only icon - additional "icon-only" class-->
+		</div>
+	</div>
+</div>
+<div class="pages">
+	<!-- Page, data-page contains page name-->
+	<div data-page="resume.edit" class="page no-tabbar">
+		<!-- Scrollable page content-->
+		<div class="page-content">
+			<form id="resume/edit/saveOrUpdate" action="$!{env.appUrl}/resume/saveOrUpdate.htm" method="POST" class="ajax-submit resume-edit-form">
+				<input type="hidden" name="resume.resumeId" value="$!{resume.resumeId}" />
+				<div class="list-block">
+    				<ul>
+    					<li>
+    						<div class="item-content">
+    							<div class="item-inner">
+    								<div class="item-title label">姓名</div>
+    								<div class="item-input">
+    									<input type="text" style="font-size: 15px;" name="resume.name" value="$!{resume.name}" placeholder="" />
+    								</div>
+    							</div>
+    						</div>
+    					</li>
+						<li>
+    						<div class="item-content">
+    							<div class="item-inner">
+    								<div class="item-title label">联系方式</div>
+    								<div class="item-input">
+    									<input type="text" style="font-size: 15px;" name="resume.tel" value="$!{resume.tel}" placeholder="" />
+    								</div>
+    							</div>
+    						</div>
+    					</li>
+						<li>
+    						<div class="item-content">
+    							<div class="item-inner">
+    								<div class="item-title label">性别</div>
+    								<div class="item-input">
+										<select name="resume.sex">
+    										<option value="M">男</option>
+											<option value="F">女</option>
+    									</select>
+    								</div>
+    							</div>
+    						</div>
+    					</li>
+						<li>
+    						<div class="item-content">
+    							<div class="item-inner">
+    								<div class="item-title label">最高学历</div>
+    								<div class="item-input">
+										<select name="resume.education">
+    										<option>本科</option>
+											<option>硕士</option>
+											<option>博士</option>
+    									</select>
+    								</div>
+    							</div>
+    						</div>
+    					</li>
+						<li>
+    						<div class="item-content">
+    							<div class="item-inner">
+    								<div class="item-title label">工作经验</div>
+    								<div class="item-input">
+										<select name="resume.workYear">
+    										<option>一年</option>
+											<option>三年</option>
+											<option>五年</option>
+											<option>五年以上</option>
+    									</select>
+    								</div>
+    							</div>
+    						</div>
+    					</li>
+						 <li class="align-top">
+							<div class="item-content">
+								<div class="item-inner">
+									<div class="item-title label">项目介绍</div>
+									<div class="item-input">
+										<textarea name="resume.content"></textarea>
+									</div>
+								</div>
+							</div>
+						 </li>
+    				</ul>
+                </div>
+				<div class="content-block">
+    				<a href="javascript:resume_edit_saveOrUpdate();" class="button button-big button-fill weui_btn_primary">保存</a>
+    			</div>
+			</form>
+        </div>
+    </div>
+</div>

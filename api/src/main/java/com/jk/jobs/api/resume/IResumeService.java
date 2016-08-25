@@ -3,6 +3,7 @@ package com.jk.jobs.api.resume;
 import java.util.List;
 
 import com.jk.jobs.api.resume.bo.Resume;
+import com.jk.jobs.framework.bo.BooleanResult;
 
 /**
  * 
@@ -31,5 +32,13 @@ public interface IResumeService {
 	 * @return
 	 */
 	Resume getResume(Long userId);
+
+	/**
+	 * 
+	 * @param userId
+	 * @param resume
+	 * @return
+	 */
+	BooleanResult saveOrUpdate(Long userId, Resume resume);
 
 }

@@ -38,4 +38,57 @@
 		</if>
 	</select>
 	
+	<insert id="createResume" parameterType="resume" useGeneratedKeys="true" keyProperty="resumeId">
+	<![CDATA[
+		INSERT
+		INTO basis_tb_resume
+		  (
+			USER_ID,
+			NAME,
+			SEX,
+			TEL,
+			WORK_YEAR,
+			EDUCATION,
+			REMARK,
+			STATE,
+			CREATE_DATE,
+			CREATE_USER,
+			MODIFY_DATE,
+			MODIFY_USER
+		  )
+		  VALUES
+		  (
+			#{userId},
+			#{name},
+			#{sex},
+			#{tel},
+			#{workYear},
+			#{education},
+			#{remark},
+			'U',
+			NOW(),
+			#{modifyUser},
+			NOW(),
+			#{modifyUser}
+		  )
+	]]>
+	</insert>
+	
+	<update id="updateResume" parameterType="resume">
+	<![CDATA[
+		UPDATE basis_tb_resume t
+		   SET t.modify_date = NOW(),
+			   t.modify_user = #{modifyUser},
+			   t.`NAME` = #{name},
+			   t.`SEX` = #{sex},
+			   t.`TEL` = #{tel},
+			   t.`WORK_YEAR` = #{workYear},
+			   t.`EDUCATION` = #{education},
+			   t.`REMARK` = #{remark}
+		 WHERE t.state = 'U'
+		   AND t.user_id = #{userId}
+		   AND t.resume_id = #{resumeId}
+	]]>
+	</update>
+	
 </mapper>

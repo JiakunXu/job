@@ -1,5 +1,6 @@
 package com.jk.jobs.resume.action;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -9,7 +10,9 @@ import org.springframework.stereotype.Controller;
 
 import com.jk.jobs.api.resume.IResumeService;
 import com.jk.jobs.api.resume.bo.Resume;
+import com.jk.jobs.api.resume.bo.ResumeDetail;
 import com.jk.jobs.framework.action.BaseAction;
+import com.jk.jobs.framework.bo.BooleanResult;
 
 /**
  * 
@@ -31,6 +34,8 @@ public class ResumeAction extends BaseAction {
 
 	private Resume resume;
 
+	private ResumeDetail resumeDetail;
+
 	/**
 	 * 
 	 * @return
@@ -51,6 +56,37 @@ public class ResumeAction extends BaseAction {
 		resume = resumeService.getResume(this.getUser().getUserId());
 
 		return SUCCESS;
+	}
+
+	/**
+	 * 修改.
+	 * 
+	 * @return
+	 */
+	public String edit() {
+		resume = resumeService.getResume(this.getUser().getUserId());
+
+		return SUCCESS;
+	}
+
+	public String saveOrUpdate() {
+		// TODO
+		if (resume != null && resumeDetail != null) {
+			List<ResumeDetail> list = new ArrayList<ResumeDetail>();
+			list.add(resumeDetail);
+			resume.setResumeDetailList(list);
+		}
+
+		BooleanResult result = resumeService.saveOrUpdate(this.getUser().getUserId(), resume);
+
+		if (result.getResult()) {
+			this.setResourceResult("发布成功");
+		} else {
+			this.getServletResponse().setStatus(599);
+			this.setResourceResult(result.getCode());
+		}
+
+		return RESOURCE_RESULT;
 	}
 
 	public List<Resume> getResumeList() {
@@ -76,4 +112,13 @@ public class ResumeAction extends BaseAction {
 	public void setResume(Resume resume) {
 		this.resume = resume;
 	}
+
+	public ResumeDetail getResumeDetail() {
+		return resumeDetail;
+	}
+
+	public void setResumeDetail(ResumeDetail resumeDetail) {
+		this.resumeDetail = resumeDetail;
+	}
+
 }
