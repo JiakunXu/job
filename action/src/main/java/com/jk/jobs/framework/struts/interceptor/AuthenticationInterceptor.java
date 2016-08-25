@@ -50,7 +50,7 @@ public class AuthenticationInterceptor implements Interceptor {
 		Region region = (Region) session.get("ACEGI_SECURITY_LAST_REGION");
 		if (region == null) {
 			// TODO
-			return REGION;
+			// return REGION;
 		}
 
 		return invocation.invoke();

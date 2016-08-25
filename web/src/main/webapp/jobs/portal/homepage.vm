@@ -31,9 +31,12 @@
 						<div class="left"></div>
 						<!-- We need cool sliding animation on title element, so we have additional "sliding" class -->
 						<div class="center sliding">
+							<!--
 							<i class="iconfont icon-locationfill color-base"></i>
                             <a class="external" style="margin: 0 3px;" href="$!{env.appUrl}/region/index.htm">$!{region.regionName}</a>
 							<i class="iconfont icon-unfold color-gray" style="font-size: 13px;"></i>
+							-->
+                            <span class="color-base">好项目</span>
 						</div>
 					</div>
 				</div>
@@ -59,6 +62,7 @@
 								<div class="swiper-pagination swiper-pagination-h"></div>
 							</div>
 							
+							<!--
 							<div class="" style="background-color:#ffffff;">
 								<ul class="mui-flex" style="padding: 0; margin-top: 0;">
 									<li class="cell" style="">
@@ -83,6 +87,7 @@
 									</li>
 								</ul>
 							</div>
+							-->
 							
 							<div class="list-block">
 								<div class="ch"><span><i class="ct cw"></i>最新项目</span></div>
@@ -183,6 +188,7 @@
 		<script src="$!{env.imgUrl}/js/job/list.js" async="async"></script>
 		<script src="$!{env.imgUrl}/js/job/my.js" async="async"></script>
 		<script src="$!{env.imgUrl}/js/job/template.js" async="async"></script>
+		<script src="$!{env.imgUrl}/js/resume/list.js" async="async"></script>
 		<script src="$!{env.imgUrl}/js/user/role.js" async="async"></script>
 		<script src="$!{env.imgUrl}/js/user/job.js" async="async"></script>
 		<script src="$!{env.imgUrl}/js/member/index.js" async="async"></script>
