@@ -1,13 +1,13 @@
 package com.jk.jobs.api.user.bo;
 
-import java.io.Serializable;
+import com.jk.jobs.api.resume.bo.Resume;
 
 /**
  * 
  * @author JiakunXu
  * 
  */
-public class UserJob implements Serializable {
+public class UserJob extends Resume {
 
 	private static final long serialVersionUID = -2212484428411343955L;
 

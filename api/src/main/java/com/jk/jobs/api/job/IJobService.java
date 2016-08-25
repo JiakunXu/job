@@ -3,6 +3,7 @@ package com.jk.jobs.api.job;
 import java.util.List;
 
 import com.jk.jobs.api.job.bo.Job;
+import com.jk.jobs.api.user.bo.UserJob;
 import com.jk.jobs.framework.bo.BooleanResult;
 
 /**
@@ -108,5 +109,14 @@ public interface IJobService {
 	 * @return
 	 */
 	BooleanResult delete(Long userId, String jobId);
+
+	/**
+	 * 项目简历.
+	 * 
+	 * @param userId
+	 * @param jobId
+	 * @return
+	 */
+	List<UserJob> getUserList(Long userId, String jobId);
 
 }

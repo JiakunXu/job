@@ -75,6 +75,9 @@
 		 WHERE t.state = 'U'
 		   AND t.job_id = #{jobId}
 	]]>
+		<if test="userId != null">
+		<![CDATA[ AND t.user_id = #{userId} ]]>
+		</if>
 	</select>
 	
 	<insert id="createJob" parameterType="job" useGeneratedKeys="true" keyProperty="jobId">

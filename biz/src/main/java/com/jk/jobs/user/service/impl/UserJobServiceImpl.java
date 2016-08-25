@@ -114,6 +114,25 @@ public class UserJobServiceImpl implements IUserJobService {
 		return jobList;
 	}
 
+	@Override
+	public List<UserJob> getUserList(String jobId) {
+		if (StringUtils.isBlank(jobId)) {
+			return null;
+		}
+
+		UserJob userJob = new UserJob();
+
+		try {
+			userJob.setJobId(Long.valueOf(jobId));
+		} catch (NumberFormatException e) {
+			logger.error(e);
+
+			return null;
+		}
+
+		return getUserJobList(userJob);
+	}
+
 	/**
 	 * 
 	 * @param userJob

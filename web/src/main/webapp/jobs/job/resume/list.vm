@@ -32,21 +32,20 @@
 			<div class="more"></div>
 			
 			<div class="list-block cards-list media-list list-block-search searchbar-found">
-				#foreach($resume in $!{resumeList})
+				#foreach($resume in $!{userJobList})
 				<ul>
 					<li class="card" style="border-radius: 5px; margin: 10px 5px;">
-						<span class="bw"></span>
 						<div class="card-header" style="font-size: 14px;">
 							<div class="left"><i class="iconfont icon-profile" style="font-size: 16px;"></i> $!{resume.name}</div>
 							<div class="right"><i class="iconfont icon-phone" style="font-size: 14px;"></i> $!{resume.tel}</div>
 						</div>
 						<div class="card-content">
 							<div class="item-content">
-    							<a class="item-inner" href="$!{env.appUrl}/resume/detail.htm?resumeId=$!{resume.resumeId}" data-ignore-cache="true">
+    							<a class="item-inner" href="$!{env.appUrl}/user/job/detail.htm?userJobId=$!{resume.id}">
     								#parse("/jobs/resume/content.vm")
                                 </a>
 								<div class="item-after">
-									<a href="$!{env.appUrl}/resume/detail.htm?resumeId=$!{resume.resumeId}" data-ignore-cache="true">
+									<a href="$!{env.appUrl}/user/job/detail.htm?userJobId=$!{resume.id}">
 										<i class="iconfont icon-profile color-base"></i>
 									</a>
 								</div>

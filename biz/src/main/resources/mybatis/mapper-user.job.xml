@@ -32,12 +32,18 @@
 	
 	<select id="getUserJobList" parameterType="userJob" resultType="userJob">
 	<![CDATA[
-		SELECT t.job_id AS jobId,
+		SELECT t.user_id AS userId,
+			   t.job_id AS jobId,
 			   DATE_FORMAT(t.create_date, '%Y-%m-%d %T') AS createDate
 		  FROM basis_tb_user_job t
 		 WHERE t.state = 'U'
-		   AND t.user_id = #{userId}
 	]]>
+		<if test="userId != null">
+		<![CDATA[ AND t.user_id = #{userId} ]]>
+		</if>
+		<if test="jobId != null">
+		<![CDATA[ AND t.job_id = #{jobId} ]]>
+		</if>
 	</select>
 	
 </mapper>

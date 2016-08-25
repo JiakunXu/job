@@ -13,6 +13,7 @@ import com.jk.jobs.api.job.IJobService;
 import com.jk.jobs.api.job.bo.Job;
 import com.jk.jobs.api.job.bo.JobCat;
 import com.jk.jobs.api.job.bo.JobDetail;
+import com.jk.jobs.api.user.bo.UserJob;
 import com.jk.jobs.framework.action.BaseAction;
 import com.jk.jobs.framework.bo.BooleanResult;
 
@@ -42,6 +43,8 @@ public class JobAction extends BaseAction {
 	private List<JobCat> jobCatList;
 
 	private JobDetail jobDetail;
+
+	private List<UserJob> userJobList;
 
 	/**
 	 * 
@@ -117,6 +120,7 @@ public class JobAction extends BaseAction {
 	 * @return
 	 */
 	public String resume() {
+		userJobList = jobService.getUserList(this.getUser().getUserId(), jobId);
 
 		return SUCCESS;
 	}
@@ -208,6 +212,14 @@ public class JobAction extends BaseAction {
 
 	public void setJobDetail(JobDetail jobDetail) {
 		this.jobDetail = jobDetail;
+	}
+
+	public List<UserJob> getUserJobList() {
+		return userJobList;
+	}
+
+	public void setUserJobList(List<UserJob> userJobList) {
+		this.userJobList = userJobList;
 	}
 
 }
