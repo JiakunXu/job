@@ -145,4 +145,18 @@
 	]]>
 	</update>
 	
+	<update id="deleteJob" parameterType="job">
+	<![CDATA[
+		UPDATE basis_tb_job t
+		   SET t.modify_date = NOW(),
+			   t.modify_user = #{modifyUser},
+			   t.`TYPE` = #{type},
+			   t.state = 'D'
+		 WHERE t.state = 'U'
+		   AND t.`TYPE` <> #{type}
+		   AND t.user_id = #{userId}
+		   AND t.job_id = #{jobId}
+	]]>
+	</update>
+	
 </mapper>

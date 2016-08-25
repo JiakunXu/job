@@ -53,4 +53,11 @@ public interface IJobDao {
 	 */
 	int revokeJob(Job job);
 
+	/**
+	 * 
+	 * @param job
+	 * @return
+	 */
+	int deleteJob(Job job);
+
 }

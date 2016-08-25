@@ -13,7 +13,7 @@
 	<!-- Page, data-page contains page name-->
 	<div data-page="job.detail" class="page no-tabbar">
 		<!-- Scrollable page content-->
-		<div class="page-content">
+		<div class="page-content" style="padding-bottom: 44px;">
 			<div class="card" style="border-radius: 5px; margin: 10px 5px;">
 				<div class="card-header" style="font-size: 14px;">
 					<div class="left"><i class="iconfont icon-time" style="font-size: 14px;"></i> $!{job.createDate}</div>
@@ -56,6 +56,30 @@
                     </div>
                 </div>
     		</div>
+			
+			<form id="job/detail/delete" action="$!{env.appUrl}/job/delete.htm" method="POST" class="ajax-submit job-detail-delete">
+            	<input type="hidden" name="jobId" value="$!{job.jobId}"/>
+            </form>
+			<form id="job/detail/copy" action="$!{env.appUrl}/job/copy.htm" method="POST" class="ajax-submit job-detail-copy">
+            	<input type="hidden" name="jobId" value="$!{job.jobId}"/>
+            </form>
         </div>
+		
+		#if($!{job.type} == 'revoke' && $!{user.userId} == $!{job.userId})
+		<div class="toolbar">
+			<div class="toolbar-inner" style="padding: 0;">
+				<div class="row no-gutter" style="width: 100%;">
+					<div class="col-33">
+						<a href="javascript:job_detail_delete();" class="button button-big color-gray" style="background: #fff; border-radius: 0; border: 0; border-right: 1px solid #d9d9d9;">
+                            <i class="iconfont icon-delete"></i><span style="margin-left: 3px;">删除</span>
+                        </a>
+					</div>
+					<div class="col-66">
+						<a href="javascript:job_detail_copy();" class="button button-big color-gray" style="background: #fff; border-radius: 0; border: 0;">再次发布</a>
+					</div>
+				</div>   
+			</div>
+		</div>
+		#end
     </div>
 </div>

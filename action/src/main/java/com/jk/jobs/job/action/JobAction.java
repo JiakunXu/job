@@ -129,6 +129,19 @@ public class JobAction extends BaseAction {
 		return RESOURCE_RESULT;
 	}
 
+	public String delete() {
+		BooleanResult result = jobService.delete(this.getUser().getUserId(), jobId);
+
+		if (result.getResult()) {
+			this.setResourceResult("删除成功");
+		} else {
+			this.getServletResponse().setStatus(599);
+			this.setResourceResult(result.getCode());
+		}
+
+		return RESOURCE_RESULT;
+	}
+
 	public List<Job> getJobList() {
 		return jobList;
 	}

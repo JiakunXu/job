@@ -28,6 +28,11 @@ public interface IJobService {
 	String REVOKE = "revoke";
 
 	/**
+	 * 删除.
+	 */
+	String DELETE = "delete";
+
+	/**
 	 * 
 	 * @param job
 	 * @return
@@ -80,5 +85,14 @@ public interface IJobService {
 	 * @return
 	 */
 	BooleanResult revoke(Long userId, String jobId);
+
+	/**
+	 * 删除.
+	 * 
+	 * @param userId
+	 * @param jobId
+	 * @return
+	 */
+	BooleanResult delete(Long userId, String jobId);
 
 }

@@ -38,10 +38,10 @@
 						<div class="card-header" style="font-size: 14px;">
 							<div class="left"><i class="iconfont icon-countdown" style="font-size: 16px;"></i> $!{job.createDate}</div>
 							<div class="right">
-								#if($!{job.type} != 'revoke')
-								<a href="javascript:job_my_revoke('$!{job.jobId}');">[撤销]</a>
-								#else
+								#if($!{job.type} == 'revoke')
 								已撤销
+								#else
+								已发布
 								#end
 							</div>
 						</div>
@@ -60,10 +60,11 @@
 								</div>
                             </div>
 						</div>
-						<div class="card-footer" style="min-height: 0; padding: 5px 15px;">
-                            <span style="font-size: 12px;">
-								<i class="iconfont icon-notification" style="font-size: 12px;"></i> $!{job.remark}
-							</span>
+						<div class="card-footer">
+                            <div class="left"></div>
+							<div class="right">
+								<a href="javascript:job_my_revoke('$!{job.jobId}');" class="button color-red">撤销</a>
+                            </div>
 						</div>
 					</li>
 				</ul>

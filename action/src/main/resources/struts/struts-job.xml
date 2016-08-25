@@ -35,5 +35,10 @@
 			<interceptor-ref name="authenticationStack" />
 		</action>
 		
+		<!-- 删除 -->
+		<action name="delete" class="jobAction" method="delete">
+			<interceptor-ref name="authenticationStack" />
+		</action>
+		
 	</package>
 </struts>
