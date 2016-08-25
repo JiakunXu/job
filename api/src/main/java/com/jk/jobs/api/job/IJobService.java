@@ -83,6 +83,15 @@ public interface IJobService {
 	BooleanResult publish(Long userId, Job job);
 
 	/**
+	 * 结束.
+	 * 
+	 * @param userId
+	 * @param jobId
+	 * @return
+	 */
+	BooleanResult finish(Long userId, String jobId);
+
+	/**
 	 * 撤销.
 	 * 
 	 * @param userId

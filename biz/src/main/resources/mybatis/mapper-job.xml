@@ -132,6 +132,19 @@
 	]]>
 	</update>
 	
+	<update id="finishJob" parameterType="job">
+	<![CDATA[
+		UPDATE basis_tb_job t
+		   SET t.modify_date = NOW(),
+			   t.modify_user = #{modifyUser},
+			   t.`TYPE` = #{type}
+		 WHERE t.state = 'U'
+		   AND t.`TYPE` <> #{type}
+		   AND t.user_id = #{userId}
+		   AND t.job_id = #{jobId}
+	]]>
+	</update>
+	
 	<update id="revokeJob" parameterType="job">
 	<![CDATA[
 		UPDATE basis_tb_job t

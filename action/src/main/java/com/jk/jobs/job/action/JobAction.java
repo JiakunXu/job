@@ -117,6 +117,15 @@ public class JobAction extends BaseAction {
 	 * @return
 	 */
 	public String finish() {
+		BooleanResult result = jobService.finish(this.getUser().getUserId(), jobId);
+
+		if (result.getResult()) {
+			this.setResourceResult("结束成功");
+		} else {
+			this.getServletResponse().setStatus(599);
+			this.setResourceResult(result.getCode());
+		}
+
 		return RESOURCE_RESULT;
 	}
 

@@ -58,11 +58,10 @@
 						</div>
 						<div class="card-footer">
                             <div class="left">
-								<a href="$!{env.appUrl}/job/resume.htm?jobId=$!{job.jobId}" class="button color-base" data-ignore-cache="true">简历</a>
+								<a href="$!{env.appUrl}/job/resume.htm?jobId=$!{job.jobId}" class="button color-gray" data-ignore-cache="true">简历</a>
 							</div>
 							<div class="right">
-								<a href="javascript:job_my_finish('$!{job.jobId}');" class="button color-base">结束</a>
-								<a href="javascript:job_my_revoke('$!{job.jobId}');" class="button color-red">撤销</a>
+								<a href="javascript:job_my_op('$!{job.jobId}');" class="button color-base">操作</a>
                             </div>
 						</div>
 					</li>
@@ -70,8 +69,11 @@
 				#end
             </div>
 			
-			<form id="job/my/revoke" action="$!{env.appUrl}/job/revoke.htm" method="POST" class="ajax-submit job-my-form">
-            	<input type="hidden" name="jobId" id="job_my_jobId"/>
+			<form id="job/my/finish" action="$!{env.appUrl}/job/finish.htm" method="POST" class="ajax-submit job-my-finish">
+            	<input type="hidden" name="jobId" id="job_my_finish_jobId"/>
+            </form>
+			<form id="job/my/revoke" action="$!{env.appUrl}/job/revoke.htm" method="POST" class="ajax-submit job-my-revoke">
+            	<input type="hidden" name="jobId" id="job_my_revoke_jobId"/>
             </form>
         </div>
     </div>

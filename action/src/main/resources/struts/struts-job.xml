@@ -30,6 +30,11 @@
 			<result name="success">/jobs/job/my.vm</result>
 		</action>
 		
+		<!-- 结束 -->
+		<action name="finish" class="jobAction" method="finish">
+			<interceptor-ref name="authenticationStack" />
+		</action>
+		
 		<!-- 撤销 -->
 		<action name="revoke" class="jobAction" method="revoke">
 			<interceptor-ref name="authenticationStack" />

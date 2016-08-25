@@ -15,28 +15,59 @@ myApp.onPageInit('job.my', function(page) {
 								}, 1000);
 					});
 
-			$$('form.ajax-submit.job-my-form').on('beforeSubmit', function(e) {
+			$$('form.ajax-submit.job-my-finish').on('beforeSubmit',
+					function(e) {
+					});
+			$$('form.ajax-submit.job-my-revoke').on('beforeSubmit',
+					function(e) {
 					});
 
-			$$('form.ajax-submit.job-my-form').on('submitted', function(e) {
+			$$('form.ajax-submit.job-my-finish').on('submitted', function(e) {
+						myApp.hideIndicator();
+						var xhr = e.detail.xhr;
+						myApp.getCurrentView().router.refreshPage();
+					});
+			$$('form.ajax-submit.job-my-revoke').on('submitted', function(e) {
 						myApp.hideIndicator();
 						var xhr = e.detail.xhr;
 						myApp.getCurrentView().router.refreshPage();
 					});
 
-			$$('form.ajax-submit.job-my-form').on('submitError', function(e) {
+			$$('form.ajax-submit.job-my-finish').on('submitError', function(e) {
 						myApp.hideIndicator();
 						var xhr = e.detail.xhr;
 						myApp.alert(xhr.responseText, '错误');
 					});
-
+			$$('form.ajax-submit.job-my-revoke').on('submitError', function(e) {
+						myApp.hideIndicator();
+						var xhr = e.detail.xhr;
+						myApp.alert(xhr.responseText, '错误');
+					});
 		});
 
-function job_my_revoke(jobId) {
-	myApp.confirm('确定撤销？', '项目管理', function() {
-				myApp.showIndicator();
+function job_my_op(jobId) {
+	myApp.actions([[{
+						text : '项目结束',
+						onClick : function() {
+							myApp.confirm('确定结束？', '项目管理', function() {
+										myApp.showIndicator();
 
-				$$('#job_my_jobId').val(jobId);
-				$$('#job/my/revoke').trigger("submit");
-			});
+										$$('#job_my_finish_jobId').val(jobId);
+										$$('#job/my/finish').trigger("submit");
+									});
+						}
+					}, {
+						text : '项目撤销',
+						color : 'red',
+						onClick : function() {
+							myApp.confirm('确定撤销？', '项目管理', function() {
+										myApp.showIndicator();
+
+										$$('#job_my_revoke_jobId').val(jobId);
+										$$('#job/my/revoke').trigger("submit");
+									});
+						}
+					}], [{
+						text : '取消'
+					}]]);
 }

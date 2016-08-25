@@ -228,6 +228,52 @@ public class JobServiceImpl implements IJobService {
 	}
 
 	@Override
+	public BooleanResult finish(Long userId, String jobId) {
+		BooleanResult result = new BooleanResult();
+		result.setResult(false);
+
+		Job job = new Job();
+
+		if (userId == null) {
+			result.setCode("用户信息不能为空");
+			return result;
+		}
+		job.setUserId(userId);
+		job.setModifyUser(userId.toString());
+
+		if (StringUtils.isBlank(jobId)) {
+			result.setCode("项目信息不能为空");
+			return result;
+		}
+
+		try {
+			job.setJobId(Long.valueOf(jobId));
+		} catch (NumberFormatException e) {
+			logger.error(e);
+
+			result.setCode("项目信息不能为空");
+			return result;
+		}
+
+		job.setType(IJobService.FINISH);
+
+		try {
+			int c = jobDao.finishJob(job);
+			if (c == 1) {
+				result.setResult(true);
+			} else {
+				result.setCode("项目结束失败，请稍后再试");
+			}
+		} catch (Exception e) {
+			logger.error(LogUtil.parserBean(job), e);
+
+			result.setCode("项目结束失败，请稍后再试");
+		}
+
+		return result;
+	}
+
+	@Override
 	public BooleanResult revoke(Long userId, String jobId) {
 		BooleanResult result = new BooleanResult();
 		result.setResult(false);
