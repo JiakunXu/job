@@ -30,6 +30,8 @@ public class Resume extends SearchInfo {
 
 	private String education;
 
+	private String remark;
+
 	private String modifyUser;
 
 	// >>>>>>>>>>以下是辅助属性<<<<<<<<<<
@@ -90,6 +92,14 @@ public class Resume extends SearchInfo {
 
 	public void setEducation(String education) {
 		this.education = education;
+	}
+
+	public String getRemark() {
+		return remark;
+	}
+
+	public void setRemark(String remark) {
+		this.remark = remark;
 	}
 
 	public String getModifyUser() {

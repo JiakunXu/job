@@ -11,7 +11,8 @@
 			   t.`SEX`,
 			   t.`TEL`,
 			   t.`WORK_YEAR` AS workYear,
-			   t.`EDUCATION`
+			   t.`EDUCATION`,
+			   t.`REMARK`
 		  FROM basis_tb_resume t
 		 WHERE t.state = 'U'
 	]]>
@@ -24,7 +25,8 @@
 			   t.`SEX`,
 			   t.`TEL`,
 			   t.`WORK_YEAR` AS workYear,
-			   t.`EDUCATION`
+			   t.`EDUCATION`,
+			   t.`REMARK`
 		  FROM basis_tb_resume t
 		 WHERE t.state = 'U'
 	]]>

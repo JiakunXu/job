@@ -11,6 +11,12 @@
 		  (
 			USER_ID,
 			JOB_ID,
+			NAME,
+			SEX,
+			TEL,
+			WORK_YEAR,
+			EDUCATION,
+			REMARK,
 			STATE,
 			CREATE_DATE,
 			CREATE_USER,
@@ -21,6 +27,12 @@
 		  (
 			#{userId},
 			#{jobId},
+			#{name},
+			#{sex},
+			#{tel},
+			#{workYear},
+			#{education},
+			#{remark},
 			'U',
 			NOW(),
 			#{modifyUser},
@@ -34,6 +46,12 @@
 	<![CDATA[
 		SELECT t.user_id AS userId,
 			   t.job_id AS jobId,
+			   t.`NAME`,
+			   t.`SEX`,
+			   t.`TEL`,
+			   t.`WORK_YEAR` AS workYear,
+			   t.`EDUCATION`,
+			   t.`REMARK`,
 			   DATE_FORMAT(t.create_date, '%Y-%m-%d %T') AS createDate
 		  FROM basis_tb_user_job t
 		 WHERE t.state = 'U'
