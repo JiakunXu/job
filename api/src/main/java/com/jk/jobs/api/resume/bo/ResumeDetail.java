@@ -15,6 +15,11 @@ public class ResumeDetail implements Serializable {
 
 	private Long resumeId;
 
+	/**
+	 * 项目周期（月）.
+	 */
+	private int cycle;
+
 	private String content;
 
 	private int rank;
@@ -35,6 +40,14 @@ public class ResumeDetail implements Serializable {
 
 	public void setResumeId(Long resumeId) {
 		this.resumeId = resumeId;
+	}
+
+	public int getCycle() {
+		return cycle;
+	}
+
+	public void setCycle(int cycle) {
+		this.cycle = cycle;
 	}
 
 	public String getContent() {
