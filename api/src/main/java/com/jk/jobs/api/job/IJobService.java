@@ -23,6 +23,11 @@ public interface IJobService {
 	String PUBLISH = "publish";
 
 	/**
+	 * 已完成.
+	 */
+	String FINISH = "finish";
+
+	/**
 	 * 撤销.
 	 */
 	String REVOKE = "revoke";

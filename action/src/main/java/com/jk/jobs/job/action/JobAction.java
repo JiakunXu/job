@@ -112,6 +112,15 @@ public class JobAction extends BaseAction {
 	}
 
 	/**
+	 * 完成.
+	 * 
+	 * @return
+	 */
+	public String finish() {
+		return RESOURCE_RESULT;
+	}
+
+	/**
 	 * 撤销.
 	 * 
 	 * @return

@@ -3,15 +3,16 @@
 <div class="navbar">
 	<div class="navbar-inner">
 		<div class="left"><a href="#" class="back link"> <i class="icon icon-back color-gray"></i><span></span></a></div>
-		<div class="center sliding">我的项目</div>
+		<div class="center sliding">简历</div>
 		<div class="right">
 			<!-- Right link contains only icon - additional "icon-only" class-->
+			<a href="#" class="link icon-only"> <i class="iconfont icon-more color-gray"></i><span></span></a>
 		</div>
 	</div>
 </div>
 <div class="pages">
 	<!-- Page, data-page contains page name-->
-	<div data-page="job.my" class="page no-tabbar">
+	<div data-page="job.resume.list" class="page">
 		<!-- Search bar -->
 		<form data-search-list=".list-block-search" data-search-in=".item-title" class="searchbar searchbar-init item-list-searchbar">
 			<div class="searchbar-input">
@@ -32,47 +33,35 @@
 			<div class="more"></div>
 			
 			<div class="list-block cards-list media-list list-block-search searchbar-found">
-				#foreach($job in $!{jobList})
+				#foreach($resume in $!{resumeList})
 				<ul>
 					<li class="card" style="border-radius: 5px; margin: 10px 5px;">
+						<span class="bw"></span>
 						<div class="card-header" style="font-size: 14px;">
-							<div class="left"><i class="iconfont icon-countdown" style="font-size: 16px;"></i> $!{job.createDate}</div>
-							<div class="right">
-								#if($!{job.type} == 'revoke') 已撤销 #else 已发布 #end
-							</div>
+							<div class="left"><i class="iconfont icon-profile" style="font-size: 16px;"></i> $!{resume.name}</div>
+							<div class="right"><i class="iconfont icon-phone" style="font-size: 14px;"></i> $!{resume.tel}</div>
 						</div>
 						<div class="card-content">
 							<div class="item-content">
-    							<a class="item-inner" href="$!{env.appUrl}/job/detail.htm?jobId=$!{job.jobId}" data-ignore-cache="true">
-    								<div class="item-title-row">
-                                        <div class="item-title">$!{job.title}</div>
-    								</div>
-    								#parse("/jobs/job/content.vm")
+    							<a class="item-inner" href="$!{env.appUrl}/resume/detail.htm?resumeId=$!{resume.resumeId}" data-ignore-cache="true">
+    								#parse("/jobs/resume/content.vm")
                                 </a>
 								<div class="item-after">
-									<a href="$!{env.appUrl}/job/detail.htm?jobId=$!{job.jobId}" data-ignore-cache="true">
-										<i class="iconfont icon-edit color-base"></i>
+									<a href="$!{env.appUrl}/resume/detail.htm?resumeId=$!{resume.resumeId}" data-ignore-cache="true">
+										<i class="iconfont icon-profile color-base"></i>
 									</a>
 								</div>
                             </div>
 						</div>
-						<div class="card-footer">
-                            <div class="left">
-								<a href="$!{env.appUrl}/job/resume.htm?jobId=$!{job.jobId}" class="button color-base" data-ignore-cache="true">简历</a>
-							</div>
-							<div class="right">
-								<a href="javascript:job_my_finish('$!{job.jobId}');" class="button color-base">结束</a>
-								<a href="javascript:job_my_revoke('$!{job.jobId}');" class="button color-red">撤销</a>
-                            </div>
+						<div class="card-footer" style="min-height: 0; padding: 5px 15px;">
+                            <span style="font-size: 12px;">
+								<i class="iconfont icon-notification" style="font-size: 12px;"></i> $!{resume.remark}
+							</span>
 						</div>
 					</li>
 				</ul>
 				#end
             </div>
-			
-			<form id="job/my/revoke" action="$!{env.appUrl}/job/revoke.htm" method="POST" class="ajax-submit job-my-form">
-            	<input type="hidden" name="jobId" id="job_my_jobId"/>
-            </form>
         </div>
     </div>
 </div>
