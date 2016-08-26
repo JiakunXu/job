@@ -47,6 +47,13 @@ public class JobAction extends BaseAction {
 	private List<UserJob> userJobList;
 
 	/**
+	 * UserJob.
+	 */
+	private String userJobId;
+
+	private UserJob resume;
+
+	/**
 	 * 
 	 * @return
 	 */
@@ -123,6 +130,30 @@ public class JobAction extends BaseAction {
 		userJobList = jobService.getUserList(this.getUser().getUserId(), jobId);
 
 		return SUCCESS;
+	}
+
+	public String resumeDetail() {
+		resume = jobService.detail(this.getUser().getUserId(), jobId, userJobId);
+
+		return SUCCESS;
+	}
+
+	/**
+	 * 忽略简历.
+	 * 
+	 * @return
+	 */
+	public String ignore() {
+		BooleanResult result = jobService.ignore(this.getUser().getUserId(), jobId, userJobId);
+
+		if (result.getResult()) {
+			this.setResourceResult("忽略成功");
+		} else {
+			this.getServletResponse().setStatus(599);
+			this.setResourceResult(result.getCode());
+		}
+
+		return RESOURCE_RESULT;
 	}
 
 	/**
@@ -220,6 +251,22 @@ public class JobAction extends BaseAction {
 
 	public void setUserJobList(List<UserJob> userJobList) {
 		this.userJobList = userJobList;
+	}
+
+	public String getUserJobId() {
+		return userJobId;
+	}
+
+	public void setUserJobId(String userJobId) {
+		this.userJobId = userJobId;
+	}
+
+	public UserJob getResume() {
+		return resume;
+	}
+
+	public void setResume(UserJob resume) {
+		this.resume = resume;
 	}
 
 }

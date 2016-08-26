@@ -50,6 +50,20 @@
 		<action name="delete" class="jobAction" method="delete">
 			<interceptor-ref name="authenticationStack" />
 		</action>
+	</package>
+	
+	<package name="{http://jobs}jobs$job/resume"
+		extends="{http://jobs}jobs$framework" namespace="/job/resume">
+
+		<!-- 简历内容 -->
+		<action name="detail" class="jobAction" method="resumeDetail">
+			<interceptor-ref name="authenticationStack" />
+			<result name="success">/jobs/job/resume/detail.vm</result>
+		</action>
 		
+		<!-- 忽略简历 -->
+		<action name="ignore" class="jobAction" method="ignore">
+			<interceptor-ref name="authenticationStack" />
+		</action>
 	</package>
 </struts>

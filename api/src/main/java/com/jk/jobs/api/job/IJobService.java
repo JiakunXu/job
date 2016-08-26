@@ -110,6 +110,8 @@ public interface IJobService {
 	 */
 	BooleanResult delete(Long userId, String jobId);
 
+	// >>>>>>>>>>以下是项目相关简历<<<<<<<<<<
+
 	/**
 	 * 项目简历.
 	 * 
@@ -118,5 +120,24 @@ public interface IJobService {
 	 * @return
 	 */
 	List<UserJob> getUserList(Long userId, String jobId);
+
+	/**
+	 * 
+	 * @param userId
+	 * @param jobId
+	 * @param userJobId
+	 * @return
+	 */
+	UserJob detail(Long userId, String jobId, String userJobId);
+
+	/**
+	 * 忽略.
+	 * 
+	 * @param userId
+	 * @param jobId
+	 * @param userJobId
+	 * @return
+	 */
+	BooleanResult ignore(Long userId, String jobId, String userJobId);
 
 }

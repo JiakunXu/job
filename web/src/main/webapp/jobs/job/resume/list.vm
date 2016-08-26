@@ -41,25 +41,31 @@
 						</div>
 						<div class="card-content">
 							<div class="item-content">
-    							<a class="item-inner" href="$!{env.appUrl}/user/job/detail.htm?userJobId=$!{resume.id}">
+    							<a class="item-inner" href="$!{env.appUrl}/job/resume/detail.htm?jobId=$!{jobId}&userJobId=$!{resume.userJobId}">
     								#parse("/jobs/resume/content.vm")
                                 </a>
 								<div class="item-after">
-									<a href="$!{env.appUrl}/user/job/detail.htm?userJobId=$!{resume.id}">
+									<a href="$!{env.appUrl}/job/resume/detail.htm?jobId=$!{jobId}&userJobId=$!{resume.userJobId}">
 										<i class="iconfont icon-profile color-base"></i>
 									</a>
 								</div>
                             </div>
 						</div>
-						<div class="card-footer" style="min-height: 0; padding: 5px 15px;">
-                            <span style="font-size: 12px;">
-								<i class="iconfont icon-notification" style="font-size: 12px;"></i> $!{resume.remark}
-							</span>
+						<div class="card-footer">
+                            <div class="left"></div>
+							<div class="right">
+								<a href="javascript:job_resume_list_ignore('$!{resume.userJobId}');" class="button color-red">忽略</a>
+                            </div>
 						</div>
 					</li>
 				</ul>
 				#end
             </div>
+			
+			<form id="job/resume/list/ignore" action="$!{env.appUrl}/job/resume/ignore.htm" method="POST" class="ajax-submit job-resume-list-form">
+            	<input type="hidden" name="jobId" value="$!{jobId}"/>
+				<input type="hidden" name="userJobId" id="job_resume_list_userJobId"/>
+            </form>
         </div>
     </div>
 </div>

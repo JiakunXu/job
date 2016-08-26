@@ -1,5 +1,7 @@
 package com.jk.jobs.api.user.bo;
 
+import java.util.List;
+
 import com.jk.jobs.api.resume.bo.Resume;
 
 /**
@@ -11,11 +13,13 @@ public class UserJob extends Resume {
 
 	private static final long serialVersionUID = -2212484428411343955L;
 
-	private Long id;
+	private Long userJobId;
 
 	private Long userId;
 
 	private Long jobId;
+
+	private String type;
 
 	/**
 	 * 应聘时间.
@@ -24,12 +28,16 @@ public class UserJob extends Resume {
 
 	private String modifyUser;
 
-	public Long getId() {
-		return id;
+	// >>>>>>>>>>以下是辅助属性<<<<<<<<<<
+
+	private List<UserJobDetail> userJobDetailList;
+
+	public Long getUserJobId() {
+		return userJobId;
 	}
 
-	public void setId(Long id) {
-		this.id = id;
+	public void setUserJobId(Long userJobId) {
+		this.userJobId = userJobId;
 	}
 
 	public Long getUserId() {
@@ -48,6 +56,14 @@ public class UserJob extends Resume {
 		this.jobId = jobId;
 	}
 
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
+
 	public String getCreateDate() {
 		return createDate;
 	}
@@ -62,6 +78,14 @@ public class UserJob extends Resume {
 
 	public void setModifyUser(String modifyUser) {
 		this.modifyUser = modifyUser;
+	}
+
+	public List<UserJobDetail> getUserJobDetailList() {
+		return userJobDetailList;
+	}
+
+	public void setUserJobDetailList(List<UserJobDetail> userJobDetailList) {
+		this.userJobDetailList = userJobDetailList;
 	}
 
 }

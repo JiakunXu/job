@@ -38,7 +38,7 @@
 						<div class="card-header" style="font-size: 14px;">
 							<div class="left"><i class="iconfont icon-countdown" style="font-size: 16px;"></i> $!{job.createDate}</div>
 							<div class="right">
-								<a href="#">取消</a>
+								#if($!{job.type} == 'revoke') 已撤销 #else 已投递 #end
 							</div>
 						</div>
 						<div class="card-content">
@@ -56,15 +56,22 @@
 								</div>
                             </div>
 						</div>
-						<div class="card-footer" style="min-height: 0; padding: 5px 15px;">
-                            <span style="font-size: 12px;">
-								<i class="iconfont icon-notification" style="font-size: 12px;"></i> $!{job.remark}
-							</span>
+						<div class="card-footer">
+                            <div class="left"></div>
+							<div class="right">
+								#if($!{job.type} == 'deliver')
+								<a href="javascript:user_job_list_revoke('$!{job.jobId}');" class="button color-red">撤销</a>
+								#end
+                            </div>
 						</div>
 					</li>
 				</ul>
 				#end
             </div>
+			
+			<form id="user/job/list/revoke" action="$!{env.appUrl}/user/job/revoke.htm" method="POST" class="ajax-submit user-job-list-form">
+            	<input type="hidden" name="jobId" id="user_job_list_jobId"/>
+            </form>
         </div>
     </div>
 </div>

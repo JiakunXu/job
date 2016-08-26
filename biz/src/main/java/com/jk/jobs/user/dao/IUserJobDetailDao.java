@@ -1,5 +1,7 @@
 package com.jk.jobs.user.dao;
 
+import java.util.List;
+
 import com.jk.jobs.api.user.bo.UserJobDetail;
 
 /**
@@ -15,5 +17,12 @@ public interface IUserJobDetailDao {
 	 * @return
 	 */
 	int createUserJobDetail(UserJobDetail userJobDetail);
+
+	/**
+	 * 
+	 * @param userJobDetail
+	 * @return
+	 */
+	List<UserJobDetail> getUserJobDetailList(UserJobDetail userJobDetail);
 
 }

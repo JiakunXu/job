@@ -7,14 +7,16 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 
-import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.TransactionStatus;
 import org.springframework.transaction.support.TransactionCallback;
 import org.springframework.transaction.support.TransactionTemplate;
 
+import com.jk.jobs.api.job.IJobCatService;
 import com.jk.jobs.api.job.IJobService;
 import com.jk.jobs.api.job.bo.Job;
+import com.jk.jobs.api.job.bo.JobCat;
 import com.jk.jobs.api.resume.IResumeService;
 import com.jk.jobs.api.resume.bo.Resume;
 import com.jk.jobs.api.resume.bo.ResumeDetail;
@@ -46,6 +48,9 @@ public class UserJobServiceImpl implements IUserJobService {
 
 	@Resource
 	private IJobService jobService;
+
+	@Resource
+	private IJobCatService jobCatService;
 
 	@Resource
 	private IUserJobDao userJobDao;
@@ -93,15 +98,20 @@ public class UserJobServiceImpl implements IUserJobService {
 
 		userJob.setName(resume.getName());
 		userJob.setSex(resume.getSex());
+		userJob.setBirthday(resume.getBirthday());
 		userJob.setTel(resume.getTel());
 		userJob.setWorkYear(resume.getWorkYear());
 		userJob.setEducation(resume.getEducation());
 		userJob.setRemark(resume.getRemark());
+		// 简历投递
+		userJob.setType(IUserJobService.DELIVER);
 
 		List<ResumeDetail> resumeDetailList = resume.getResumeDetailList();
 		if (resumeDetailList != null && resumeDetailList.size() > 0) {
 			for (ResumeDetail resumeDetail : resumeDetailList) {
 				UserJobDetail userJobDetail = new UserJobDetail();
+				userJobDetail.setJobCId(resumeDetail.getJobCId());
+				userJobDetail.setCycle(resumeDetail.getCycle());
 				userJobDetail.setContent(resumeDetail.getContent());
 				userJobDetail.setRank(resumeDetail.getRank());
 				userJobDetail.setModifyUser(userJob.getModifyUser());
@@ -119,7 +129,7 @@ public class UserJobServiceImpl implements IUserJobService {
 
 				try {
 					userJobDao.createUserJob(userJob);
-					userJobId = userJob.getId();
+					userJobId = userJob.getUserJobId();
 				} catch (Exception e) {
 					logger.error(LogUtil.parserBean(userJob), e);
 					ts.setRollbackOnly();
@@ -185,7 +195,9 @@ public class UserJobServiceImpl implements IUserJobService {
 
 		for (Job job : jobList) {
 			UserJob uj = map.get(job.getJobId());
+
 			job.setCreateDate(uj.getCreateDate());
+			job.setType(uj.getType());
 		}
 
 		return jobList;
@@ -198,6 +210,8 @@ public class UserJobServiceImpl implements IUserJobService {
 		}
 
 		UserJob userJob = new UserJob();
+		// 只查询 投递 状态
+		userJob.setType(IUserJobService.DELIVER);
 
 		try {
 			userJob.setJobId(Long.valueOf(jobId));
@@ -208,6 +222,133 @@ public class UserJobServiceImpl implements IUserJobService {
 		}
 
 		return getUserJobList(userJob);
+	}
+
+	@Override
+	public BooleanResult revoke(Long userId, String jobId) {
+		BooleanResult result = new BooleanResult();
+		result.setResult(false);
+
+		if (userId == null) {
+			result.setCode("用户信息不能为空");
+			return result;
+		}
+
+		if (StringUtils.isBlank(jobId)) {
+			result.setCode("项目信息不能为空");
+			return result;
+		}
+
+		UserJob userJob = new UserJob();
+
+		userJob.setUserId(userId);
+		userJob.setModifyUser(userId.toString());
+
+		try {
+			userJob.setJobId(Long.valueOf(jobId));
+		} catch (NumberFormatException e) {
+			logger.error(e);
+
+			result.setCode("项目信息不能为空");
+			return result;
+		}
+
+		userJob.setType(IUserJobService.REVOKE);
+
+		try {
+			userJobDao.updateUserJob(userJob);
+			result.setResult(true);
+		} catch (Exception e) {
+			logger.error(LogUtil.parserBean(userJob), e);
+
+			result.setCode("简历撤销失败，请稍后再试");
+		}
+
+		return result;
+	}
+
+	@Override
+	public UserJob detail(Long jobId, String userJobId) {
+		UserJob userJob = new UserJob();
+
+		if (jobId == null) {
+			return null;
+		}
+
+		userJob.setJobId(jobId);
+
+		if (StringUtils.isBlank(userJobId)) {
+			return null;
+		}
+
+		try {
+			userJob.setUserJobId(Long.valueOf(userJobId));
+		} catch (NumberFormatException e) {
+			logger.error(e);
+
+			return null;
+		}
+
+		userJob = getUserJob(userJob);
+
+		if (userJob == null) {
+			return null;
+		}
+
+		UserJobDetail userJobDetail = new UserJobDetail();
+		userJobDetail.setUserJobId(userJob.getUserJobId());
+
+		userJob.setUserJobDetailList(getUserJobDetailList(userJobDetail));
+
+		return userJob;
+	}
+
+	@Override
+	public BooleanResult ignore(Long jobId, String userJobId, String modifyUser) {
+		BooleanResult result = new BooleanResult();
+		result.setResult(false);
+
+		UserJob userJob = new UserJob();
+
+		if (jobId == null) {
+			result.setCode("项目信息不能为空");
+			return result;
+		}
+
+		userJob.setJobId(jobId);
+
+		if (StringUtils.isBlank(userJobId)) {
+			result.setCode("简历信息不能为空");
+			return result;
+		}
+
+		try {
+			userJob.setUserJobId(Long.valueOf(userJobId));
+		} catch (NumberFormatException e) {
+			logger.error(e);
+
+			result.setCode("简历信息不能为空");
+			return result;
+		}
+
+		if (StringUtils.isEmpty(modifyUser)) {
+			result.setCode("操作人信息不能为空");
+			return result;
+		}
+
+		userJob.setType(IUserJobService.IGNORE);
+		userJob.setModifyUser(modifyUser);
+
+		try {
+			userJobDao.updateUserJob(userJob);
+			result.setResult(true);
+		} catch (Exception e) {
+			logger.error(LogUtil.parserBean(userJob), e);
+
+			result.setCode("简历忽略失败，请稍后再试");
+		}
+
+		return result;
 	}
 
 	/**
@@ -223,6 +364,49 @@ public class UserJobServiceImpl implements IUserJobService {
 		}
 
 		return null;
+	}
+
+	/**
+	 * 
+	 * @param userJob
+	 * @return
+	 */
+	private UserJob getUserJob(UserJob userJob) {
+		try {
+			return userJobDao.getUserJob(userJob);
+		} catch (Exception e) {
+			logger.error(LogUtil.parserBean(userJob), e);
+		}
+
+		return null;
+	}
+
+	/**
+	 * 
+	 * @param userJobDetail
+	 * @return
+	 */
+	private List<UserJobDetail> getUserJobDetailList(UserJobDetail userJobDetail) {
+		List<UserJobDetail> userJobDetailList = null;
+
+		try {
+			userJobDetailList = userJobDetailDao.getUserJobDetailList(userJobDetail);
+		} catch (Exception e) {
+			logger.error(LogUtil.parserBean(userJobDetail), e);
+		}
+
+		if (userJobDetailList == null || userJobDetailList.size() == 0) {
+			return null;
+		}
+
+		for (UserJobDetail detail : userJobDetailList) {
+			JobCat c = jobCatService.getJobCat(detail.getJobCId());
+			if (c != null) {
+				detail.setJobCName(c.getJobCName());
+			}
+		}
+
+		return userJobDetailList;
 	}
 
 }

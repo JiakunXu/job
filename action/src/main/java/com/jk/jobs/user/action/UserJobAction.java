@@ -44,6 +44,7 @@ public class UserJobAction extends BaseAction {
 	private List<Job> jobList;
 
 	/**
+	 * 预览简历.
 	 * 
 	 * @return
 	 */
@@ -58,6 +59,7 @@ public class UserJobAction extends BaseAction {
 	}
 
 	/**
+	 * 投简历.
 	 * 
 	 * @return
 	 */
@@ -83,6 +85,24 @@ public class UserJobAction extends BaseAction {
 		jobList = userJobService.getJobList(this.getUser().getUserId());
 
 		return SUCCESS;
+	}
+
+	/**
+	 * 撤销.
+	 * 
+	 * @return
+	 */
+	public String revoke() {
+		BooleanResult result = userJobService.revoke(this.getUser().getUserId(), jobId);
+
+		if (result.getResult()) {
+			this.setResourceResult("撤销成功");
+		} else {
+			this.getServletResponse().setStatus(599);
+			this.setResourceResult(result.getCode());
+		}
+
+		return RESOURCE_RESULT;
 	}
 
 	public String getJobId() {

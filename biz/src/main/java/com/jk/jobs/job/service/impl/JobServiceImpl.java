@@ -392,6 +392,86 @@ public class JobServiceImpl implements IJobService {
 		return userJobService.getUserList(jobId);
 	}
 
+	@Override
+	public UserJob detail(Long userId, String jobId, String userJobId) {
+		Job job = new Job();
+
+		if (userId == null) {
+			return null;
+		}
+
+		job.setUserId(userId);
+
+		if (StringUtils.isBlank(jobId)) {
+			return null;
+		}
+
+		try {
+			job.setJobId(Long.valueOf(jobId));
+		} catch (NumberFormatException e) {
+			logger.error(e);
+
+			return null;
+		}
+
+		if (StringUtils.isBlank(userJobId)) {
+			return null;
+		}
+
+		// 验证 userId 是 项目发布者
+		job = getJob(job);
+
+		if (job == null) {
+			return null;
+		}
+
+		return userJobService.detail(job.getJobId(), userJobId);
+	}
+
+	@Override
+	public BooleanResult ignore(Long userId, String jobId, String userJobId) {
+		BooleanResult result = new BooleanResult();
+		result.setResult(false);
+
+		Job job = new Job();
+
+		if (userId == null) {
+			result.setCode("用户信息不能为空");
+			return result;
+		}
+
+		job.setUserId(userId);
+
+		if (StringUtils.isBlank(jobId)) {
+			result.setCode("项目信息不能为空");
+			return result;
+		}
+
+		try {
+			job.setJobId(Long.valueOf(jobId));
+		} catch (NumberFormatException e) {
+			logger.error(e);
+
+			result.setCode("项目信息不能为空");
+			return result;
+		}
+
+		if (StringUtils.isBlank(userJobId)) {
+			result.setCode("简历信息不能为空");
+			return result;
+		}
+
+		// 验证 userId 是 项目发布者
+		job = getJob(job);
+
+		if (job == null) {
+			result.setCode("没有权限操作简历");
+			return result;
+		}
+
+		return userJobService.ignore(job.getJobId(), userJobId, userId.toString());
+	}
+
 	/**
 	 * 
 	 * @param job

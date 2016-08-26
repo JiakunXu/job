@@ -11,18 +11,18 @@ public class UserJobDetail extends ResumeDetail {
 
 	private static final long serialVersionUID = 9161679107202805821L;
 
-	private Long id;
+	private Long detailId;
 
 	private Long userJobId;
 
 	private String modifyUser;
 
-	public Long getId() {
-		return id;
+	public Long getDetailId() {
+		return detailId;
 	}
 
-	public void setId(Long id) {
-		this.id = id;
+	public void setDetailId(Long detailId) {
+		this.detailId = detailId;
 	}
 
 	public Long getUserJobId() {

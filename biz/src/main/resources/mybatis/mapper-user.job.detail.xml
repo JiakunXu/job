@@ -4,12 +4,14 @@
 
 <mapper namespace="com.jk.jobs.user.dao.IUserJobDetailDao">
 	
-	<insert id="createUserJobDetail" parameterType="userJobDetail" useGeneratedKeys="true" keyProperty="id">
+	<insert id="createUserJobDetail" parameterType="userJobDetail" useGeneratedKeys="true" keyProperty="detailId">
 	<![CDATA[
 		INSERT
 		INTO basis_tb_user_job_detail
 		  (
 			USER_JOB_ID,
+			JOB_CID,
+			CYCLE,
 			CONTENT,
 			RANK,
 			STATE,
@@ -21,6 +23,8 @@
 		  VALUES
 		  (
 			#{userJobId},
+			#{jobCId},
+			#{cycle},
 			#{content},
 			#{rank},
 			'U',
@@ -31,5 +35,18 @@
 		  )
 	]]>
 	</insert>
+	
+	<select id="getUserJobDetailList" parameterType="userJobDetail" resultType="userJobDetail">
+	<![CDATA[
+		SELECT t.`DETAIL_ID` AS detailId,
+			   t.`JOB_CID` AS jobCId,
+			   t.`CYCLE`,
+			   t.`CONTENT`
+		  FROM basis_tb_user_job_detail t
+		 WHERE t.state = 'U'
+		   AND t.user_job_id = #{userJobId}
+		 ORDER BY t.`RANK`
+	]]>
+	</select>
 	
 </mapper>

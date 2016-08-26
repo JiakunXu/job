@@ -15,6 +15,21 @@ import com.jk.jobs.framework.bo.BooleanResult;
 public interface IUserJobService {
 
 	/**
+	 * 投递.
+	 */
+	String DELIVER = "deliver";
+
+	/**
+	 * 忽略.
+	 */
+	String IGNORE = "ignore";
+
+	/**
+	 * 撤销.
+	 */
+	String REVOKE = "revoke";
+
+	/**
 	 * 
 	 * @param userId
 	 * @param jobId
@@ -35,4 +50,32 @@ public interface IUserJobService {
 	 * @return
 	 */
 	List<UserJob> getUserList(String jobId);
+
+	/**
+	 * 
+	 * @param userId
+	 * @param jobId
+	 * @return
+	 */
+	BooleanResult revoke(Long userId, String jobId);
+
+	// >>>>>>>>>>以下是项目相关简历<<<<<<<<<<
+
+	/**
+	 * 
+	 * @param jobId
+	 * @param userJobId
+	 * @return
+	 */
+	UserJob detail(Long jobId, String userJobId);
+
+	/**
+	 * 
+	 * @param jobId
+	 * @param userJobId
+	 * @param modifyUser
+	 * @return
+	 */
+	BooleanResult ignore(Long jobId, String userJobId, String modifyUser);
+
 }

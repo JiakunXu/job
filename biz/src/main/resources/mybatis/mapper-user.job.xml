@@ -4,7 +4,7 @@
 
 <mapper namespace="com.jk.jobs.user.dao.IUserJobDao">
 	
-	<insert id="createUserJob" parameterType="userJob" useGeneratedKeys="true" keyProperty="id">
+	<insert id="createUserJob" parameterType="userJob" useGeneratedKeys="true" keyProperty="userJobId">
 	<![CDATA[
 		INSERT
 		INTO basis_tb_user_job
@@ -13,10 +13,12 @@
 			JOB_ID,
 			NAME,
 			SEX,
+			BIRTHDAY,
 			TEL,
 			WORK_YEAR,
 			EDUCATION,
 			REMARK,
+			TYPE,
 			STATE,
 			CREATE_DATE,
 			CREATE_USER,
@@ -29,10 +31,12 @@
 			#{jobId},
 			#{name},
 			#{sex},
+			STR_TO_DATE(#{birthday}, '%Y-%m-%d'),
 			#{tel},
 			#{workYear},
 			#{education},
 			#{remark},
+			#{type},
 			'U',
 			NOW(),
 			#{modifyUser},
@@ -44,24 +48,74 @@
 	
 	<select id="getUserJobList" parameterType="userJob" resultType="userJob">
 	<![CDATA[
-		SELECT t.user_id AS userId,
+		SELECT t.`USER_JOB_ID` AS userJobId,
+			   t.user_id AS userId,
 			   t.job_id AS jobId,
 			   t.`NAME`,
 			   t.`SEX`,
+			   DATE_FORMAT(t.`BIRTHDAY`, '%Y-%m-%d') AS birthday,
 			   t.`TEL`,
 			   t.`WORK_YEAR` AS workYear,
 			   t.`EDUCATION`,
 			   t.`REMARK`,
+			   t.`TYPE`,
 			   DATE_FORMAT(t.create_date, '%Y-%m-%d %T') AS createDate
 		  FROM basis_tb_user_job t
 		 WHERE t.state = 'U'
 	]]>
+		<if test="type != null and type != ''">
+		<![CDATA[ AND t.type = #{type} ]]>
+		</if>
+		<if test="userId != null">
+		<![CDATA[
+			AND t.user_id = #{userId}
+			 ORDER BY `CREATE_DATE` DESC
+		]]>
+		</if>
+		<if test="jobId != null">
+		<![CDATA[
+			AND t.job_id = #{jobId}
+			 ORDER BY `CREATE_DATE` ASC
+		]]>
+		</if>
+	</select>
+	
+	<select id="getUserJob" parameterType="userJob" resultType="userJob">
+	<![CDATA[
+		SELECT t.`USER_JOB_ID` AS userJobId,
+			   t.user_id AS userId,
+			   t.`NAME`,
+			   t.`SEX`,
+			   DATE_FORMAT(t.`BIRTHDAY`, '%Y-%m-%d') AS birthday,
+			   t.`TEL`,
+			   t.`WORK_YEAR` AS workYear,
+			   t.`EDUCATION`,
+			   t.`REMARK`,
+			   t.`TYPE`,
+			   DATE_FORMAT(t.create_date, '%Y-%m-%d %T') AS createDate
+		  FROM basis_tb_user_job t
+		 WHERE t.state = 'U'
+		   AND t.job_id = #{jobId}
+		   AND t.user_job_id = #{userJobId}
+	]]>
+	</select>
+	
+	<update id="updateUserJob" parameterType="userJob">
+	<![CDATA[
+		UPDATE basis_tb_user_job t
+		   SET t.modify_date = NOW(),
+			   t.modify_user = #{modifyUser},
+			   t.`TYPE` = #{type}
+		 WHERE t.state = 'U'
+		   AND t.`TYPE` <> #{type}
+		   AND t.job_id = #{jobId}
+	]]>
 		<if test="userId != null">
 		<![CDATA[ AND t.user_id = #{userId} ]]>
 		</if>
-		<if test="jobId != null">
-		<![CDATA[ AND t.job_id = #{jobId} ]]>
+		<if test="userJobId != null">
+		<![CDATA[ AND t.user_job_id = #{userJobId} ]]>
 		</if>
-	</select>
+	</update>
 	
 </mapper>

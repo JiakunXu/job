@@ -1,0 +1,56 @@
+<!-- We don't need full layout here, because this page will be parsed with Ajax-->
+<!-- Top Navbar-->
+<div class="navbar">
+	<div class="navbar-inner">
+		<div class="left"><a href="#" class="back link"> <i class="icon icon-back color-gray"></i><span></span></a></div>
+		<div class="center sliding">$!{resume.name}</div>
+		<div class="right">
+			<!-- Right link contains only icon - additional "icon-only" class-->
+		</div>
+	</div>
+</div>
+<div class="pages">
+	<!-- Page, data-page contains page name-->
+	<div data-page="job.resume.detail" class="page no-tabbar">
+		<!-- Scrollable page content-->
+		<div class="page-content">
+			<div class="card" style="border-radius: 5px; margin: 10px 5px;">
+				<div class="card-header" style="font-size: 14px;">
+					<div class="left"><i class="iconfont icon-profile" style="font-size: 16px;"></i> $!{resume.name}</div>
+					<div class="right"><i class="iconfont icon-phone" style="font-size: 14px;"></i> $!{resume.tel}</div>
+				</div>
+				<div class="card-content">
+					<div class="list-block media-list">
+						<ul>
+    						<li class="item-content">
+    							<div class="item-inner">
+    								#parse("/jobs/resume/content.vm")
+                                </div>
+                            </li>
+                        </ul>
+					</div>
+				</div>
+				<div class="card-footer" style="min-height: 0; padding: 5px 15px;">
+                     <span style="font-size: 12px;">
+						<i class="iconfont icon-notification" style="font-size: 12px;"></i> $!{resume.remark}
+					</span>
+				</div>
+			</div>
+			<div class="card" style="border-radius: 5px; margin: 10px 5px;">
+    			<div class="card-content">
+					<div class="list-block media-list">
+						<ul>
+        					#foreach($resumeDetail in $!{resume.userJobDetailList})
+        					<li class="item-content">
+								<div class="item-inner">
+                                    #parse("/jobs/resume/content.detail.vm")
+                                </div>
+                            </li>
+							#end
+                        </ul>
+                    </div>
+                </div>
+    		</div>
+        </div>
+    </div>
+</div>

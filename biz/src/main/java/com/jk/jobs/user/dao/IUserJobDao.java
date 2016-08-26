@@ -25,4 +25,18 @@ public interface IUserJobDao {
 	 */
 	List<UserJob> getUserJobList(UserJob userJob);
 
+	/**
+	 * 
+	 * @param userJob
+	 * @return
+	 */
+	UserJob getUserJob(UserJob userJob);
+
+	/**
+	 * 
+	 * @param userJob
+	 * @return
+	 */
+	int updateUserJob(UserJob userJob);
+
 }
