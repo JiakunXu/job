@@ -21,6 +21,8 @@ public class Resume extends SearchInfo {
 
 	private String sex;
 
+	private String birthday;
+
 	private String tel;
 
 	/**
@@ -68,6 +70,14 @@ public class Resume extends SearchInfo {
 
 	public void setSex(String sex) {
 		this.sex = sex;
+	}
+
+	public String getBirthday() {
+		return birthday;
+	}
+
+	public void setBirthday(String birthday) {
+		this.birthday = birthday;
 	}
 
 	public String getTel() {

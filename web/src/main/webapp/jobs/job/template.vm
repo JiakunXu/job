@@ -23,7 +23,7 @@
     							<div class="item-inner">
     								<div class="item-title label">项目标题</div>
     								<div class="item-input">
-    									<input type="text" style="font-size: 15px;" name="job.title" placeholder="标题" />
+    									<input type="text" style="font-size: 14px;" name="job.title" placeholder="标题" />
     								</div>
     							</div>
     						</div>
@@ -62,7 +62,7 @@
     							<div class="item-inner">
     								<div class="item-title label">项目薪水</div>
     								<div class="item-input">
-    									<input type="text" style="font-size: 15px;" name="job.salary" placeholder="" />
+    									<input type="text" style="font-size: 14px;" name="job.salary" placeholder="" />
     								</div>
     							</div>
     						</div>
@@ -72,7 +72,7 @@
     							<div class="item-inner">
     								<div class="item-title label">项目地点</div>
     								<div class="item-input">
-    									<input type="text" style="font-size: 15px;" name="job.workAddress" placeholder="" />
+    									<input type="text" style="font-size: 14px;" name="job.workAddress" placeholder="" />
     								</div>
     							</div>
     						</div>
@@ -82,7 +82,7 @@
     							<div class="item-inner">
     								<div class="item-title label">工作性质</div>
     								<div class="item-input">
-    									<input type="text" style="font-size: 15px;" name="job.jobNature" placeholder="" />
+    									<input type="text" style="font-size: 14px;" name="job.jobNature" placeholder="" />
     								</div>
     							</div>
     						</div>

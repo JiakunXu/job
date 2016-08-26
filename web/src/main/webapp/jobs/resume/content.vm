@@ -1,18 +1,20 @@
 <div class="item-title-row">
 	<div class="row no-gutter">
 		<div class="col-50">
-			<div class="item-subtitle">性别：$!{resume.sex}</div>
+			<div class="item-subtitle">性别：#if($!{resume.sex} == 'M')男#else女#end</div>
         </div>
 		<div class="col-50">
-			<div class="item-subtitle">学历：$!{resume.education}</div>
+			<div class="item-subtitle">出生年月：$!{resume.birthday}</div>
         </div>
     </div>
 </div>
 <div class="item-title-row">
 	<div class="row no-gutter">
 		<div class="col-50">
+			<div class="item-subtitle">学历：$!{resume.education}</div>
+        </div>
+		<div class="col-50">
 			<div class="item-subtitle">工作经验：$!{resume.workYear}</div>
         </div>
-		<div class="col-50"></div>
     </div>
 </div>

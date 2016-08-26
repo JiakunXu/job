@@ -16,6 +16,11 @@ public class ResumeDetail implements Serializable {
 	private Long resumeId;
 
 	/**
+	 * 模块.
+	 */
+	private Long jobCId;
+
+	/**
 	 * 项目周期（月）.
 	 */
 	private int cycle;
@@ -25,6 +30,10 @@ public class ResumeDetail implements Serializable {
 	private int rank;
 
 	private String modifyUser;
+
+	// >>>>>>>>>>以下是辅助属性<<<<<<<<<<
+
+	private String jobCName;
 
 	public Long getDetailId() {
 		return detailId;
@@ -40,6 +49,14 @@ public class ResumeDetail implements Serializable {
 
 	public void setResumeId(Long resumeId) {
 		this.resumeId = resumeId;
+	}
+
+	public Long getJobCId() {
+		return jobCId;
+	}
+
+	public void setJobCId(Long jobCId) {
+		this.jobCId = jobCId;
 	}
 
 	public int getCycle() {
@@ -72,6 +89,14 @@ public class ResumeDetail implements Serializable {
 
 	public void setModifyUser(String modifyUser) {
 		this.modifyUser = modifyUser;
+	}
+
+	public String getJobCName() {
+		return jobCName;
+	}
+
+	public void setJobCName(String jobCName) {
+		this.jobCName = jobCName;
 	}
 
 }

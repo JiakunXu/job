@@ -7,6 +7,8 @@
 	<select id="getResumeDetailList" parameterType="resumeDetail" resultType="resumeDetail">
 	<![CDATA[
 		SELECT t.`DETAIL_ID` AS detailId,
+			   t.`JOB_CID` AS jobCId,
+			   t.`CYCLE`,
 			   t.`CONTENT`,
 			   t.`RANK`
 		  FROM basis_tb_resume_detail t
@@ -22,6 +24,8 @@
 		INTO basis_tb_resume_detail
 		  (
 			RESUME_ID,
+			JOB_CID,
+			CYCLE,
 			CONTENT,
 			RANK,
 			STATE,
@@ -33,6 +37,8 @@
 		  VALUES
 		  (
 			#{resumeId},
+			#{jobCId},
+			#{cycle},
 			#{content},
 			#{rank},
 			'U',
@@ -49,6 +55,8 @@
 		UPDATE basis_tb_resume_detail t
 		   SET t.modify_date = NOW(),
 			   t.modify_user = #{modifyUser},
+			   t.`JOB_CID` = #{jobCId},
+			   t.`CYCLE` = #{cycle},
 			   t.`CONTENT` = #{content},
 			   t.`RANK` = #{rank}
 		 WHERE t.state = 'U'

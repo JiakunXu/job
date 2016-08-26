@@ -39,12 +39,12 @@
 			</div>
 			<div class="card" style="border-radius: 5px; margin: 10px 5px;">
     			<div class="card-content">
-					<div class="list-block">
+					<div class="list-block media-list">
 						<ul>
         					#foreach($resumeDetail in $!{resume.resumeDetailList})
         					<li class="item-content">
 								<div class="item-inner">
-                                    <div class="content-block">$!{resumeDetail.content}</div>
+									#parse("/jobs/resume/content.detail.vm")
                                 </div>
                             </li>
 							#end

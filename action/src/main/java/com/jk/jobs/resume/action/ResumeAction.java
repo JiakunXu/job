@@ -8,6 +8,8 @@ import javax.annotation.Resource;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
+import com.jk.jobs.api.job.IJobCatService;
+import com.jk.jobs.api.job.bo.JobCat;
 import com.jk.jobs.api.resume.IResumeService;
 import com.jk.jobs.api.resume.bo.Resume;
 import com.jk.jobs.api.resume.bo.ResumeDetail;
@@ -28,6 +30,9 @@ public class ResumeAction extends BaseAction {
 	@Resource
 	private IResumeService resumeService;
 
+	@Resource
+	private IJobCatService jobCatService;
+
 	private List<Resume> resumeList;
 
 	private String resumeId;
@@ -35,6 +40,8 @@ public class ResumeAction extends BaseAction {
 	private Resume resume;
 
 	private ResumeDetail resumeDetail;
+
+	private List<JobCat> jobCatList;
 
 	/**
 	 * 
@@ -65,6 +72,8 @@ public class ResumeAction extends BaseAction {
 	 */
 	public String edit() {
 		resume = resumeService.getResume(this.getUser().getUserId());
+
+		jobCatList = jobCatService.getJobCatList(new JobCat());
 
 		return SUCCESS;
 	}
@@ -119,6 +128,14 @@ public class ResumeAction extends BaseAction {
 
 	public void setResumeDetail(ResumeDetail resumeDetail) {
 		this.resumeDetail = resumeDetail;
+	}
+
+	public List<JobCat> getJobCatList() {
+		return jobCatList;
+	}
+
+	public void setJobCatList(List<JobCat> jobCatList) {
+		this.jobCatList = jobCatList;
 	}
 
 }

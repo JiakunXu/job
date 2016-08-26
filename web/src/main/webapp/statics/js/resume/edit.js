@@ -19,6 +19,11 @@ myApp.onPageInit('resume.edit', function(page) {
 				myApp.alert(xhr.responseText, '错误');
 			});
 
+	myApp.calendar({
+				input : '#resume_edit_birthday',
+				closeOnSelect : true
+			});
+
 });
 
 function resume_edit_saveOrUpdate() {

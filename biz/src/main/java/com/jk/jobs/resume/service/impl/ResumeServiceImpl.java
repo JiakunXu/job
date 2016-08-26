@@ -10,6 +10,8 @@ import org.springframework.transaction.TransactionStatus;
 import org.springframework.transaction.support.TransactionCallback;
 import org.springframework.transaction.support.TransactionTemplate;
 
+import com.jk.jobs.api.job.IJobCatService;
+import com.jk.jobs.api.job.bo.JobCat;
 import com.jk.jobs.api.resume.IResumeService;
 import com.jk.jobs.api.resume.bo.Resume;
 import com.jk.jobs.api.resume.bo.ResumeDetail;
@@ -32,6 +34,9 @@ public class ResumeServiceImpl implements IResumeService {
 
 	@Resource
 	private TransactionTemplate transactionTemplate;
+
+	@Resource
+	private IJobCatService jobCatService;
 
 	@Resource
 	private IResumeDao resumeDao;
@@ -217,13 +222,26 @@ public class ResumeServiceImpl implements IResumeService {
 	}
 
 	private List<ResumeDetail> getResumeDetailList(ResumeDetail resumeDetail) {
+		List<ResumeDetail> resumeDetailList = null;
+
 		try {
-			return resumeDetailDao.getResumeDetailList(resumeDetail);
+			resumeDetailList = resumeDetailDao.getResumeDetailList(resumeDetail);
 		} catch (Exception e) {
 			logger.error(LogUtil.parserBean(resumeDetail), e);
 		}
 
-		return null;
+		if (resumeDetailList == null || resumeDetailList.size() == 0) {
+			return null;
+		}
+
+		for (ResumeDetail detail : resumeDetailList) {
+			JobCat c = jobCatService.getJobCat(detail.getJobCId());
+			if (c != null) {
+				detail.setJobCName(c.getJobCName());
+			}
+		}
+
+		return resumeDetailList;
 	}
 
 }
