@@ -25,9 +25,21 @@
 			<interceptor-ref name="authenticationStack" />
 		</action>
 		
+		<!--  我发布的项目 -->
 		<action name="my" class="jobAction" method="my">
 			<interceptor-ref name="authenticationStack" />
 			<result name="success">/jobs/job/my.vm</result>
+		</action>
+		
+		<!-- 修改我的项目 -->
+		<action name="edit" class="jobAction" method="edit">
+			<interceptor-ref name="authenticationStack" />
+			<result name="success">/jobs/job/edit.vm</result>
+		</action>
+		
+		<!-- 保存修改我的项目 -->
+		<action name="update" class="jobAction" method="update">
+			<interceptor-ref name="authenticationStack" />
 		</action>
 		
 		<!-- 项目简历 -->

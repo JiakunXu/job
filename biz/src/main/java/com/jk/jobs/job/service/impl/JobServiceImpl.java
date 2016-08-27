@@ -142,11 +142,17 @@ public class JobServiceImpl implements IJobService {
 
 	@Override
 	public Job getJob(String jobId) {
+		return getJob(null, jobId);
+	}
+
+	@Override
+	public Job getJob(Long userId, String jobId) {
 		if (StringUtils.isBlank(jobId)) {
 			return null;
 		}
 
 		Job job = new Job();
+		job.setUserId(userId);
 
 		try {
 			job.setJobId(Long.valueOf(jobId));
@@ -370,19 +376,8 @@ public class JobServiceImpl implements IJobService {
 			return null;
 		}
 
-		Job job = new Job();
-		job.setUserId(userId);
-
-		try {
-			job.setJobId(Long.valueOf(jobId));
-		} catch (NumberFormatException e) {
-			logger.error(e);
-
-			return null;
-		}
-
 		// 验证 userId 是 项目发布者
-		job = getJob(job);
+		Job job = getJob(userId, jobId);
 
 		if (job == null) {
 			return null;
@@ -394,23 +389,11 @@ public class JobServiceImpl implements IJobService {
 
 	@Override
 	public UserJob detail(Long userId, String jobId, String userJobId) {
-		Job job = new Job();
-
 		if (userId == null) {
 			return null;
 		}
 
-		job.setUserId(userId);
-
 		if (StringUtils.isBlank(jobId)) {
-			return null;
-		}
-
-		try {
-			job.setJobId(Long.valueOf(jobId));
-		} catch (NumberFormatException e) {
-			logger.error(e);
-
 			return null;
 		}
 
@@ -419,7 +402,7 @@ public class JobServiceImpl implements IJobService {
 		}
 
 		// 验证 userId 是 项目发布者
-		job = getJob(job);
+		Job job = getJob(userId, jobId);
 
 		if (job == null) {
 			return null;
@@ -433,25 +416,12 @@ public class JobServiceImpl implements IJobService {
 		BooleanResult result = new BooleanResult();
 		result.setResult(false);
 
-		Job job = new Job();
-
 		if (userId == null) {
 			result.setCode("用户信息不能为空");
 			return result;
 		}
 
-		job.setUserId(userId);
-
 		if (StringUtils.isBlank(jobId)) {
-			result.setCode("项目信息不能为空");
-			return result;
-		}
-
-		try {
-			job.setJobId(Long.valueOf(jobId));
-		} catch (NumberFormatException e) {
-			logger.error(e);
-
 			result.setCode("项目信息不能为空");
 			return result;
 		}
@@ -462,7 +432,7 @@ public class JobServiceImpl implements IJobService {
 		}
 
 		// 验证 userId 是 项目发布者
-		job = getJob(job);
+		Job job = getJob(userId, jobId);
 
 		if (job == null) {
 			result.setCode("没有权限操作简历");

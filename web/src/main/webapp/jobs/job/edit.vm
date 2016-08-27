@@ -3,7 +3,7 @@
 <div class="navbar">
 	<div class="navbar-inner">
 		<div class="left"><a href="#" class="back link"> <i class="icon icon-back color-gray"></i><span></span></a></div>
-		<div class="center sliding">项目模版</div>
+		<div class="center sliding">$!{job.title}</div>
 		<div class="right">
 			<!-- Right link contains only icon - additional "icon-only" class-->
 		</div>
@@ -11,10 +11,10 @@
 </div>
 <div class="pages">
 	<!-- Page, data-page contains page name-->
-	<div data-page="job.template" class="page no-tabbar">
+	<div data-page="job.edit" class="page no-tabbar">
 		<!-- Scrollable page content-->
 		<div class="page-content">
-			<form id="job/template/publish" action="$!{env.appUrl}/job/publish.htm" method="POST" class="ajax-submit job-template-form">
+			<form id="job/edit/update" action="$!{env.appUrl}/job/update.htm" method="POST" class="ajax-submit job-edit-form">
 				<div class="list-block">
     				<ul>
     					<li>
@@ -22,7 +22,7 @@
     							<div class="item-inner">
     								<div class="item-title label">项目标题</div>
     								<div class="item-input">
-    									<input type="text" name="job.title" placeholder="标题" />
+    									<input type="text" name="job.title" value="$!{job.title}" placeholder="标题" />
     								</div>
     							</div>
     						</div>
@@ -34,7 +34,7 @@
     								<div class="item-input">
     									<select name="job.jobCId">
     										#foreach($jobCat in $!{jobCatList})
-    										<option value="$!{jobCat.jobCId}">$!{jobCat.jobCName}</option>
+    										<option value="$!{jobCat.jobCId}" #if($!{jobCat.jobCId} == $!{job.jobCId}) selected="selected" #end>$!{jobCat.jobCName}</option>
     										#end
     									</select>
     								</div>
@@ -47,10 +47,10 @@
     								<div class="item-title label">项目周期</div>
     								<div class="item-input">
     									<select name="job.cycle">
-    										<option value="1">一个月</option>
-											<option value="3">三个月</option>
-											<option value="6">六个月</option>
-											<option value="12">一年</option>
+											<option value="1" #if($!{job.cycle} == '1') selected="selected" #end>一个月</option>
+    										<option value="3" #if($!{job.cycle} == '3') selected="selected" #end>三个月</option>
+    										<option value="6" #if($!{job.cycle} == '6') selected="selected" #end>六个月</option>
+    										<option value="12" #if($!{job.cycle} == '12') selected="selected" #end>一年</option>
     									</select>
     								</div>
     							</div>
@@ -61,7 +61,7 @@
     							<div class="item-inner">
     								<div class="item-title label">项目薪水</div>
     								<div class="item-input">
-    									<input type="text" name="job.salary" placeholder="" />
+    									<input type="text" name="job.salary" value="$!{job.salary}" placeholder="" />
     								</div>
     							</div>
     						</div>
@@ -71,7 +71,7 @@
     							<div class="item-inner">
     								<div class="item-title label">项目地点</div>
     								<div class="item-input">
-    									<input type="text" name="job.workAddress" placeholder="" />
+    									<input type="text" name="job.workAddress" value="$!{job.workAddress}" placeholder="" />
     								</div>
     							</div>
     						</div>
@@ -81,7 +81,7 @@
     							<div class="item-inner">
     								<div class="item-title label">工作性质</div>
     								<div class="item-input">
-    									<input type="text" name="job.jobNature" placeholder="" />
+    									<input type="text" name="job.jobNature" value="$!{job.jobNature}" placeholder="" />
     								</div>
     							</div>
     						</div>
@@ -92,10 +92,10 @@
     								<div class="item-title label">工作经验</div>
     								<div class="item-input">
 										<select name="job.workYear">
-    										<option>一年</option>
-											<option>三年</option>
-											<option>五年</option>
-											<option>五年以上</option>
+											<option #if($!{job.workYear} == '一年') selected="selected" #end>一年</option>
+											<option #if($!{job.workYear} == '三年') selected="selected" #end>三年</option>
+											<option #if($!{job.workYear} == '五年') selected="selected" #end>五年</option>
+											<option #if($!{job.workYear} == '五年以上') selected="selected" #end>五年以上</option>
     									</select>
     								</div>
     							</div>
@@ -107,9 +107,9 @@
     								<div class="item-title label">最高学历</div>
     								<div class="item-input">
 										<select name="job.education">
-    										<option>本科</option>
-											<option>硕士</option>
-											<option>博士</option>
+											<option #if($!{job.education} == '本科') selected="selected" #end>本科</option>
+											<option #if($!{job.education} == '硕士') selected="selected" #end>硕士</option>
+											<option #if($!{job.education} == '博士') selected="selected" #end>博士</option>
     									</select>
     								</div>
     							</div>
@@ -128,7 +128,7 @@
     				</ul>
                 </div>
 				<div class="content-block">
-    				<a href="javascript:job_template_publish();" class="button button-big button-fill weui_btn_primary">发布</a>
+    				<a href="javascript:job_edit_update();" class="button button-big button-fill weui_btn_primary">保存</a>
     			</div>
 			</form>
         </div>

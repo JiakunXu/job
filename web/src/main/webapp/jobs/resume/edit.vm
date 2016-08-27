@@ -23,7 +23,7 @@
     							<div class="item-inner">
     								<div class="item-title label">姓名</div>
     								<div class="item-input">
-    									<input type="text" style="font-size: 14px;" name="resume.name" value="$!{resume.name}" placeholder="" />
+    									<input type="text" name="resume.name" value="$!{resume.name}" placeholder="" />
     								</div>
     							</div>
     						</div>
@@ -33,7 +33,7 @@
     							<div class="item-inner">
     								<div class="item-title label">联系方式</div>
     								<div class="item-input">
-    									<input type="text" style="font-size: 14px;" name="resume.tel" value="$!{resume.tel}" placeholder="" />
+    									<input type="text" name="resume.tel" value="$!{resume.tel}" placeholder="" />
     								</div>
     							</div>
     						</div>
@@ -56,7 +56,7 @@
     							<div class="item-inner">
     								<div class="item-title label">出生年月</div>
     								<div class="item-input">
-    									<input type="text" style="font-size: 14px;" id="resume_edit_birthday" name="resume.birthday" value="$!{resume.birthday}" placeholder="" />
+    									<input type="text" id="resume_edit_birthday" name="resume.birthday" value="$!{resume.birthday}" placeholder="" />
     								</div>
     							</div>
     						</div>

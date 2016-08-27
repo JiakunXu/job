@@ -54,6 +54,7 @@ public class JobAction extends BaseAction {
 	private UserJob resume;
 
 	/**
+	 * 项目列表 所有人可见.
 	 * 
 	 * @return
 	 */
@@ -70,6 +71,7 @@ public class JobAction extends BaseAction {
 	}
 
 	/**
+	 * 项目明细 所有人可见.
 	 * 
 	 * @return
 	 */
@@ -122,6 +124,29 @@ public class JobAction extends BaseAction {
 	}
 
 	/**
+	 * 修改我的项目.
+	 * 
+	 * @return
+	 */
+	public String edit() {
+		job = jobService.getJob(this.getUser().getUserId(), jobId);
+
+		jobCatList = jobCatService.getJobCatList(new JobCat());
+
+		return SUCCESS;
+	}
+
+	/**
+	 * 保存修改我的项目.
+	 * 
+	 * @return
+	 */
+	public String update() {
+
+		return RESOURCE_RESULT;
+	}
+
+	/**
 	 * 项目投的简历.
 	 * 
 	 * @return
@@ -132,6 +157,11 @@ public class JobAction extends BaseAction {
 		return SUCCESS;
 	}
 
+	/**
+	 * 简历明细.
+	 * 
+	 * @return
+	 */
 	public String resumeDetail() {
 		resume = jobService.detail(this.getUser().getUserId(), jobId, userJobId);
 
@@ -157,7 +187,7 @@ public class JobAction extends BaseAction {
 	}
 
 	/**
-	 * 完成.
+	 * 项目完成.
 	 * 
 	 * @return
 	 */
@@ -175,7 +205,7 @@ public class JobAction extends BaseAction {
 	}
 
 	/**
-	 * 撤销.
+	 * 项目撤销.
 	 * 
 	 * @return
 	 */

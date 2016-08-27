@@ -17,6 +17,9 @@
 		.item-title-row .row .item-subtitle {
 			font-size: 13px;
 		}
+		.list-block input[type=text], .list-block select, .list-block textarea {
+			font-size: 14px;
+		}
         </style>
 		#UA()
 	</head>

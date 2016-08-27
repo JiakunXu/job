@@ -69,11 +69,21 @@ public interface IJobService {
 	List<Job> getJobList(String[] jobId);
 
 	/**
+	 * 项目明细.
 	 * 
 	 * @param jobId
 	 * @return
 	 */
 	Job getJob(String jobId);
+
+	/**
+	 * 我的项目明细.
+	 * 
+	 * @param userId
+	 * @param jobId
+	 * @return
+	 */
+	Job getJob(Long userId, String jobId);
 
 	/**
 	 * 
