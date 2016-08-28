@@ -196,6 +196,7 @@
 		<script src="$!{env.imgUrl}/js/job/edit.js" async="async"></script>
 		<script src="$!{env.imgUrl}/js/job/template.js" async="async"></script>
 		<script src="$!{env.imgUrl}/js/job/resume/list.js" async="async"></script>
+		<script src="$!{env.imgUrl}/js/job/resume/detail.js" async="async"></script>
 		<script src="$!{env.imgUrl}/js/resume/list.js" async="async"></script>
 		<script src="$!{env.imgUrl}/js/resume/edit.js" async="async"></script>
 		<script src="$!{env.imgUrl}/js/user/role.js" async="async"></script>

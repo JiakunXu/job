@@ -204,27 +204,6 @@ public class UserJobServiceImpl implements IUserJobService {
 	}
 
 	@Override
-	public List<UserJob> getUserList(String jobId) {
-		if (StringUtils.isBlank(jobId)) {
-			return null;
-		}
-
-		UserJob userJob = new UserJob();
-		// 只查询 投递 状态
-		userJob.setType(IUserJobService.DELIVER);
-
-		try {
-			userJob.setJobId(Long.valueOf(jobId));
-		} catch (NumberFormatException e) {
-			logger.error(e);
-
-			return null;
-		}
-
-		return getUserJobList(userJob);
-	}
-
-	@Override
 	public BooleanResult revoke(Long userId, String jobId) {
 		BooleanResult result = new BooleanResult();
 		result.setResult(false);
@@ -265,6 +244,41 @@ public class UserJobServiceImpl implements IUserJobService {
 		}
 
 		return result;
+	}
+
+	@Override
+	public int getUserCount(Long jobId) {
+		if (jobId == null) {
+			return 0;
+		}
+
+		UserJob userJob = new UserJob();
+		userJob.setJobId(jobId);
+		// 只查询 投递 状态
+		userJob.setType(IUserJobService.DELIVER);
+
+		return getUserJobCount(userJob);
+	}
+
+	@Override
+	public List<UserJob> getUserList(String jobId) {
+		if (StringUtils.isBlank(jobId)) {
+			return null;
+		}
+
+		UserJob userJob = new UserJob();
+		// 只查询 投递 状态
+		userJob.setType(IUserJobService.DELIVER);
+
+		try {
+			userJob.setJobId(Long.valueOf(jobId));
+		} catch (NumberFormatException e) {
+			logger.error(e);
+
+			return null;
+		}
+
+		return getUserJobList(userJob);
 	}
 
 	@Override
@@ -349,6 +363,21 @@ public class UserJobServiceImpl implements IUserJobService {
 		}
 
 		return result;
+	}
+
+	/**
+	 * 
+	 * @param userJob
+	 * @return
+	 */
+	private int getUserJobCount(UserJob userJob) {
+		try {
+			return userJobDao.getUserJobCount(userJob);
+		} catch (Exception e) {
+			logger.error(LogUtil.parserBean(userJob), e);
+		}
+
+		return 0;
 	}
 
 	/**

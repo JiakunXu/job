@@ -23,6 +23,13 @@ public interface IUserJobDao {
 	 * @param userJob
 	 * @return
 	 */
+	int getUserJobCount(UserJob userJob);
+
+	/**
+	 * 
+	 * @param userJob
+	 * @return
+	 */
 	List<UserJob> getUserJobList(UserJob userJob);
 
 	/**

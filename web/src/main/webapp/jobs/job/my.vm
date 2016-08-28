@@ -58,7 +58,9 @@
 						</div>
 						<div class="card-footer">
                             <div class="left">
-								<a href="$!{env.appUrl}/job/resume.htm?jobId=$!{job.jobId}" class="button color-gray" data-ignore-cache="true">简历</a>
+								<a href="$!{env.appUrl}/job/resume.htm?jobId=$!{job.jobId}" class="button color-gray" data-ignore-cache="true">
+									#if($!{job.count} > 0)简历($!{job.count})#else简历#end
+								</a>
 							</div>
 							<div class="right">
 								<a href="javascript:job_my_op('$!{job.jobId}');" class="button color-base">操作</a>

@@ -120,7 +120,18 @@ public class JobServiceImpl implements IJobService {
 		job.setLimit(limit);
 		job.setOffset(0);
 
-		return getJobList(job);
+		List<Job> jobList = getJobList(job);
+
+		if (jobList == null || jobList.size() == 0) {
+			return null;
+		}
+
+		for (Job j : jobList) {
+			// 已投简历
+			j.setCount(userJobService.getUserCount(j.getJobId()));
+		}
+
+		return jobList;
 	}
 
 	@Override

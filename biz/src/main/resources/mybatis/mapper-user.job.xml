@@ -46,6 +46,20 @@
 	]]>
 	</insert>
 	
+	<select id="getUserJobCount" parameterType="userJob" resultType="java.lang.Integer">
+	<![CDATA[
+		SELECT COUNT(1)
+		  FROM basis_tb_user_job t
+		 WHERE t.state = 'U'
+	]]>
+		<if test="type != null and type != ''">
+		<![CDATA[ AND t.type = #{type} ]]>
+		</if>
+		<if test="jobId != null">
+		<![CDATA[ AND t.job_id = #{jobId} ]]>
+		</if>
+	</select>
+	
 	<select id="getUserJobList" parameterType="userJob" resultType="userJob">
 	<![CDATA[
 		SELECT t.`USER_JOB_ID` AS userJobId,
@@ -83,7 +97,8 @@
 	<select id="getUserJob" parameterType="userJob" resultType="userJob">
 	<![CDATA[
 		SELECT t.`USER_JOB_ID` AS userJobId,
-			   t.user_id AS userId,
+			   t.`USER_ID` AS userId,
+			   t.`JOB_ID` AS jobId,
 			   t.`NAME`,
 			   t.`SEX`,
 			   DATE_FORMAT(t.`BIRTHDAY`, '%Y-%m-%d') AS birthday,

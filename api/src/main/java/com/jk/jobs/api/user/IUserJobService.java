@@ -45,13 +45,7 @@ public interface IUserJobService {
 	List<Job> getJobList(Long userId);
 
 	/**
-	 * 
-	 * @param jobId
-	 * @return
-	 */
-	List<UserJob> getUserList(String jobId);
-
-	/**
+	 * 撤销.
 	 * 
 	 * @param userId
 	 * @param jobId
@@ -60,6 +54,22 @@ public interface IUserJobService {
 	BooleanResult revoke(Long userId, String jobId);
 
 	// >>>>>>>>>>以下是项目相关简历<<<<<<<<<<
+
+	/**
+	 * 已投简历.
+	 * 
+	 * @param jobId
+	 * @return
+	 */
+	int getUserCount(Long jobId);
+
+	/**
+	 * 已投简历.
+	 * 
+	 * @param jobId
+	 * @return
+	 */
+	List<UserJob> getUserList(String jobId);
 
 	/**
 	 * 
