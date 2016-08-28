@@ -6,7 +6,9 @@
 		<div class="center sliding">$!{job.title}</div>
 		<div class="right">
 			<!-- Right link contains only icon - additional "icon-only" class-->
+			#if($!{user.userId} == $!{job.userId})
 			<a href="$!{env.appUrl}/job/edit.htm?jobId=$!{job.jobId}" class="link icon-only" data-ignore-cache="true"> <i class="iconfont icon-edit color-gray"></i><span></span></a>
+			#end
 		</div>
 	</div>
 </div>

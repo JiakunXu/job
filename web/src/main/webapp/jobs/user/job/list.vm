@@ -59,7 +59,7 @@
 						<div class="card-footer">
                             <div class="left"></div>
 							<div class="right">
-								#if($!{job.type} == 'deliver')
+								#if($!{job.type} == 'deliver' or $!{job.type} == 'ignore')
 								<a href="javascript:user_job_list_revoke('$!{job.jobId}');" class="button color-red">撤销</a>
 								#end
                             </div>
