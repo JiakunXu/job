@@ -142,6 +142,21 @@ public class JobAction extends BaseAction {
 	 * @return
 	 */
 	public String update() {
+		// TODO
+		if (job != null && jobDetail != null) {
+			List<JobDetail> list = new ArrayList<JobDetail>();
+			list.add(jobDetail);
+			job.setJobDetailList(list);
+		}
+
+		BooleanResult result = jobService.update(this.getUser().getUserId(), job);
+
+		if (result.getResult()) {
+			this.setResourceResult("修改成功");
+		} else {
+			this.getServletResponse().setStatus(599);
+			this.setResourceResult(result.getCode());
+		}
 
 		return RESOURCE_RESULT;
 	}

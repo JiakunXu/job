@@ -6,6 +6,7 @@ import javax.annotation.Resource;
 
 import org.apache.commons.lang.StringUtils;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.support.TransactionTemplate;
 
 import com.jk.jobs.api.job.IJobCatService;
 import com.jk.jobs.api.job.IJobService;
@@ -32,6 +33,9 @@ import com.jk.jobs.job.dao.IJobDetailDao;
 public class JobServiceImpl implements IJobService {
 
 	private Logger4jExtend logger = Logger4jCollection.getLogger(JobServiceImpl.class);
+
+	@Resource
+	private TransactionTemplate transactionTemplate;
 
 	@Resource
 	private IUserService userService;
@@ -227,6 +231,40 @@ public class JobServiceImpl implements IJobService {
 			logger.error(LogUtil.parserBean(job), e);
 
 			result.setCode("项目信息创建失败，请稍后再试");
+		}
+
+		return result;
+	}
+
+	@Override
+	public BooleanResult update(Long userId, Job job) {
+		BooleanResult result = new BooleanResult();
+		result.setResult(false);
+
+		if (userId == null) {
+			result.setCode("用户信息不能为空");
+			return result;
+		}
+
+		if (job == null) {
+			result.setCode("项目信息不能为空");
+			return result;
+		}
+
+		job.setUserId(userId);
+		job.setModifyUser(userId.toString());
+
+		try {
+			int c = jobDao.updateJob(job);
+			if (c == 1) {
+				result.setResult(true);
+			} else {
+				result.setCode("项目信息修改失败，请稍后再试");
+			}
+		} catch (Exception e) {
+			logger.error(LogUtil.parserBean(job), e);
+
+			result.setCode("项目信息修改失败，请稍后再试");
 		}
 
 		return result;

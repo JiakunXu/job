@@ -86,12 +86,22 @@ public interface IJobService {
 	Job getJob(Long userId, String jobId);
 
 	/**
+	 * 发布.
 	 * 
 	 * @param userId
 	 * @param job
 	 * @return
 	 */
 	BooleanResult publish(Long userId, Job job);
+
+	/**
+	 * 修改.
+	 * 
+	 * @param userId
+	 * @param job
+	 * @return
+	 */
+	BooleanResult update(Long userId, Job job);
 
 	/**
 	 * 结束.

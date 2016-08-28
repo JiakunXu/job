@@ -15,6 +15,7 @@
 		<!-- Scrollable page content-->
 		<div class="page-content">
 			<form id="job/edit/update" action="$!{env.appUrl}/job/update.htm" method="POST" class="ajax-submit job-edit-form">
+				<input type="hidden" name="job.jobId" value="$!{job.jobId}" />
 				<div class="list-block">
     				<ul>
     					<li>

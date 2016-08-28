@@ -128,7 +128,16 @@
 	<![CDATA[
 		UPDATE basis_tb_job t
 		   SET t.modify_date = NOW(),
-			   t.modify_user = #{modifyUser}
+			   t.modify_user = #{modifyUser},
+			   t.`JOB_CID` = #{jobCId},
+			   t.`TITLE` = #{title},
+			   t.`CYCLE` = #{cycle},
+			   t.`SALARY` = #{salary},
+			   t.`WORK_ADDRESS` = #{workAddress},
+			   t.`JOB_NATURE` = #{jobNature},
+			   t.`WORK_YEAR` = #{workYear},
+			   t.`EDUCATION` = #{education},
+			   t.`REMARK` = #{remark}
 		 WHERE t.state = 'U'
 		   AND t.user_id = #{userId}
 		   AND t.job_id = #{jobId}
