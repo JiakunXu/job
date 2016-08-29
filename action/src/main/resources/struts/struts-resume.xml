@@ -29,5 +29,9 @@
 			<interceptor-ref name="authenticationStack" />
 		</action>
 		
+		<action name="delete" class="resumeAction" method="delete">
+			<interceptor-ref name="authenticationStack" />
+		</action>
+		
 	</package>
 </struts>

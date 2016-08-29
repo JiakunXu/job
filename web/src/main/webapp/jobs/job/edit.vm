@@ -116,7 +116,22 @@
     							</div>
     						</div>
     					</li>
-						 <li class="align-top">
+					#if($!{job.jobDetailList})
+						#foreach($jobDetail in $!{job.jobDetailList})
+						<input type="hidden" name="jobDetail.detailId" value="$!{jobDetail.detailId}" />
+						<li class="align-top">
+							<div class="item-content">
+								<div class="item-inner">
+									<div class="item-title label">项目介绍</div>
+									<div class="item-input">
+										<textarea name="jobDetail.content">$!{jobDetail.content}</textarea>
+									</div>
+								</div>
+							</div>
+						</li>
+						#end
+					#else
+						<li class="align-top">
 							<div class="item-content">
 								<div class="item-inner">
 									<div class="item-title label">项目介绍</div>
@@ -125,7 +140,8 @@
 									</div>
 								</div>
 							</div>
-						 </li>
+						</li>
+					#end
     				</ul>
                 </div>
 				<div class="content-block">

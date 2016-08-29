@@ -81,10 +81,7 @@ public class ResumeServiceImpl implements IResumeService {
 			return null;
 		}
 
-		ResumeDetail resumeDetail = new ResumeDetail();
-		resumeDetail.setResumeId(resume.getResumeId());
-
-		resume.setResumeDetailList(getResumeDetailList(resumeDetail));
+		resume.setResumeDetailList(getResumeDetailList(resume.getResumeId()));
 
 		return resume;
 	}
@@ -104,10 +101,7 @@ public class ResumeServiceImpl implements IResumeService {
 			return null;
 		}
 
-		ResumeDetail resumeDetail = new ResumeDetail();
-		resumeDetail.setResumeId(resume.getResumeId());
-
-		resume.setResumeDetailList(getResumeDetailList(resumeDetail));
+		resume.setResumeDetailList(getResumeDetailList(resume.getResumeId()));
 
 		return resume;
 	}
@@ -211,6 +205,59 @@ public class ResumeServiceImpl implements IResumeService {
 		return res;
 	}
 
+	@Override
+	public BooleanResult delete(Long userId, String detailId) {
+		BooleanResult result = new BooleanResult();
+		result.setResult(false);
+
+		ResumeDetail resumeDetail = new ResumeDetail();
+
+		if (userId == null) {
+			result.setCode("用户信息不能为空");
+			return result;
+		}
+
+		resumeDetail.setModifyUser(userId.toString());
+
+		if (StringUtils.isBlank(detailId)) {
+			result.setCode("简历明细信息不能为空");
+			return result;
+		}
+
+		try {
+			resumeDetail.setDetailId(Long.valueOf(detailId));
+		} catch (NumberFormatException e) {
+			logger.error(e);
+
+			result.setCode("简历明细信息不能为空");
+			return result;
+		}
+
+		Resume resume = getResume(userId);
+
+		if (resume == null) {
+			result.setCode("简历信息不能为空");
+			return result;
+		}
+
+		resumeDetail.setResumeId(resume.getResumeId());
+
+		try {
+			int c = resumeDetailDao.deleteResumeDetail(resumeDetail);
+			if (c == 1) {
+				result.setResult(true);
+			} else {
+				result.setCode("简历明细信息删除失败，请稍后再试");
+			}
+		} catch (Exception e) {
+			logger.error(LogUtil.parserBean(resumeDetail), e);
+
+			result.setCode("简历明细信息删除失败，请稍后再试");
+		}
+
+		return result;
+	}
+
 	private Resume getResume(Resume resume) {
 		try {
 			return resumeDao.getResume(resume);
@@ -221,7 +268,10 @@ public class ResumeServiceImpl implements IResumeService {
 		return null;
 	}
 
-	private List<ResumeDetail> getResumeDetailList(ResumeDetail resumeDetail) {
+	private List<ResumeDetail> getResumeDetailList(Long resumeId) {
+		ResumeDetail resumeDetail = new ResumeDetail();
+		resumeDetail.setResumeId(resumeId);
+
 		List<ResumeDetail> resumeDetailList = null;
 
 		try {

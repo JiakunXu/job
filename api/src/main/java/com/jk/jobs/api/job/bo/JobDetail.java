@@ -17,6 +17,10 @@ public class JobDetail implements Serializable {
 
 	private String content;
 
+	private int rank;
+
+	private String modifyUser;
+
 	public Long getDetailId() {
 		return detailId;
 	}
@@ -39,6 +43,22 @@ public class JobDetail implements Serializable {
 
 	public void setContent(String content) {
 		this.content = content;
+	}
+
+	public int getRank() {
+		return rank;
+	}
+
+	public void setRank(int rank) {
+		this.rank = rank;
+	}
+
+	public String getModifyUser() {
+		return modifyUser;
+	}
+
+	public void setModifyUser(String modifyUser) {
+		this.modifyUser = modifyUser;
 	}
 
 }

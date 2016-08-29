@@ -41,4 +41,12 @@ public interface IResumeService {
 	 */
 	BooleanResult saveOrUpdate(Long userId, Resume resume);
 
+	/**
+	 * 
+	 * @param userId
+	 * @param detailId
+	 * @return
+	 */
+	BooleanResult delete(Long userId, String detailId);
+
 }

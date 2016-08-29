@@ -32,4 +32,11 @@ public interface IResumeDetailDao {
 	 */
 	int updateResumeDetail(ResumeDetail resumeDetail);
 
+	/**
+	 * 
+	 * @param resumeDetail
+	 * @return
+	 */
+	int deleteResumeDetail(ResumeDetail resumeDetail);
+
 }

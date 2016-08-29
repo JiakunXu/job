@@ -93,16 +93,18 @@
     				</ul>
                 </div>
 				<div class="content-block-title">项目经验</div>
-				<div class="list-block">
+				#foreach($resumeDetail in $!{resume.resumeDetailList})
+				<div class="list-block resume-edit-resumeDetail-$!{resumeDetail.detailId}">
+					<input type="hidden" name="detailId" value="$!{resumeDetail.detailId}" />
 					<ul>
     					<li>
     						<div class="item-content">
     							<div class="item-inner">
     								<div class="item-title label">项目分类</div>
     								<div class="item-input">
-    									<select name="job.jobCId">
+    									<select name="jobCId">
     										#foreach($jobCat in $!{jobCatList})
-    										<option value="$!{jobCat.jobCId}" #if($!{jobCat.jobCId} == $!{resume.jobCId}) selected="selected" #end>$!{jobCat.jobCName}</option>
+    										<option value="$!{jobCat.jobCId}" #if($!{jobCat.jobCId} == $!{resumeDetail.jobCId}) selected="selected" #end>$!{jobCat.jobCName}</option>
     										#end
     									</select>
     								</div>
@@ -114,11 +116,11 @@
     							<div class="item-inner">
     								<div class="item-title label">项目周期</div>
     								<div class="item-input">
-    									<select name="job.cycle">
-    										<option value="1" #if($!{resume.cycle} == '1') selected="selected" #end>一个月</option>
-    										<option value="3" #if($!{resume.cycle} == '3') selected="selected" #end>三个月</option>
-    										<option value="6" #if($!{resume.cycle} == '6') selected="selected" #end>六个月</option>
-    										<option value="12" #if($!{resume.cycle} == '12') selected="selected" #end>一年</option>
+    									<select name="cycle">
+    										<option value="1" #if($!{resumeDetail.cycle} == '1') selected="selected" #end>一个月</option>
+    										<option value="3" #if($!{resumeDetail.cycle} == '3') selected="selected" #end>三个月</option>
+    										<option value="6" #if($!{resumeDetail.cycle} == '6') selected="selected" #end>六个月</option>
+    										<option value="12" #if($!{resumeDetail.cycle} == '12') selected="selected" #end>一年</option>
     									</select>
     								</div>
     							</div>
@@ -129,17 +131,79 @@
     							<div class="item-inner">
     								<div class="item-title label">项目介绍</div>
     								<div class="item-input">
-    									<textarea name="resume.content"></textarea>
+    									<textarea name="content">$!{resumeDetail.content}</textarea>
     								</div>
     							</div>
     						</div>
     					</li>
+						<li>
+							<a href="javascript:resume_edit_delete('Y', '$!{resumeDetail.detailId}');" class="item-link list-button color-red">删除</a>
+                        </li>
                     </ul>
                 </div>
+				#end
+				
+				#set($size = 2 - $!{resume.resumeDetailList.size()})
+				#if($size >= 0)
+    				#set($count = [0 .. $size])
+    				#foreach($i in $count)
+    				<div class="list-block resume-edit-0-$i">
+						<input type="hidden" name="detailId" />
+    					<ul>
+        					<li>
+        						<div class="item-content">
+        							<div class="item-inner">
+        								<div class="item-title label">项目分类</div>
+        								<div class="item-input">
+        									<select name="jobCId">
+        										#foreach($jobCat in $!{jobCatList})
+        										<option value="$!{jobCat.jobCId}">$!{jobCat.jobCName}</option>
+        										#end
+        									</select>
+        								</div>
+        							</div>
+        						</div>
+        					</li>
+        					<li>
+        						<div class="item-content">
+        							<div class="item-inner">
+        								<div class="item-title label">项目周期</div>
+        								<div class="item-input">
+        									<select name="cycle">
+        										<option value="1">一个月</option>
+        										<option value="3">三个月</option>
+        										<option value="6">六个月</option>
+        										<option value="12">一年</option>
+        									</select>
+        								</div>
+        							</div>
+        						</div>
+        					</li>
+        					<li class="align-top">
+        						<div class="item-content">
+        							<div class="item-inner">
+        								<div class="item-title label">项目介绍</div>
+        								<div class="item-input">
+        									<textarea name="content"></textarea>
+        								</div>
+        							</div>
+        						</div>
+        					</li>
+							<li>
+    							<a href="javascript:resume_edit_delete('N', '$i');" class="item-link list-button color-red">删除</a>
+                            </li>
+                        </ul>
+                    </div>
+    				#end
+				#end
 				<div class="content-block">
     				<a href="javascript:resume_edit_saveOrUpdate();" class="button button-big button-fill weui_btn_primary">保存</a>
     			</div>
 			</form>
+			
+			<form id="resume/edit/delete" action="$!{env.appUrl}/resume/delete.htm" method="POST" class="ajax-submit resume-edit-delete">
+            	<input type="hidden" name="detailId" id="resume_edit_delete_detailId"/>
+            </form>
         </div>
     </div>
 </div>

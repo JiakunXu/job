@@ -15,4 +15,45 @@
 	]]>
 	</select>
 	
+	<insert id="createJobDetail" parameterType="jobDetail" useGeneratedKeys="true" keyProperty="detailId">
+	<![CDATA[
+		INSERT
+		INTO basis_tb_job_detail
+		  (
+			JOB_ID,
+			CONTENT,
+			RANK,
+			STATE,
+			CREATE_DATE,
+			CREATE_USER,
+			MODIFY_DATE,
+			MODIFY_USER
+		  )
+		  VALUES
+		  (
+			#{jobId},
+			#{content},
+			#{rank},
+			'U',
+			NOW(),
+			#{modifyUser},
+			NOW(),
+			#{modifyUser}
+		  )
+	]]>
+	</insert>
+	
+	<update id="updateJobDetail" parameterType="jobDetail">
+	<![CDATA[
+		UPDATE basis_tb_job_detail t
+		   SET t.modify_date = NOW(),
+			   t.modify_user = #{modifyUser},
+			   t.`CONTENT` = #{content},
+			   t.`RANK` = #{rank}
+		 WHERE t.state = 'U'
+		   AND t.job_id = #{jobId}
+		   AND t.detail_id = #{detailId}
+	]]>
+	</update>
+	
 </mapper>

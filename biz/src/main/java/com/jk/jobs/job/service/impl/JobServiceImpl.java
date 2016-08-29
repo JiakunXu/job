@@ -6,6 +6,8 @@ import javax.annotation.Resource;
 
 import org.apache.commons.lang.StringUtils;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.TransactionStatus;
+import org.springframework.transaction.support.TransactionCallback;
 import org.springframework.transaction.support.TransactionTemplate;
 
 import com.jk.jobs.api.job.IJobCatService;
@@ -215,7 +217,7 @@ public class JobServiceImpl implements IJobService {
 	}
 
 	@Override
-	public BooleanResult publish(Long userId, Job job) {
+	public BooleanResult publish(Long userId, final Job job) {
 		BooleanResult result = new BooleanResult();
 		result.setResult(false);
 
@@ -234,21 +236,56 @@ public class JobServiceImpl implements IJobService {
 		job.setType(IJobService.PUBLISH);
 		job.setModifyUser(userId.toString());
 
-		try {
-			jobDao.createJob(job);
-			result.setCode(job.getJobId().toString());
-			result.setResult(true);
-		} catch (Exception e) {
-			logger.error(LogUtil.parserBean(job), e);
+		BooleanResult res = transactionTemplate.execute(new TransactionCallback<BooleanResult>() {
+			public BooleanResult doInTransaction(TransactionStatus ts) {
+				BooleanResult result = new BooleanResult();
+				result.setResult(false);
 
-			result.setCode("项目信息创建失败，请稍后再试");
-		}
+				Long jobId = null;
 
-		return result;
+				try {
+					jobDao.createJob(job);
+					jobId = job.getJobId();
+				} catch (Exception e) {
+					logger.error(LogUtil.parserBean(job), e);
+					ts.setRollbackOnly();
+
+					result.setCode("项目信息创建失败，请稍后再试");
+					return result;
+				}
+
+				List<JobDetail> jobDetailList = job.getJobDetailList();
+
+				if (jobDetailList != null && jobDetailList.size() > 0) {
+					int rank = 0;
+					for (JobDetail jobDetail : jobDetailList) {
+						jobDetail.setJobId(jobId);
+						jobDetail.setRank(rank++);
+						jobDetail.setModifyUser(job.getModifyUser());
+
+						try {
+							jobDetailDao.createJobDetail(jobDetail);
+						} catch (Exception e) {
+							logger.error(LogUtil.parserBean(jobDetail), e);
+							ts.setRollbackOnly();
+
+							result.setCode("项目明细信息创建失败，请稍后再试");
+							return result;
+						}
+					}
+				}
+
+				result.setCode(jobId.toString());
+				result.setResult(true);
+				return result;
+			}
+		});
+
+		return res;
 	}
 
 	@Override
-	public BooleanResult update(Long userId, Job job) {
+	public BooleanResult update(Long userId, final Job job) {
 		BooleanResult result = new BooleanResult();
 		result.setResult(false);
 
@@ -265,20 +302,71 @@ public class JobServiceImpl implements IJobService {
 		job.setUserId(userId);
 		job.setModifyUser(userId.toString());
 
-		try {
-			int c = jobDao.updateJob(job);
-			if (c == 1) {
+		BooleanResult res = transactionTemplate.execute(new TransactionCallback<BooleanResult>() {
+			public BooleanResult doInTransaction(TransactionStatus ts) {
+				BooleanResult result = new BooleanResult();
+				result.setResult(false);
+
+				Long jobId = job.getJobId();
+
+				try {
+					int c = jobDao.updateJob(job);
+					if (c != 1) {
+						ts.setRollbackOnly();
+
+						result.setCode("项目信息修改失败，请稍后再试");
+						return result;
+					}
+				} catch (Exception e) {
+					logger.error(LogUtil.parserBean(job), e);
+					ts.setRollbackOnly();
+
+					result.setCode("项目信息修改失败，请稍后再试");
+					return result;
+				}
+
+				List<JobDetail> jobDetailList = job.getJobDetailList();
+
+				if (jobDetailList != null && jobDetailList.size() > 0) {
+					int rank = 0;
+					for (JobDetail jobDetail : jobDetailList) {
+						jobDetail.setJobId(jobId);
+						jobDetail.setRank(rank++);
+						jobDetail.setModifyUser(job.getModifyUser());
+
+						Long detailId = jobDetail.getDetailId();
+
+						if (detailId == null) {
+							try {
+								jobDetailDao.createJobDetail(jobDetail);
+							} catch (Exception e) {
+								logger.error(LogUtil.parserBean(jobDetail), e);
+								ts.setRollbackOnly();
+
+								result.setCode("项目明细信息创建失败，请稍后再试");
+								return result;
+							}
+						} else {
+							try {
+								jobDetailDao.updateJobDetail(jobDetail);
+							} catch (Exception e) {
+								logger.error(LogUtil.parserBean(jobDetail), e);
+								ts.setRollbackOnly();
+
+								result.setCode("项目明细信息修改失败，请稍后再试");
+								return result;
+							}
+						}
+					}
+				}
+
+				result.setCode(jobId.toString());
 				result.setResult(true);
-			} else {
-				result.setCode("项目信息修改失败，请稍后再试");
+				return result;
 			}
-		} catch (Exception e) {
-			logger.error(LogUtil.parserBean(job), e);
+		});
 
-			result.setCode("项目信息修改失败，请稍后再试");
-		}
-
-		return result;
+		return res;
 	}
 
 	@Override

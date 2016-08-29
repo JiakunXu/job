@@ -65,4 +65,16 @@
 	]]>
 	</update>
 	
+	<update id="deleteResumeDetail" parameterType="resumeDetail">
+	<![CDATA[
+		UPDATE basis_tb_resume_detail t
+		   SET t.modify_date = NOW(),
+			   t.modify_user = #{modifyUser},
+			   t.state = 'D'
+		 WHERE t.state = 'U'
+		   AND t.resume_id = #{resumeId}
+		   AND t.detail_id = #{detailId}
+	]]>
+	</update>
+	
 </mapper>

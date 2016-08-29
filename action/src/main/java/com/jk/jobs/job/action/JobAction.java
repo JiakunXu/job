@@ -92,6 +92,11 @@ public class JobAction extends BaseAction {
 		return SUCCESS;
 	}
 
+	/**
+	 * 发布项目.
+	 * 
+	 * @return
+	 */
 	public String publish() {
 		// TODO
 		if (job != null && jobDetail != null) {

@@ -88,6 +88,10 @@ public interface IMemcachedCacheService extends ICacheService<String, Object> {
 
 	String CACHE_KEY_SHOP_ID = "key_shop_id_";
 
+	// >>>>>>>>>>以下是项目相关<<<<<<<<<<
+
+	String CACHE_KEY_JOB_CAT_ID = "key_job_cat_id_";
+
 	// >>>>>>>>>>end<<<<<<<<<<
 
 	/**

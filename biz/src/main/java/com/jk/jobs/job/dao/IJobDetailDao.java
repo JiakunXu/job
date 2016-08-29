@@ -18,4 +18,18 @@ public interface IJobDetailDao {
 	 */
 	List<JobDetail> getJobDetailList(JobDetail jobDetail);
 
+	/**
+	 * 
+	 * @param jobDetail
+	 * @return
+	 */
+	int createJobDetail(JobDetail jobDetail);
+
+	/**
+	 * 
+	 * @param jobDetail
+	 * @return
+	 */
+	int updateJobDetail(JobDetail jobDetail);
+
 }
