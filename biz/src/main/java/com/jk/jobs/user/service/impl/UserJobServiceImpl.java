@@ -134,7 +134,7 @@ public class UserJobServiceImpl implements IUserJobService {
 					logger.error(LogUtil.parserBean(userJob), e);
 					ts.setRollbackOnly();
 
-					result.setCode("用户项目信息创建失败，请稍后再试");
+					result.setCode("简历信息创建失败，请稍后再试");
 					return result;
 				}
 
@@ -148,7 +148,7 @@ public class UserJobServiceImpl implements IUserJobService {
 							logger.error(LogUtil.parserBean(userJobDetail), e);
 							ts.setRollbackOnly();
 
-							result.setCode("项目明细信息创建失败，请稍后再试");
+							result.setCode("简历明细信息创建失败，请稍后再试");
 							return result;
 						}
 					}
