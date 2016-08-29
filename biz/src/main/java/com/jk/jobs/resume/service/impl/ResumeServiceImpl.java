@@ -165,6 +165,11 @@ public class ResumeServiceImpl implements IResumeService {
 				if (resumeDetailList != null && resumeDetailList.size() > 0) {
 					int rank = 0;
 					for (ResumeDetail resumeDetail : resumeDetailList) {
+						// 默认 项目内容 空 即 无效
+						if (StringUtils.isBlank(resumeDetail.getContent())) {
+							continue;
+						}
+
 						//
 						resumeDetail.setResumeId(resumeId);
 						resumeDetail.setRank(rank++);
