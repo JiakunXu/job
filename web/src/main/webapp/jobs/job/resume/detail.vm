@@ -67,7 +67,7 @@
                         </a>
 					</div>
 					<div class="col-66">
-						<a href="javascript:job_resume_detail_ignore();" class="button button-big color-red" style="background: #fff; border-radius: 0; border: 0;">忽略</a>
+						<a href="javascript:job_resume_detail_ignore();" class="button button-big color-red" style="background: #fff; border: 0;">忽略</a>
 					</div>
 				</div>   
 			</div>
