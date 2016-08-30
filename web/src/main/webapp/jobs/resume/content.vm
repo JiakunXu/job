@@ -22,11 +22,12 @@
 	<div class="row no-gutter">
 		<div class="col-50">
 			<div class="item-subtitle">擅长模块：
-				#foreach($resumeJobCat in $!{resume.resumeJobCatList})
-				$!{resumeJobCat.jobCName}
+				#foreach($jobCat in $!{resume.resumeJobCatList})
+				$!{jobCat.jobCName}
 				#end
-				#foreach($resumeJobCat in $!{resume.userJobCatList})
-				$!{resumeJobCat.jobCName}
+				
+				#foreach($jobCat in $!{resume.userJobCatList})
+				$!{jobCat.jobCName}
 				#end
 			</div>
         </div>

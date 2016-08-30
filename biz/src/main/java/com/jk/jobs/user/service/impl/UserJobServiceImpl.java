@@ -312,7 +312,18 @@ public class UserJobServiceImpl implements IUserJobService {
 			return null;
 		}
 
-		return getUserJobList(userJob);
+		List<UserJob> userJobList = getUserJobList(userJob);
+
+		if (userJobList == null || userJobList.size() == 0) {
+			return null;
+		}
+
+		// 擅长模块
+		for (UserJob uj : userJobList) {
+			uj.setUserJobCatList(getUserJobCatList(uj.getUserJobId()));
+		}
+
+		return userJobList;
 	}
 
 	@Override

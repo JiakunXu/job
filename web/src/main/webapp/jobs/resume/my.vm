@@ -41,7 +41,7 @@
     			<div class="card-content">
 					<div class="list-block media-list">
 						<ul>
-        					#foreach($resumeDetail in $!{resume.resumeDetailList})
+        					#foreach($detail in $!{resume.resumeDetailList})
         					<li class="item-content">
 								<div class="item-inner">
 									#parse("/jobs/resume/content.detail.vm")
