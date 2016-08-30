@@ -82,21 +82,10 @@
     							<div class="item-inner">
     								<div class="item-title label">工作性质</div>
     								<div class="item-input">
-    									<input type="text" name="job.jobNature" value="$!{job.jobNature}" placeholder="" />
-    								</div>
-    							</div>
-    						</div>
-    					</li>
-						<li>
-    						<div class="item-content">
-    							<div class="item-inner">
-    								<div class="item-title label">工作经验</div>
-    								<div class="item-input">
-										<select name="job.workYear">
-											<option #if($!{job.workYear} == '一年') selected="selected" #end>一年</option>
-											<option #if($!{job.workYear} == '三年') selected="selected" #end>三年</option>
-											<option #if($!{job.workYear} == '五年') selected="selected" #end>五年</option>
-											<option #if($!{job.workYear} == '五年以上') selected="selected" #end>五年以上</option>
+										<select name="job.jobNature">
+											<option #if($!{job.jobNature} == '全职') selected="selected" #end>全职</option>
+											<option #if($!{job.jobNature} == '兼职') selected="selected" #end>兼职</option>
+											<option #if($!{job.jobNature} == '实习') selected="selected" #end>实习</option>
     									</select>
     								</div>
     							</div>
@@ -111,6 +100,21 @@
 											<option #if($!{job.education} == '本科') selected="selected" #end>本科</option>
 											<option #if($!{job.education} == '硕士') selected="selected" #end>硕士</option>
 											<option #if($!{job.education} == '博士') selected="selected" #end>博士</option>
+    									</select>
+    								</div>
+    							</div>
+    						</div>
+    					</li>
+						<li>
+    						<div class="item-content">
+    							<div class="item-inner">
+    								<div class="item-title label">工作经验</div>
+    								<div class="item-input">
+										<select name="job.workYear">
+											<option #if($!{job.workYear} == '一年') selected="selected" #end>一年</option>
+											<option #if($!{job.workYear} == '三年') selected="selected" #end>三年</option>
+											<option #if($!{job.workYear} == '五年') selected="selected" #end>五年</option>
+											<option #if($!{job.workYear} == '五年以上') selected="selected" #end>五年以上</option>
     									</select>
     								</div>
     							</div>
