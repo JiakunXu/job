@@ -14,4 +14,43 @@
 	]]>
 	</select>
 	
+	<insert id="createResumeJobCat" parameterType="resumeJobCat" useGeneratedKeys="true" keyProperty="id">
+	<![CDATA[
+		INSERT
+		INTO basis_tb_resume_job_cat
+		  (
+			RESUME_ID,
+			JOB_CID,
+			STATE,
+			CREATE_DATE,
+			CREATE_USER,
+			MODIFY_DATE,
+			MODIFY_USER
+		  )
+		  VALUES
+		  (
+			#{resumeId},
+			#{jobCId},
+			'U',
+			NOW(),
+			#{modifyUser},
+			NOW(),
+			#{modifyUser}
+		  )
+	]]>
+	</insert>
+	
+	<update id="deleteResumeJobCat" parameterType="resumeJobCat">
+	<![CDATA[
+		UPDATE basis_tb_resume_job_cat t
+		   SET t.modify_date = NOW(),
+			   t.modify_user = #{modifyUser},
+			   t.state = 'D'
+		 WHERE t.state = 'U'
+		   AND t.resume_id = #{resumeId}
+		   AND t.`JOB_CID` IN
+	]]>
+		<foreach collection="codes" item="code" open="(" close=")" separator=",">#{code}</foreach>
+	</update>
+	
 </mapper>

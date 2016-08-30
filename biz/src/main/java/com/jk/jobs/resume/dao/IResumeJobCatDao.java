@@ -18,4 +18,18 @@ public interface IResumeJobCatDao {
 	 */
 	List<ResumeJobCat> getResumeJobCatList(ResumeJobCat resumeJobCat);
 
+	/**
+	 * 
+	 * @param resumeJobCat
+	 * @return
+	 */
+	int createResumeJobCat(ResumeJobCat resumeJobCat);
+
+	/**
+	 * 
+	 * @param resumeJobCat
+	 * @return
+	 */
+	int deleteResumeJobCat(ResumeJobCat resumeJobCat);
+
 }

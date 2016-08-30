@@ -20,13 +20,16 @@ import com.jk.jobs.api.job.bo.JobCat;
 import com.jk.jobs.api.resume.IResumeService;
 import com.jk.jobs.api.resume.bo.Resume;
 import com.jk.jobs.api.resume.bo.ResumeDetail;
+import com.jk.jobs.api.resume.bo.ResumeJobCat;
 import com.jk.jobs.api.user.IUserJobService;
 import com.jk.jobs.api.user.bo.UserJob;
+import com.jk.jobs.api.user.bo.UserJobCat;
 import com.jk.jobs.api.user.bo.UserJobDetail;
 import com.jk.jobs.framework.bo.BooleanResult;
 import com.jk.jobs.framework.log.Logger4jCollection;
 import com.jk.jobs.framework.log.Logger4jExtend;
 import com.jk.jobs.framework.util.LogUtil;
+import com.jk.jobs.user.dao.IUserJobCatDao;
 import com.jk.jobs.user.dao.IUserJobDao;
 import com.jk.jobs.user.dao.IUserJobDetailDao;
 
@@ -58,6 +61,9 @@ public class UserJobServiceImpl implements IUserJobService {
 	@Resource
 	private IUserJobDetailDao userJobDetailDao;
 
+	@Resource
+	private IUserJobCatDao userJobCatDao;
+
 	@Override
 	public BooleanResult deliver(Long userId, String jobId) {
 		BooleanResult result = new BooleanResult();
@@ -75,6 +81,7 @@ public class UserJobServiceImpl implements IUserJobService {
 
 		final UserJob userJob = new UserJob();
 		final List<UserJobDetail> userJobDetailList = new ArrayList<UserJobDetail>();
+		final List<UserJobCat> userJobCatList = new ArrayList<UserJobCat>();
 
 		userJob.setUserId(userId);
 		userJob.setModifyUser(userId.toString());
@@ -108,15 +115,26 @@ public class UserJobServiceImpl implements IUserJobService {
 
 		List<ResumeDetail> resumeDetailList = resume.getResumeDetailList();
 		if (resumeDetailList != null && resumeDetailList.size() > 0) {
-			for (ResumeDetail resumeDetail : resumeDetailList) {
+			for (ResumeDetail detail : resumeDetailList) {
 				UserJobDetail userJobDetail = new UserJobDetail();
-				userJobDetail.setJobCId(resumeDetail.getJobCId());
-				userJobDetail.setCycle(resumeDetail.getCycle());
-				userJobDetail.setContent(resumeDetail.getContent());
-				userJobDetail.setRank(resumeDetail.getRank());
+				userJobDetail.setJobCId(detail.getJobCId());
+				userJobDetail.setCycle(detail.getCycle());
+				userJobDetail.setContent(detail.getContent());
+				userJobDetail.setRank(detail.getRank());
 				userJobDetail.setModifyUser(userJob.getModifyUser());
 
 				userJobDetailList.add(userJobDetail);
+			}
+		}
+
+		List<ResumeJobCat> resumeJobCatList = resume.getResumeJobCatList();
+		if (resumeJobCatList != null && resumeJobCatList.size() > 0) {
+			for (ResumeJobCat detail : resumeJobCatList) {
+				UserJobCat userJobCat = new UserJobCat();
+				userJobCat.setJobCId(detail.getJobCId());
+				userJobCat.setModifyUser(userJob.getModifyUser());
+
+				userJobCatList.add(userJobCat);
 			}
 		}
 
@@ -149,6 +167,22 @@ public class UserJobServiceImpl implements IUserJobService {
 							ts.setRollbackOnly();
 
 							result.setCode("简历明细信息创建失败，请稍后再试");
+							return result;
+						}
+					}
+				}
+
+				if (userJobCatList != null && userJobCatList.size() > 0) {
+					for (UserJobCat userJobCat : userJobCatList) {
+						userJobCat.setUserJobId(userJobId);
+
+						try {
+							userJobCatDao.createUserJobCat(userJobCat);
+						} catch (Exception e) {
+							logger.error(LogUtil.parserBean(userJobCat), e);
+							ts.setRollbackOnly();
+
+							result.setCode("擅长模块信息创建失败，请稍后再试");
 							return result;
 						}
 					}
@@ -309,10 +343,8 @@ public class UserJobServiceImpl implements IUserJobService {
 			return null;
 		}
 
-		UserJobDetail userJobDetail = new UserJobDetail();
-		userJobDetail.setUserJobId(userJob.getUserJobId());
-
-		userJob.setUserJobDetailList(getUserJobDetailList(userJobDetail));
+		userJob.setUserJobDetailList(getUserJobDetailList(userJob.getUserJobId()));
+		userJob.setUserJobCatList(getUserJobCatList(userJob.getUserJobId()));
 
 		return userJob;
 	}
@@ -415,7 +447,10 @@ public class UserJobServiceImpl implements IUserJobService {
 	 * @param userJobDetail
 	 * @return
 	 */
-	private List<UserJobDetail> getUserJobDetailList(UserJobDetail userJobDetail) {
+	private List<UserJobDetail> getUserJobDetailList(Long userJobId) {
+		UserJobDetail userJobDetail = new UserJobDetail();
+		userJobDetail.setUserJobId(userJobId);
+
 		List<UserJobDetail> userJobDetailList = null;
 
 		try {
@@ -436,6 +471,32 @@ public class UserJobServiceImpl implements IUserJobService {
 		}
 
 		return userJobDetailList;
+	}
+
+	private List<UserJobCat> getUserJobCatList(Long userJobId) {
+		UserJobCat userJobCat = new UserJobCat();
+		userJobCat.setUserJobId(userJobId);
+
+		List<UserJobCat> userJobCatList = null;
+
+		try {
+			userJobCatList = userJobCatDao.getUserJobCatList(userJobCat);
+		} catch (Exception e) {
+			logger.error(LogUtil.parserBean(userJobCat), e);
+		}
+
+		if (userJobCatList == null || userJobCatList.size() == 0) {
+			return null;
+		}
+
+		for (UserJobCat detail : userJobCatList) {
+			JobCat c = jobCatService.getJobCat(detail.getJobCId());
+			if (c != null) {
+				detail.setJobCName(c.getJobCName());
+			}
+		}
+
+		return userJobCatList;
 	}
 
 }

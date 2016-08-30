@@ -1,6 +1,8 @@
 package com.jk.jobs.resume.service.impl;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 
@@ -131,6 +133,40 @@ public class ResumeServiceImpl implements IResumeService {
 		resume.setUserId(userId);
 		resume.setModifyUser(userId.toString());
 
+		// 获取 擅长模块
+		// map0 remove 相同的 剩下的 删除
+		final Map<Long, Boolean> map0 = new HashMap<Long, Boolean>();
+
+		Long resumeId = resume.getResumeId();
+		if (resumeId != null) {
+			ResumeJobCat resumeJobCat = new ResumeJobCat();
+			resumeJobCat.setResumeId(resumeId);
+
+			List<ResumeJobCat> resumeJobCatList = getResumeJobCatList(resumeJobCat);
+			if (resumeJobCatList != null && resumeJobCatList.size() > 0) {
+				for (ResumeJobCat detail : resumeJobCatList) {
+					map0.put(detail.getJobCId(), Boolean.TRUE);
+				}
+			}
+		}
+
+		// map1 map0 中不存在的 即 新建
+		final Map<Long, Boolean> map1 = new HashMap<Long, Boolean>();
+
+		List<ResumeJobCat> resumeJobCatList = resume.getResumeJobCatList();
+
+		// 存在擅长模块
+		if (resumeJobCatList != null && resumeJobCatList.size() > 0) {
+			for (ResumeJobCat detail : resumeJobCatList) {
+				Long key = detail.getJobCId();
+				if (map0.containsKey(key)) {
+					map0.remove(key);
+				} else {
+					map1.put(key, Boolean.TRUE);
+				}
+			}
+		}
+
 		BooleanResult res = transactionTemplate.execute(new TransactionCallback<BooleanResult>() {
 			public BooleanResult doInTransaction(TransactionStatus ts) {
 				BooleanResult result = new BooleanResult();
@@ -204,6 +240,50 @@ public class ResumeServiceImpl implements IResumeService {
 								result.setCode("简历明细信息修改失败，请稍后再试");
 								return result;
 							}
+						}
+					}
+				}
+
+				// 删除 擅长模块
+				if (map0.size() > 0) {
+					String[] codes = new String[map0.size()];
+					int i = 0;
+					for (Map.Entry<Long, Boolean> m : map0.entrySet()) {
+						codes[i++] = m.getKey().toString();
+					}
+
+					ResumeJobCat resumeJobCat0 = new ResumeJobCat();
+					resumeJobCat0.setResumeId(resumeId);
+					resumeJobCat0.setModifyUser(resume.getModifyUser());
+					resumeJobCat0.setCodes(codes);
+
+					try {
+						resumeJobCatDao.deleteResumeJobCat(resumeJobCat0);
+					} catch (Exception e) {
+						logger.error(LogUtil.parserBean(resumeJobCat0), e);
+						ts.setRollbackOnly();
+
+						result.setCode("擅长模块信息修改失败，请稍后再试");
+						return result;
+					}
+				}
+
+				// 新建 擅长模块
+				if (map1.size() > 0) {
+					for (Map.Entry<Long, Boolean> m : map1.entrySet()) {
+						ResumeJobCat resumeJobCat1 = new ResumeJobCat();
+						resumeJobCat1.setResumeId(resumeId);
+						resumeJobCat1.setJobCId(m.getKey());
+						resumeJobCat1.setModifyUser(resume.getModifyUser());
+
+						try {
+							resumeJobCatDao.createResumeJobCat(resumeJobCat1);
+						} catch (Exception e) {
+							logger.error(LogUtil.parserBean(resumeJobCat1), e);
+							ts.setRollbackOnly();
+
+							result.setCode("擅长模块信息修改失败，请稍后再试");
+							return result;
 						}
 					}
 				}
@@ -310,13 +390,7 @@ public class ResumeServiceImpl implements IResumeService {
 		ResumeJobCat resumeJobCat = new ResumeJobCat();
 		resumeJobCat.setResumeId(resumeId);
 
-		List<ResumeJobCat> resumeJobCatList = null;
-
-		try {
-			resumeJobCatList = resumeJobCatDao.getResumeJobCatList(resumeJobCat);
-		} catch (Exception e) {
-			logger.error(LogUtil.parserBean(resumeJobCat), e);
-		}
+		List<ResumeJobCat> resumeJobCatList = getResumeJobCatList(resumeJobCat);
 
 		if (resumeJobCatList == null || resumeJobCatList.size() == 0) {
 			return null;
@@ -330,6 +404,16 @@ public class ResumeServiceImpl implements IResumeService {
 		}
 
 		return resumeJobCatList;
+	}
+
+	private List<ResumeJobCat> getResumeJobCatList(ResumeJobCat resumeJobCat) {
+		try {
+			return resumeJobCatDao.getResumeJobCatList(resumeJobCat);
+		} catch (Exception e) {
+			logger.error(LogUtil.parserBean(resumeJobCat), e);
+		}
+
+		return null;
 	}
 
 }

@@ -14,6 +14,7 @@ import com.jk.jobs.api.job.bo.JobCat;
 import com.jk.jobs.api.resume.IResumeService;
 import com.jk.jobs.api.resume.bo.Resume;
 import com.jk.jobs.api.resume.bo.ResumeDetail;
+import com.jk.jobs.api.resume.bo.ResumeJobCat;
 import com.jk.jobs.framework.action.BaseAction;
 import com.jk.jobs.framework.bo.BooleanResult;
 import com.jk.jobs.framework.log.Logger4jCollection;
@@ -55,6 +56,11 @@ public class ResumeAction extends BaseAction {
 	private String cycle;
 
 	private String content;
+
+	/**
+	 * 删除模块.
+	 */
+	private String jobCId0;
 
 	/**
 	 * 
@@ -140,6 +146,28 @@ public class ResumeAction extends BaseAction {
 				}
 
 				resume.setResumeDetailList(list);
+			}
+
+			String[] jobCId0s = StringUtils.isNotBlank(jobCId0) ? jobCId0.split(",") : null;
+
+			if (jobCId0s != null && jobCId0s.length > 0) {
+				List<ResumeJobCat> list = new ArrayList<ResumeJobCat>();
+
+				for (int i = 0; i < jobCId0s.length; i++) {
+					String v0 = jobCId0s[i];
+					if (StringUtils.isNotBlank(v0)) {
+						ResumeJobCat resumeJobCat = new ResumeJobCat();
+
+						try {
+							resumeJobCat.setJobCId(Long.valueOf(v0.trim()));
+							list.add(resumeJobCat);
+						} catch (NumberFormatException e) {
+							logger.error(e);
+						}
+					}
+				}
+
+				resume.setResumeJobCatList(list);
 			}
 		}
 
@@ -235,6 +263,14 @@ public class ResumeAction extends BaseAction {
 
 	public void setContent(String content) {
 		this.content = content;
+	}
+
+	public String getJobCId0() {
+		return jobCId0;
+	}
+
+	public void setJobCId0(String jobCId0) {
+		this.jobCId0 = jobCId0;
 	}
 
 }

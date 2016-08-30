@@ -32,6 +32,8 @@ public class UserJob extends Resume {
 
 	private List<UserJobDetail> userJobDetailList;
 
+	private List<UserJobCat> userJobCatList;
+
 	public Long getUserJobId() {
 		return userJobId;
 	}
@@ -86,6 +88,14 @@ public class UserJob extends Resume {
 
 	public void setUserJobDetailList(List<UserJobDetail> userJobDetailList) {
 		this.userJobDetailList = userJobDetailList;
+	}
+
+	public List<UserJobCat> getUserJobCatList() {
+		return userJobCatList;
+	}
+
+	public void setUserJobCatList(List<UserJobCat> userJobCatList) {
+		this.userJobCatList = userJobCatList;
 	}
 
 }

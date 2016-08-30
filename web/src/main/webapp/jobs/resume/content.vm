@@ -25,6 +25,9 @@
 				#foreach($resumeJobCat in $!{resume.resumeJobCatList})
 				$!{resumeJobCat.jobCName}
 				#end
+				#foreach($resumeJobCat in $!{resume.userJobCatList})
+				$!{resumeJobCat.jobCName}
+				#end
 			</div>
         </div>
 		<div class="col-50"></div>

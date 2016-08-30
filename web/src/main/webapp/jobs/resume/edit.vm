@@ -94,8 +94,15 @@
 							<a href="#" class="item-link smart-select" data-page-title="模块" data-back-text=" ">
 								<select name="jobCId0" multiple>
 									#foreach($jobCat in $!{jobCatList})
+										#set($flag = true)
 										#foreach($resumeJobCat in $!{resume.resumeJobCatList})
-										<option value="$!{jobCat.jobCId}" #if($!{jobCat.jobCId} == $!{resumeJobCat.jobCId}) selected #end>$!{jobCat.jobCName}</option>
+											#if($!{jobCat.jobCId} == $!{resumeJobCat.jobCId}) #set($flag = false)
+											<option value="$!{jobCat.jobCId}" selected >$!{jobCat.jobCName}</option>
+											#end
+										#end
+										
+										#if($flag)
+										<option value="$!{jobCat.jobCId}">$!{jobCat.jobCName}</option>
 										#end
     								#end
 								</select>

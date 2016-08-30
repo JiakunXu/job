@@ -1,19 +1,19 @@
-package com.jk.jobs.api.resume.bo;
+package com.jk.jobs.api.user.bo;
 
-import com.jk.jobs.framework.bo.SearchInfo;
+import java.io.Serializable;
 
 /**
  * 
  * @author JiakunXu
  * 
  */
-public class ResumeJobCat extends SearchInfo {
+public class UserJobCat implements Serializable {
 
 	private static final long serialVersionUID = 1370083109385833245L;
 
 	private Long id;
 
-	private Long resumeId;
+	private Long userJobId;
 
 	/**
 	 * 模块.
@@ -34,12 +34,12 @@ public class ResumeJobCat extends SearchInfo {
 		this.id = id;
 	}
 
-	public Long getResumeId() {
-		return resumeId;
+	public Long getUserJobId() {
+		return userJobId;
 	}
 
-	public void setResumeId(Long resumeId) {
-		this.resumeId = resumeId;
+	public void setUserJobId(Long userJobId) {
+		this.userJobId = userJobId;
 	}
 
 	public Long getJobCId() {

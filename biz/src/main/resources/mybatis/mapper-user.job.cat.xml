@@ -1,0 +1,43 @@
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.jk.jobs.user.dao.IUserJobCatDao">
+	
+	<insert id="createUserJobCat" parameterType="userJobCat" useGeneratedKeys="true" keyProperty="id">
+	<![CDATA[
+		INSERT
+		INTO basis_tb_user_job_cat
+		  (
+			USER_JOB_ID,
+			JOB_CID,
+			STATE,
+			CREATE_DATE,
+			CREATE_USER,
+			MODIFY_DATE,
+			MODIFY_USER
+		  )
+		  VALUES
+		  (
+			#{userJobId},
+			#{jobCId},
+			'U',
+			NOW(),
+			#{modifyUser},
+			NOW(),
+			#{modifyUser}
+		  )
+	]]>
+	</insert>
+	
+	<select id="getUserJobCatList" parameterType="userJobCat" resultType="userJobCat">
+	<![CDATA[
+		SELECT t.`ID`,
+			   t.`JOB_CID` AS jobCId
+		  FROM basis_tb_user_job_cat t
+		 WHERE t.state = 'U'
+		   AND t.user_job_id = #{userJobId}
+	]]>
+	</select>
+	
+</mapper>
