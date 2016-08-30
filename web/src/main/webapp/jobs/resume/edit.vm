@@ -90,6 +90,21 @@
     							</div>
     						</div>
     					</li>
+						<li>
+							<a href="#" class="item-link smart-select" data-page-title="模块" data-back-text=" ">
+								<!-- "multiple" attribute for multiple select-->
+								<select name="resume" multiple>
+									#foreach($jobCat in $!{jobCatList})
+									<option value="$!{jobCat.jobCId}">$!{jobCat.jobCName}</option>
+    								#end
+								</select>
+								<div class="item-content">
+									<div class="item-inner">
+										<div class="item-title label">擅长模块</div>
+									</div>
+								</div>
+							</a>
+    					</li>
     				</ul>
                 </div>
 				<div class="content-block-title">项目经验</div>
