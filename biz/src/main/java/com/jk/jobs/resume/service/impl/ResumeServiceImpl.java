@@ -15,12 +15,14 @@ import com.jk.jobs.api.job.bo.JobCat;
 import com.jk.jobs.api.resume.IResumeService;
 import com.jk.jobs.api.resume.bo.Resume;
 import com.jk.jobs.api.resume.bo.ResumeDetail;
+import com.jk.jobs.api.resume.bo.ResumeJobCat;
 import com.jk.jobs.framework.bo.BooleanResult;
 import com.jk.jobs.framework.log.Logger4jCollection;
 import com.jk.jobs.framework.log.Logger4jExtend;
 import com.jk.jobs.framework.util.LogUtil;
 import com.jk.jobs.resume.dao.IResumeDao;
 import com.jk.jobs.resume.dao.IResumeDetailDao;
+import com.jk.jobs.resume.dao.IResumeJobCatDao;
 
 /**
  * 
@@ -43,6 +45,9 @@ public class ResumeServiceImpl implements IResumeService {
 
 	@Resource
 	private IResumeDetailDao resumeDetailDao;
+
+	@Resource
+	private IResumeJobCatDao resumeJobCatDao;
 
 	@Override
 	public List<Resume> getResumeList(Resume resume) {
@@ -82,6 +87,7 @@ public class ResumeServiceImpl implements IResumeService {
 		}
 
 		resume.setResumeDetailList(getResumeDetailList(resume.getResumeId()));
+		resume.setResumeJobCatList(getResumeJobCatList(resume.getResumeId()));
 
 		return resume;
 	}
@@ -102,6 +108,7 @@ public class ResumeServiceImpl implements IResumeService {
 		}
 
 		resume.setResumeDetailList(getResumeDetailList(resume.getResumeId()));
+		resume.setResumeJobCatList(getResumeJobCatList(resume.getResumeId()));
 
 		return resume;
 	}
@@ -297,6 +304,32 @@ public class ResumeServiceImpl implements IResumeService {
 		}
 
 		return resumeDetailList;
+	}
+
+	private List<ResumeJobCat> getResumeJobCatList(Long resumeId) {
+		ResumeJobCat resumeJobCat = new ResumeJobCat();
+		resumeJobCat.setResumeId(resumeId);
+
+		List<ResumeJobCat> resumeJobCatList = null;
+
+		try {
+			resumeJobCatList = resumeJobCatDao.getResumeJobCatList(resumeJobCat);
+		} catch (Exception e) {
+			logger.error(LogUtil.parserBean(resumeJobCat), e);
+		}
+
+		if (resumeJobCatList == null || resumeJobCatList.size() == 0) {
+			return null;
+		}
+
+		for (ResumeJobCat detail : resumeJobCatList) {
+			JobCat c = jobCatService.getJobCat(detail.getJobCId());
+			if (c != null) {
+				detail.setJobCName(c.getJobCName());
+			}
+		}
+
+		return resumeJobCatList;
 	}
 
 }

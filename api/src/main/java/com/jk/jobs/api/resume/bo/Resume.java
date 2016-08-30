@@ -40,6 +40,8 @@ public class Resume extends SearchInfo {
 
 	private List<ResumeDetail> resumeDetailList;
 
+	private List<ResumeJobCat> resumeJobCatList;
+
 	/**
 	 * UserJob.
 	 */
@@ -131,6 +133,14 @@ public class Resume extends SearchInfo {
 
 	public void setResumeDetailList(List<ResumeDetail> resumeDetailList) {
 		this.resumeDetailList = resumeDetailList;
+	}
+
+	public List<ResumeJobCat> getResumeJobCatList() {
+		return resumeJobCatList;
+	}
+
+	public void setResumeJobCatList(List<ResumeJobCat> resumeJobCatList) {
+		this.resumeJobCatList = resumeJobCatList;
 	}
 
 	public Long getUserJobId() {

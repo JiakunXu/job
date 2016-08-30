@@ -2,7 +2,7 @@
 <!-- Top Navbar-->
 <div class="navbar">
 	<div class="navbar-inner">
-		<div class="left"><a href="#" class="back link"> <i class="icon icon-back color-gray"></i><span></span></a></div>
+		<div class="left"><a href="#" class="back link"> <i class="icon icon-back"></i><span></span></a></div>
 		<div class="center sliding">$!{job.title}</div>
 		<div class="right">
 			<!-- Right link contains only icon - additional "icon-only" class-->
@@ -35,7 +35,7 @@
     								<div class="item-input">
     									<select name="job.jobCId">
     										#foreach($jobCat in $!{jobCatList})
-    										<option value="$!{jobCat.jobCId}" #if($!{jobCat.jobCId} == $!{job.jobCId}) selected="selected" #end>$!{jobCat.jobCName}</option>
+    										<option value="$!{jobCat.jobCId}" #if($!{jobCat.jobCId} == $!{job.jobCId}) selected #end>$!{jobCat.jobCName}</option>
     										#end
     									</select>
     								</div>
@@ -48,10 +48,10 @@
     								<div class="item-title label">项目周期</div>
     								<div class="item-input">
     									<select name="job.cycle">
-											<option value="1" #if($!{job.cycle} == '1') selected="selected" #end>一个月</option>
-    										<option value="3" #if($!{job.cycle} == '3') selected="selected" #end>三个月</option>
-    										<option value="6" #if($!{job.cycle} == '6') selected="selected" #end>六个月</option>
-    										<option value="12" #if($!{job.cycle} == '12') selected="selected" #end>一年</option>
+											<option value="1" #if($!{job.cycle} == '1') selected #end>一个月</option>
+    										<option value="3" #if($!{job.cycle} == '3') selected #end>三个月</option>
+    										<option value="6" #if($!{job.cycle} == '6') selected #end>六个月</option>
+    										<option value="12" #if($!{job.cycle} == '12') selected #end>一年</option>
     									</select>
     								</div>
     							</div>
@@ -83,9 +83,9 @@
     								<div class="item-title label">工作性质</div>
     								<div class="item-input">
 										<select name="job.jobNature">
-											<option #if($!{job.jobNature} == '全职') selected="selected" #end>全职</option>
-											<option #if($!{job.jobNature} == '兼职') selected="selected" #end>兼职</option>
-											<option #if($!{job.jobNature} == '实习') selected="selected" #end>实习</option>
+											<option #if($!{job.jobNature} == '全职') selected #end>全职</option>
+											<option #if($!{job.jobNature} == '兼职') selected #end>兼职</option>
+											<option #if($!{job.jobNature} == '实习') selected #end>实习</option>
     									</select>
     								</div>
     							</div>
@@ -97,9 +97,9 @@
     								<div class="item-title label">最高学历</div>
     								<div class="item-input">
 										<select name="job.education">
-											<option #if($!{job.education} == '本科') selected="selected" #end>本科</option>
-											<option #if($!{job.education} == '硕士') selected="selected" #end>硕士</option>
-											<option #if($!{job.education} == '博士') selected="selected" #end>博士</option>
+											<option #if($!{job.education} == '本科') selected #end>本科</option>
+											<option #if($!{job.education} == '硕士') selected #end>硕士</option>
+											<option #if($!{job.education} == '博士') selected #end>博士</option>
     									</select>
     								</div>
     							</div>
@@ -111,10 +111,10 @@
     								<div class="item-title label">工作经验</div>
     								<div class="item-input">
 										<select name="job.workYear">
-											<option #if($!{job.workYear} == '一年') selected="selected" #end>一年</option>
-											<option #if($!{job.workYear} == '三年') selected="selected" #end>三年</option>
-											<option #if($!{job.workYear} == '五年') selected="selected" #end>五年</option>
-											<option #if($!{job.workYear} == '五年以上') selected="selected" #end>五年以上</option>
+											<option #if($!{job.workYear} == '一年') selected #end>一年</option>
+											<option #if($!{job.workYear} == '三年') selected #end>三年</option>
+											<option #if($!{job.workYear} == '五年') selected #end>五年</option>
+											<option #if($!{job.workYear} == '五年以上') selected #end>五年以上</option>
     									</select>
     								</div>
     							</div>

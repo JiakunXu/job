@@ -18,3 +18,15 @@
         </div>
     </div>
 </div>
+<div class="item-title-row">
+	<div class="row no-gutter">
+		<div class="col-50">
+			<div class="item-subtitle">擅长模块：
+				#foreach($resumeJobCat in $!{resume.resumeJobCatList})
+				$!{resumeJobCat.jobCName}
+				#end
+			</div>
+        </div>
+		<div class="col-50"></div>
+    </div>
+</div>

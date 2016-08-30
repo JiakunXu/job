@@ -2,7 +2,7 @@
 <!-- Top Navbar-->
 <div class="navbar">
 	<div class="navbar-inner">
-		<div class="left"><a href="#" class="back link"> <i class="icon icon-back color-gray"></i><span></span></a></div>
+		<div class="left"><a href="#" class="back link"> <i class="icon icon-back"></i><span></span></a></div>
 		<div class="center sliding">我的简历</div>
 		<div class="right">
 			<!-- Right link contains only icon - additional "icon-only" class-->
@@ -44,8 +44,8 @@
     								<div class="item-title label">性别</div>
     								<div class="item-input">
 										<select name="resume.sex">
-    										<option value="M" #if($!{resume.sex} == 'M') selected="selected" #end>男</option>
-											<option value="F" #if($!{resume.sex} == 'F') selected="selected" #end>女</option>
+    										<option value="M" #if($!{resume.sex} == 'M') selected #end>男</option>
+											<option value="F" #if($!{resume.sex} == 'F') selected #end>女</option>
     									</select>
     								</div>
     							</div>
@@ -67,9 +67,9 @@
     								<div class="item-title label">最高学历</div>
     								<div class="item-input">
 										<select name="resume.education">
-    										<option #if($!{resume.education} == '本科') selected="selected" #end>本科</option>
-											<option #if($!{resume.education} == '硕士') selected="selected" #end>硕士</option>
-											<option #if($!{resume.education} == '博士') selected="selected" #end>博士</option>
+    										<option #if($!{resume.education} == '本科') selected #end>本科</option>
+											<option #if($!{resume.education} == '硕士') selected #end>硕士</option>
+											<option #if($!{resume.education} == '博士') selected #end>博士</option>
     									</select>
     								</div>
     							</div>
@@ -81,10 +81,10 @@
     								<div class="item-title label">工作经验</div>
     								<div class="item-input">
 										<select name="resume.workYear">
-    										<option #if($!{resume.workYear} == '一年') selected="selected" #end>一年</option>
-											<option #if($!{resume.workYear} == '三年') selected="selected" #end>三年</option>
-											<option #if($!{resume.workYear} == '五年') selected="selected" #end>五年</option>
-											<option #if($!{resume.workYear} == '五年以上') selected="selected" #end>五年以上</option>
+    										<option #if($!{resume.workYear} == '一年') selected #end>一年</option>
+											<option #if($!{resume.workYear} == '三年') selected #end>三年</option>
+											<option #if($!{resume.workYear} == '五年') selected #end>五年</option>
+											<option #if($!{resume.workYear} == '五年以上') selected #end>五年以上</option>
     									</select>
     								</div>
     							</div>
@@ -92,10 +92,11 @@
     					</li>
 						<li>
 							<a href="#" class="item-link smart-select" data-page-title="模块" data-back-text=" ">
-								<!-- "multiple" attribute for multiple select-->
-								<select name="resume" multiple>
+								<select name="jobCId0" multiple>
 									#foreach($jobCat in $!{jobCatList})
-									<option value="$!{jobCat.jobCId}">$!{jobCat.jobCName}</option>
+										#foreach($resumeJobCat in $!{resume.resumeJobCatList})
+										<option value="$!{jobCat.jobCId}" #if($!{jobCat.jobCId} == $!{resumeJobCat.jobCId}) selected #end>$!{jobCat.jobCName}</option>
+										#end
     								#end
 								</select>
 								<div class="item-content">
@@ -119,7 +120,7 @@
     								<div class="item-input">
     									<select name="jobCId">
     										#foreach($jobCat in $!{jobCatList})
-    										<option value="$!{jobCat.jobCId}" #if($!{jobCat.jobCId} == $!{resumeDetail.jobCId}) selected="selected" #end>$!{jobCat.jobCName}</option>
+    										<option value="$!{jobCat.jobCId}" #if($!{jobCat.jobCId} == $!{resumeDetail.jobCId}) selected #end>$!{jobCat.jobCName}</option>
     										#end
     									</select>
     								</div>
@@ -132,10 +133,10 @@
     								<div class="item-title label">项目周期</div>
     								<div class="item-input">
     									<select name="cycle">
-    										<option value="1" #if($!{resumeDetail.cycle} == '1') selected="selected" #end>一个月</option>
-    										<option value="3" #if($!{resumeDetail.cycle} == '3') selected="selected" #end>三个月</option>
-    										<option value="6" #if($!{resumeDetail.cycle} == '6') selected="selected" #end>六个月</option>
-    										<option value="12" #if($!{resumeDetail.cycle} == '12') selected="selected" #end>一年</option>
+    										<option value="1" #if($!{resumeDetail.cycle} == '1') selected #end>一个月</option>
+    										<option value="3" #if($!{resumeDetail.cycle} == '3') selected #end>三个月</option>
+    										<option value="6" #if($!{resumeDetail.cycle} == '6') selected #end>六个月</option>
+    										<option value="12" #if($!{resumeDetail.cycle} == '12') selected #end>一年</option>
     									</select>
     								</div>
     							</div>
