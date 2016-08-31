@@ -13,7 +13,7 @@
 	<!-- Page, data-page contains page name-->
 	<div data-page="resume.edit" class="page no-tabbar">
 		<!-- Scrollable page content-->
-		<div class="page-content">
+		<div class="page-content" style="padding-bottom: 44px;">
 			<form id="resume/edit/saveOrUpdate" action="$!{env.appUrl}/resume/saveOrUpdate.htm" method="POST" class="ajax-submit resume-edit-form">
 				<input type="hidden" name="resume.resumeId" value="$!{resume.resumeId}" />
 				<div class="list-block">
@@ -112,6 +112,16 @@
 									</div>
 								</div>
 							</a>
+    					</li>
+						<li>
+    						<div class="item-content">
+    							<div class="item-inner">
+    								<div class="item-title label">备注</div>
+    								<div class="item-input">
+    									<input type="text" name="resume.remark" value="$!{resume.remark}" placeholder="" />
+    								</div>
+    							</div>
+    						</div>
     					</li>
     				</ul>
                 </div>
@@ -219,14 +229,24 @@
                     </div>
     				#end
 				#end
-				<div class="content-block">
-    				<a href="javascript:resume_edit_saveOrUpdate();" class="button button-big button-fill weui_btn_primary">保存</a>
-    			</div>
 			</form>
 			
 			<form id="resume/edit/delete" action="$!{env.appUrl}/resume/delete.htm" method="POST" class="ajax-submit resume-edit-delete">
             	<input type="hidden" name="detailId" id="resume_edit_delete_detailId"/>
             </form>
         </div>
+		
+		<div class="toolbar">
+			<div class="toolbar-inner" style="padding: 0;">
+				<div class="row no-gutter" style="width: 100%;">
+					<div class="col-33">
+						<a href="＃" class="back button button-big color-gray" style="background: #fff; border-radius: 0; border: 0; border-right: 1px solid #d9d9d9;">取消</a>
+					</div>
+					<div class="col-66">
+						<a href="javascript:resume_edit_saveOrUpdate();" class="button button-big color-base" style="background: #fff; border: 0;">保存</a>
+					</div>
+				</div>
+			</div>
+		</div>
     </div>
 </div>

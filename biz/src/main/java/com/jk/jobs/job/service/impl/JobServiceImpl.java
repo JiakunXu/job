@@ -404,7 +404,7 @@ public class JobServiceImpl implements IJobService {
 			if (c == 1) {
 				result.setResult(true);
 			} else {
-				result.setCode("项目结束失败，请稍后再试");
+				result.setCode("项目已撤销或结束，请稍后再试");
 			}
 		} catch (Exception e) {
 			logger.error(LogUtil.parserBean(job), e);
@@ -450,7 +450,7 @@ public class JobServiceImpl implements IJobService {
 			if (c == 1) {
 				result.setResult(true);
 			} else {
-				result.setCode("项目撤销失败，请稍后再试");
+				result.setCode("项目已结束或撤销，请稍后再试");
 			}
 		} catch (Exception e) {
 			logger.error(LogUtil.parserBean(job), e);
@@ -496,7 +496,7 @@ public class JobServiceImpl implements IJobService {
 			if (c == 1) {
 				result.setResult(true);
 			} else {
-				result.setCode("项目删除失败，请稍后再试");
+				result.setCode("项目尚未撤销或已删除，请稍后再试");
 			}
 		} catch (Exception e) {
 			logger.error(LogUtil.parserBean(job), e);

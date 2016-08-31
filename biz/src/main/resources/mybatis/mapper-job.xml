@@ -151,7 +151,7 @@
 			   t.modify_user = #{modifyUser},
 			   t.`TYPE` = #{type}
 		 WHERE t.state = 'U'
-		   AND t.`TYPE` <> #{type}
+		   AND t.`TYPE` = 'publish'
 		   AND t.user_id = #{userId}
 		   AND t.job_id = #{jobId}
 	]]>
@@ -164,7 +164,7 @@
 			   t.modify_user = #{modifyUser},
 			   t.`TYPE` = #{type}
 		 WHERE t.state = 'U'
-		   AND t.`TYPE` <> #{type}
+		   AND t.`TYPE` = 'publish'
 		   AND t.user_id = #{userId}
 		   AND t.job_id = #{jobId}
 	]]>
@@ -178,7 +178,7 @@
 			   t.`TYPE` = #{type},
 			   t.state = 'D'
 		 WHERE t.state = 'U'
-		   AND t.`TYPE` <> #{type}
+		   AND t.`TYPE` = 'revoke'
 		   AND t.user_id = #{userId}
 		   AND t.job_id = #{jobId}
 	]]>

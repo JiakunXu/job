@@ -33,7 +33,7 @@
 				</div>
 				<div class="card-footer" style="min-height: 0; padding: 5px 15px;">
                     <span style="font-size: 12px;">
-						<i class="iconfont icon-notification" style="font-size: 12px;"></i>
+						<i class="iconfont icon-notification" style="font-size: 12px;"></i> $!{resume.remark}
 					</span>
 				</div>
 			</div>

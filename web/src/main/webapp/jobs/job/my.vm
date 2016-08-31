@@ -38,7 +38,13 @@
 						<div class="card-header" style="font-size: 14px;">
 							<div class="left"><i class="iconfont icon-countdown" style="font-size: 16px;"></i> $!{job.createDate}</div>
 							<div class="right">
-								#if($!{job.type} == 'revoke') 已撤销 #else 已发布 #end
+								#if($!{job.type} == 'finish')
+									已结束
+								#elseif($!{job.type} == 'revoke')
+									已撤销
+								#else
+									已发布
+								#end
 							</div>
 						</div>
 						<div class="card-content">
