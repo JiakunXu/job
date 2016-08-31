@@ -29,11 +29,7 @@
     							<div class="item-inner">
     								#parse("/jobs/job/content.vm")
                                 </div>
-    							<div class="item-after">
-									<a href="$!{env.appUrl}/user/job/resume.htm?jobId=$!{job.jobId}" data-ignore-cache="true">
-										<i class="iconfont icon-selection color-base"></i>
-									</a>
-								</div>
+    							<div class="item-after"></div>
                             </li>
                         </ul>
 					</div>
@@ -68,7 +64,24 @@
             </form>
         </div>
 		
-		#if($!{job.type} == 'revoke' && $!{user.userId} == $!{job.userId})
+		#if($!{user.userId} != $!{job.userId})
+		<div class="toolbar">
+			<div class="toolbar-inner" style="padding: 0;">
+				<div class="row no-gutter" style="width: 100%;">
+					<div class="col-33">
+						<a href="#" class="button button-big color-gray" style="background: #fff; border-radius: 0; border: 0; border-right: 1px solid #d9d9d9;">
+                            <i class="iconfont icon-favor"></i><span style="margin-left: 3px;">收藏</span>
+                        </a>
+					</div>
+					<div class="col-66">
+						<a href="$!{env.appUrl}/user/job/resume.htm?jobId=$!{job.jobId}" class="button button-big color-base" style="background: #fff; border: 0;" data-ignore-cache="true">投简历</a>
+					</div>
+				</div>   
+			</div>
+		</div>
+		#end
+		
+		#if($!{user.userId} == $!{job.userId} && $!{job.type} == 'revoke')
 		<div class="toolbar">
 			<div class="toolbar-inner" style="padding: 0;">
 				<div class="row no-gutter" style="width: 100%;">
