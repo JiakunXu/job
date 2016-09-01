@@ -66,12 +66,12 @@
 			<div class="toolbar-inner" style="padding: 0;">
 				<div class="row no-gutter" style="width: 100%;">
 					<div class="col-33">
-						<a href="tel:$!{resume.tel}" class="button button-big color-gray external" style="background: #fff; border-radius: 0; border: 0; border-right: 1px solid #d9d9d9;">
+						<a href="tel:$!{resume.tel}" class="button button-big button-fill color-white external">
                             <i class="iconfont icon-service"></i><span style="margin-left: 3px;">电话</span>
                         </a>
 					</div>
 					<div class="col-66">
-						<a href="javascript:job_resume_detail_ignore();" class="button button-big color-red" style="background: #fff; border: 0;">忽略</a>
+						<a href="javascript:job_resume_detail_ignore();" class="button button-big button-fill color-red" style="border-radius: 0;">忽略</a>
 					</div>
 				</div>
 			</div>

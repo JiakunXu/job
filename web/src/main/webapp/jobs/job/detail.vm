@@ -69,12 +69,12 @@
 			<div class="toolbar-inner" style="padding: 0;">
 				<div class="row no-gutter" style="width: 100%;">
 					<div class="col-33">
-						<a href="#" class="button button-big color-gray" style="background: #fff; border-radius: 0; border: 0; border-right: 1px solid #d9d9d9;">
+						<a href="#" class="button button-big button-fill color-white">
                             <i class="iconfont icon-favor"></i><span style="margin-left: 3px;">收藏</span>
                         </a>
 					</div>
 					<div class="col-66">
-						<a href="$!{env.appUrl}/user/job/resume.htm?jobId=$!{job.jobId}" class="button button-big color-base" style="background: #fff; border: 0;" data-ignore-cache="true">投简历</a>
+						<a href="$!{env.appUrl}/user/job/resume.htm?jobId=$!{job.jobId}" class="button button-big button-fill" style="border-radius: 0;" data-ignore-cache="true">投简历</a>
 					</div>
 				</div>   
 			</div>
@@ -86,12 +86,12 @@
 			<div class="toolbar-inner" style="padding: 0;">
 				<div class="row no-gutter" style="width: 100%;">
 					<div class="col-33">
-						<a href="javascript:job_detail_delete();" class="button button-big color-gray" style="background: #fff; border-radius: 0; border: 0; border-right: 1px solid #d9d9d9;">
+						<a href="javascript:job_detail_delete();" class="button button-big button-fill color-white">
                             <i class="iconfont icon-delete"></i><span style="margin-left: 3px;">删除</span>
                         </a>
 					</div>
 					<div class="col-66">
-						<a href="javascript:job_detail_copy();" class="button button-big color-gray" style="background: #fff; border: 0;">再次发布</a>
+						<a href="javascript:job_detail_copy();" class="button button-big button-fill" style="border-radius: 0;">再次发布</a>
 					</div>
 				</div>   
 			</div>

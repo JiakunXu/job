@@ -240,10 +240,10 @@
 			<div class="toolbar-inner" style="padding: 0;">
 				<div class="row no-gutter" style="width: 100%;">
 					<div class="col-33">
-						<a href="＃" class="back button button-big color-gray" style="background: #fff; border-radius: 0; border: 0; border-right: 1px solid #d9d9d9;">取消</a>
+						<a href="＃" class="back button button-big button-fill color-white">取消</a>
 					</div>
 					<div class="col-66">
-						<a href="javascript:resume_edit_saveOrUpdate();" class="button button-big color-base" style="background: #fff; border: 0;">保存</a>
+						<a href="javascript:resume_edit_saveOrUpdate();" class="button button-big button-fill" style="border-radius: 0;">保存</a>
 					</div>
 				</div>
 			</div>
