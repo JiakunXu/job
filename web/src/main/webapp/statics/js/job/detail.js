@@ -2,6 +2,9 @@ myApp.onPageInit('job.detail', function(page) {
 	$$('form.ajax-submit.job-detail-bookmark-save').on('beforeSubmit',
 			function(e) {
 			});
+	$$('form.ajax-submit.job-detail-bookmark-cancel').on('beforeSubmit',
+			function(e) {
+			});
 	$$('form.ajax-submit.job-detail-delete').on('beforeSubmit', function(e) {
 			});
 	$$('form.ajax-submit.job-detail-copy').on('beforeSubmit', function(e) {
@@ -11,6 +14,22 @@ myApp.onPageInit('job.detail', function(page) {
 			function(e) {
 				myApp.hideIndicator();
 				var xhr = e.detail.xhr;
+
+				$$('.toolbar .toolbar-inner .button.job-detail-bookmark-save')
+						.hide();
+				$$('.toolbar .toolbar-inner .button.job-detail-bookmark-cancel')
+						.show();
+			});
+
+	$$('form.ajax-submit.job-detail-bookmark-cancel').on('submitted',
+			function(e) {
+				myApp.hideIndicator();
+				var xhr = e.detail.xhr;
+
+				$$('.toolbar .toolbar-inner .button.job-detail-bookmark-cancel')
+						.hide();
+				$$('.toolbar .toolbar-inner .button.job-detail-bookmark-save')
+						.show();
 			});
 
 	$$('form.ajax-submit.job-detail-delete').on('submitted', function(e) {
@@ -41,6 +60,13 @@ myApp.onPageInit('job.detail', function(page) {
 				myApp.alert(xhr.responseText, '错误');
 			});
 
+	$$('form.ajax-submit.job-detail-bookmark-cancel').on('submitError',
+			function(e) {
+				myApp.hideIndicator();
+				var xhr = e.detail.xhr;
+				myApp.alert(xhr.responseText, '错误');
+			});
+
 	$$('form.ajax-submit.job-detail-delete').on('submitError', function(e) {
 				myApp.hideIndicator();
 				var xhr = e.detail.xhr;
@@ -59,6 +85,12 @@ function job_detail_bookmark_save() {
 	myApp.showIndicator();
 
 	$$('#job/detail/bookmark/save').trigger("submit");
+}
+
+function job_detail_bookmark_cancel() {
+	myApp.showIndicator();
+
+	$$('#job/detail/bookmark/cancel').trigger("submit");
 }
 
 function job_detail_delete() {

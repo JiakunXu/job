@@ -59,6 +59,9 @@
 			<form id="job/detail/bookmark/save" action="$!{env.appUrl}/bookmark/save.htm" method="POST" class="ajax-submit job-detail-bookmark-save">
             	<input type="hidden" name="jobId" value="$!{job.jobId}"/>
             </form>
+			<form id="job/detail/bookmark/cancel" action="$!{env.appUrl}/bookmark/cancel.htm" method="POST" class="ajax-submit job-detail-bookmark-cancel">
+            	<input type="hidden" name="jobId" value="$!{job.jobId}"/>
+            </form>
 			
 			<form id="job/detail/delete" action="$!{env.appUrl}/job/delete.htm" method="POST" class="ajax-submit job-detail-delete">
             	<input type="hidden" name="jobId" value="$!{job.jobId}"/>
@@ -73,9 +76,21 @@
 			<div class="toolbar-inner" style="padding: 0;">
 				<div class="row no-gutter" style="width: 100%;">
 					<div class="col-33">
-						<a href="javascript:job_detail_bookmark_save();" class="button button-big button-fill color-white">
+						#if($!{job.count} == 0)
+						<a href="javascript:job_detail_bookmark_save();" class="button button-big button-fill color-white job-detail-bookmark-save">
                             <i class="iconfont icon-favor"></i><span style="margin-left: 3px;">收藏</span>
                         </a>
+						<a href="javascript:job_detail_bookmark_cancel();" class="button button-big button-fill color-white job-detail-bookmark-cancel" style="display: none;">
+                            <i class="iconfont icon-favorfill"></i><span style="margin-left: 3px;">取消收藏</span>
+                        </a>
+						#else
+						<a href="javascript:job_detail_bookmark_save();" class="button button-big button-fill color-white job-detail-bookmark-save" style="display: none;">
+                            <i class="iconfont icon-favor"></i><span style="margin-left: 3px;">收藏</span>
+                        </a>
+						<a href="javascript:job_detail_bookmark_cancel();" class="button button-big button-fill color-white job-detail-bookmark-cancel">
+                            <i class="iconfont icon-favorfill"></i><span style="margin-left: 3px;">取消收藏</span>
+                        </a>
+						#end
 					</div>
 					<div class="col-66">
 						<a href="$!{env.appUrl}/user/job/resume.htm?jobId=$!{job.jobId}" class="button button-big button-fill" style="border-radius: 0;" data-ignore-cache="true">投简历</a>

@@ -4,9 +4,18 @@
 <struts>
 	<package name="{http://jobs}jobs$bookmark"
 		extends="{http://jobs}jobs$framework" namespace="/bookmark">
-
+		
 		<action name="save" class="bookmarkAction" method="save">
 			<interceptor-ref name="authenticationStack" />
+		</action>
+		
+		<action name="cancel" class="bookmarkAction" method="cancel">
+			<interceptor-ref name="authenticationStack" />
+		</action>
+		
+		<action name="list" class="bookmarkAction" method="list">
+			<interceptor-ref name="authenticationStack" />
+			<result name="success">/jobs/bookmark/list.vm</result>
 		</action>
 		
 	</package>

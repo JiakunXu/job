@@ -4,6 +4,25 @@
 
 <mapper namespace="com.jk.jobs.bookmark.dao.IBookmarkDao">
 	
+	<select id="getBookmarkCount" parameterType="bookmark" resultType="java.lang.Integer">
+	<![CDATA[
+		SELECT COUNT(1)
+		  FROM basis_tb_bookmark t
+		 WHERE t.state = 'U'
+		   AND t.user_id = #{userId}
+		   AND t.job_id = #{jobId}
+	]]>
+	</select>
+	
+	<select id="getBookmarkList" parameterType="bookmark" resultType="bookmark">
+	<![CDATA[
+		SELECT t.`JOB_ID` AS jobId
+		  FROM basis_tb_bookmark t
+		 WHERE t.state = 'U'
+		   AND t.user_id = #{userId}
+	]]>
+	</select>
+	
 	<insert id="createBookmark" parameterType="bookmark" useGeneratedKeys="true" keyProperty="id">
 	<![CDATA[
 		INSERT
@@ -29,5 +48,17 @@
 		  )
 	]]>
 	</insert>
+	
+	<update id="deleteBookmark" parameterType="bookmark">
+	<![CDATA[
+		UPDATE basis_tb_bookmark t
+		   SET t.modify_date = NOW(),
+			   t.modify_user = #{modifyUser},
+			   t.state = 'D'
+		 WHERE t.state = 'U'
+		   AND t.user_id = #{userId}
+		   AND t.job_id = #{jobId}
+	]]>
+	</update>
 	
 </mapper>

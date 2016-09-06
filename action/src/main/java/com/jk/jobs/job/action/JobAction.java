@@ -8,6 +8,7 @@ import javax.annotation.Resource;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
+import com.jk.jobs.api.bookmark.IBookmarkService;
 import com.jk.jobs.api.job.IJobCatService;
 import com.jk.jobs.api.job.IJobService;
 import com.jk.jobs.api.job.bo.Job;
@@ -33,6 +34,9 @@ public class JobAction extends BaseAction {
 
 	@Resource
 	private IJobCatService jobCatService;
+
+	@Resource
+	private IBookmarkService bookmarkService;
 
 	private List<Job> jobList;
 
@@ -77,6 +81,18 @@ public class JobAction extends BaseAction {
 	 */
 	public String detail() {
 		job = jobService.getJob(jobId);
+
+		if (job != null) {
+			Long userId = this.getUser().getUserId();
+			// if 不是当前项目发布者
+			if (job.getUserId() != userId) {
+				// 判断是否已收藏
+				int count = bookmarkService.getBookmarkCount(userId, job.getJobId());
+				if (count > 0) {
+					job.setCount(count);
+				}
+			}
+		}
 
 		return SUCCESS;
 	}
