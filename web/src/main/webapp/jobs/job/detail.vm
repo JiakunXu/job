@@ -56,6 +56,10 @@
                 </div>
     		</div>
 			
+			<form id="job/detail/bookmark/save" action="$!{env.appUrl}/bookmark/save.htm" method="POST" class="ajax-submit job-detail-bookmark-save">
+            	<input type="hidden" name="jobId" value="$!{job.jobId}"/>
+            </form>
+			
 			<form id="job/detail/delete" action="$!{env.appUrl}/job/delete.htm" method="POST" class="ajax-submit job-detail-delete">
             	<input type="hidden" name="jobId" value="$!{job.jobId}"/>
             </form>
@@ -69,7 +73,7 @@
 			<div class="toolbar-inner" style="padding: 0;">
 				<div class="row no-gutter" style="width: 100%;">
 					<div class="col-33">
-						<a href="#" class="button button-big button-fill color-white">
+						<a href="javascript:job_detail_bookmark_save();" class="button button-big button-fill color-white">
                             <i class="iconfont icon-favor"></i><span style="margin-left: 3px;">收藏</span>
                         </a>
 					</div>

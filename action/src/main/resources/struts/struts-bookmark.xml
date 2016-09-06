@@ -1,0 +1,13 @@
+<!DOCTYPE struts PUBLIC
+ "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+ "http://struts.apache.org/dtds/struts-2.5.dtd">
+<struts>
+	<package name="{http://jobs}jobs$bookmark"
+		extends="{http://jobs}jobs$framework" namespace="/bookmark">
+
+		<action name="save" class="bookmarkAction" method="save">
+			<interceptor-ref name="authenticationStack" />
+		</action>
+		
+	</package>
+</struts>
