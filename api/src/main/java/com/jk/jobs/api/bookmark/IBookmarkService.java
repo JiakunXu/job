@@ -14,6 +14,13 @@ public interface IBookmarkService {
 
 	/**
 	 * 
+	 * @param jobId
+	 * @return
+	 */
+	int getBookmarkCount(Long jobId);
+
+	/**
+	 * 
 	 * @param userId
 	 * @param jobId
 	 * @return

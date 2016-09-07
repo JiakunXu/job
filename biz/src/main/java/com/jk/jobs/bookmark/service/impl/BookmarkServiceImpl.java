@@ -36,8 +36,13 @@ public class BookmarkServiceImpl implements IBookmarkService {
 	private IBookmarkDao bookmarkDao;
 
 	@Override
+	public int getBookmarkCount(Long jobId) {
+		return getBookmarkCount(null, jobId);
+	}
+
+	@Override
 	public int getBookmarkCount(Long userId, Long jobId) {
-		if (userId == null || jobId == null) {
+		if (jobId == null) {
 			return 0;
 		}
 

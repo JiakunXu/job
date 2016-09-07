@@ -74,6 +74,8 @@ public class Job extends SearchInfo {
 
 	private String jobCName;
 
+	private int star;
+
 	private int count;
 
 	public Long getJobId() {
@@ -210,6 +212,14 @@ public class Job extends SearchInfo {
 
 	public void setJobCName(String jobCName) {
 		this.jobCName = jobCName;
+	}
+
+	public int getStar() {
+		return star;
+	}
+
+	public void setStar(int star) {
+		this.star = star;
 	}
 
 	public int getCount() {

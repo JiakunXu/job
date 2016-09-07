@@ -10,6 +10,7 @@ import org.springframework.transaction.TransactionStatus;
 import org.springframework.transaction.support.TransactionCallback;
 import org.springframework.transaction.support.TransactionTemplate;
 
+import com.jk.jobs.api.bookmark.IBookmarkService;
 import com.jk.jobs.api.job.IJobCatService;
 import com.jk.jobs.api.job.IJobService;
 import com.jk.jobs.api.job.bo.Job;
@@ -47,6 +48,9 @@ public class JobServiceImpl implements IJobService {
 
 	@Resource
 	private IJobCatService jobCatService;
+
+	@Resource
+	private IBookmarkService bookmarkService;
 
 	@Resource
 	private IJobDao jobDao;
@@ -99,6 +103,9 @@ public class JobServiceImpl implements IJobService {
 			if (c != null) {
 				j.setJobCName(c.getJobCName());
 			}
+
+			// 项目被收藏
+			j.setStar(bookmarkService.getBookmarkCount(j.getJobId()));
 		}
 
 		return jobList;
