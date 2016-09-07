@@ -30,6 +30,13 @@ public interface IJobDetailDao {
 	 * @param jobDetail
 	 * @return
 	 */
+	int copyJobDetail(JobDetail jobDetail);
+
+	/**
+	 * 
+	 * @param jobDetail
+	 * @return
+	 */
 	int updateJobDetail(JobDetail jobDetail);
 
 }

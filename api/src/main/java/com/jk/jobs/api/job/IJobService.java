@@ -130,6 +130,15 @@ public interface IJobService {
 	 */
 	BooleanResult delete(Long userId, String jobId);
 
+	/**
+	 * 再次发布.
+	 * 
+	 * @param userId
+	 * @param jobId
+	 * @return
+	 */
+	BooleanResult copy(Long userId, String jobId);
+
 	// >>>>>>>>>>以下是项目相关简历<<<<<<<<<<
 
 	/**

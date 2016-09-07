@@ -21,6 +21,10 @@ public class JobDetail implements Serializable {
 
 	private String modifyUser;
 
+	// >>>>>>>>>>以下是辅助属性<<<<<<<<<<
+
+	private Long copyJobId;
+
 	public Long getDetailId() {
 		return detailId;
 	}
@@ -59,6 +63,14 @@ public class JobDetail implements Serializable {
 
 	public void setModifyUser(String modifyUser) {
 		this.modifyUser = modifyUser;
+	}
+
+	public Long getCopyJobId() {
+		return copyJobId;
+	}
+
+	public void setCopyJobId(Long copyJobId) {
+		this.copyJobId = copyJobId;
 	}
 
 }

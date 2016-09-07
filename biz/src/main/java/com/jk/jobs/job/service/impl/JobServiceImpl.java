@@ -515,6 +515,78 @@ public class JobServiceImpl implements IJobService {
 	}
 
 	@Override
+	public BooleanResult copy(Long userId, String jobId) {
+		BooleanResult result = new BooleanResult();
+		result.setResult(false);
+
+		final Job job = new Job();
+		final JobDetail jobDetail = new JobDetail();
+
+		if (userId == null) {
+			result.setCode("用户信息不能为空");
+			return result;
+		}
+
+		job.setUserId(userId);
+		// TODO
+		job.setType(IJobService.PUBLISH);
+		job.setModifyUser(userId.toString());
+		jobDetail.setModifyUser(job.getModifyUser());
+
+		if (StringUtils.isBlank(jobId)) {
+			result.setCode("项目信息不能为空");
+			return result;
+		}
+
+		try {
+			job.setJobId(Long.valueOf(jobId));
+			jobDetail.setCopyJobId(job.getJobId());
+		} catch (NumberFormatException e) {
+			logger.error(e);
+
+			result.setCode("项目信息不能为空");
+			return result;
+		}
+
+		BooleanResult res = transactionTemplate.execute(new TransactionCallback<BooleanResult>() {
+			public BooleanResult doInTransaction(TransactionStatus ts) {
+				BooleanResult result = new BooleanResult();
+				result.setResult(false);
+
+				Long jobId = null;
+
+				try {
+					jobDao.copyJob(job);
+					jobId = job.getJobId();
+				} catch (Exception e) {
+					logger.error(LogUtil.parserBean(job), e);
+					ts.setRollbackOnly();
+
+					result.setCode("项目信息创建失败，请稍后再试");
+					return result;
+				}
+
+				try {
+					jobDetail.setJobId(jobId);
+					jobDetailDao.copyJobDetail(jobDetail);
+				} catch (Exception e) {
+					logger.error(LogUtil.parserBean(jobDetail), e);
+					ts.setRollbackOnly();
+
+					result.setCode("项目明细信息创建失败，请稍后再试");
+					return result;
+				}
+
+				result.setCode(jobId.toString());
+				result.setResult(true);
+				return result;
+			}
+		});
+
+		return res;
+	}
+
+	@Override
 	public List<UserJob> getUserList(Long userId, String jobId) {
 		if (userId == null || StringUtils.isBlank(jobId)) {
 			return null;

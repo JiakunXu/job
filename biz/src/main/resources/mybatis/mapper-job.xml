@@ -124,6 +124,52 @@
 	]]>
 	</insert>
 	
+	<insert id="copyJob" parameterType="job" useGeneratedKeys="true" keyProperty="jobId">
+	<![CDATA[
+		INSERT
+		INTO basis_tb_job
+		  (
+			USER_ID,
+			JOB_CID,
+			TITLE,
+			CYCLE,
+			SALARY,
+			WORK_ADDRESS,
+			JOB_NATURE,
+			WORK_YEAR,
+			EDUCATION,
+			REMARK,
+			TYPE,
+			STATE,
+			CREATE_DATE,
+			CREATE_USER,
+			MODIFY_DATE,
+			MODIFY_USER
+		  )
+		  (SELECT #{userId},
+			   t.`JOB_CID`,
+			   t.`TITLE`,
+			   t.`CYCLE`,
+			   t.`SALARY`,
+			   t.`WORK_ADDRESS`,
+			   t.`JOB_NATURE`,
+			   t.`WORK_YEAR`,
+			   t.`EDUCATION`,
+			   t.`REMARK`,
+			   #{type},
+			   'U',
+			   NOW(),
+			   #{modifyUser},
+			   NOW(),
+			   #{modifyUser}
+		  FROM basis_tb_job t
+		 WHERE t.state = 'U'
+		   AND t.user_id = #{userId}
+		   AND t.job_id = #{jobId}
+		  )
+	]]>
+	</insert>
+	
 	<update id="updateJob" parameterType="job">
 	<![CDATA[
 		UPDATE basis_tb_job t

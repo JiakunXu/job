@@ -62,6 +62,11 @@
 		<action name="delete" class="jobAction" method="delete">
 			<interceptor-ref name="authenticationStack" />
 		</action>
+		
+		<!-- 再次发布 -->
+		<action name="copy" class="jobAction" method="copy">
+			<interceptor-ref name="authenticationStack" />
+		</action>
 	</package>
 	
 	<package name="{http://jobs}jobs$job/resume"

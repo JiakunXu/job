@@ -44,6 +44,13 @@ public interface IJobDao {
 	 * @param job
 	 * @return
 	 */
+	int copyJob(Job job);
+
+	/**
+	 * 
+	 * @param job
+	 * @return
+	 */
 	int updateJob(Job job);
 
 	/**

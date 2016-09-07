@@ -271,6 +271,24 @@ public class JobAction extends BaseAction {
 		return RESOURCE_RESULT;
 	}
 
+	/**
+	 * 再次发布.
+	 * 
+	 * @return
+	 */
+	public String copy() {
+		BooleanResult result = jobService.copy(this.getUser().getUserId(), jobId);
+
+		if (result.getResult()) {
+			this.setResourceResult("发布成功");
+		} else {
+			this.getServletResponse().setStatus(599);
+			this.setResourceResult(result.getCode());
+		}
+
+		return RESOURCE_RESULT;
+	}
+
 	public List<Job> getJobList() {
 		return jobList;
 	}
