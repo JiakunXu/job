@@ -1,0 +1,1 @@
+<div class="content-block" style="padding: 0;">$!{esc.htmlText($!{jobDetail.content})}</div>

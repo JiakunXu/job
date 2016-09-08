@@ -47,7 +47,7 @@
         					#foreach($jobDetail in $!{job.jobDetailList})
         					<li class="item-content">
 								<div class="item-inner">
-                                    <div class="content-block">$!{jobDetail.content}</div>
+									#parse("/jobs/job/content.detail.vm")
                                 </div>
                             </li>
 							#end
