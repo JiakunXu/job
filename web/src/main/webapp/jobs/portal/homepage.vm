@@ -107,7 +107,7 @@
 										#end
 										<div class="card-header" style="font-size: 14px;">
                 							<div class="left"><i class="iconfont icon-cascades" style="font-size: 16px;"></i> $!{job.title}</div>
-											<div><i class="iconfont icon-post" style="font-size: 14px;"></i> $!{job.userName}</div>
+											<div><i class="iconfont icon-write" style="font-size: 14px;"></i> $!{job.userName}</div>
 											<div class="right">$!{job.star} <i class="iconfont icon-favorfill" style="font-size: 14px;"></i></div>
                 						</div>
 										<div class="card-content">

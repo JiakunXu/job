@@ -81,7 +81,11 @@
     							<div class="item-inner">
     								<div class="item-title label">工作性质</div>
     								<div class="item-input">
-    									<input type="text" name="job.jobNature" placeholder="" />
+										<select name="job.jobNature">
+    										<option>全职</option>
+											<option>兼职</option>
+											<option>实习</option>
+    									</select>
     								</div>
     							</div>
     						</div>

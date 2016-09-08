@@ -39,12 +39,9 @@
 							<div class="left"><i class="iconfont icon-countdown" style="font-size: 16px;"></i> $!{job.createDate}</div>
 							<div>$!{job.star} <i class="iconfont icon-favorfill" style="font-size: 14px;"></i></div>
 							<div class="right">
-								#if($!{job.type} == 'finish')
-									已结束
-								#elseif($!{job.type} == 'revoke')
-									已撤销
-								#else
-									已发布
+								#if($!{job.type} == 'publish') 已发布
+								#elseif($!{job.type} == 'finish') 已结束
+								#elseif($!{job.type} == 'revoke') 已撤销
 								#end
 							</div>
 						</div>
