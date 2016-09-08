@@ -53,9 +53,19 @@
 			<form id="user/job/deliver" action="$!{env.appUrl}/user/job/deliver.htm" method="POST" class="ajax-submit user-job-form">
 				<input type="hidden" name="jobId" value="$!{jobId}" />
 			</form>
-			<div class="content-block">
-				<p><a href="javascript:user_job_deliver();" class="button button-big button-fill weui_btn_primary">投递</a></p>
-            </div>
         </div>
+		
+		<div class="toolbar">
+			<div class="toolbar-inner" style="padding: 0;">
+				<div class="row no-gutter" style="width: 100%;">
+					<div class="col-33">
+						<a href="＃" class="back button button-big button-fill color-white">取消</a>
+					</div>
+					<div class="col-66">
+						<a href="javascript:user_job_deliver();" class="button button-big button-fill" style="border-radius: 0;">投递</a>
+					</div>
+				</div>
+			</div>
+		</div>
     </div>
 </div>
