@@ -37,7 +37,7 @@
 				<ul>
 					<li class="card" style="border-radius: 5px; margin: 10px 5px;">
 						#if($!{user.userId} == $!{job.userId})
-						<span class="bw"></span>
+						<span class="by"></span>
 						#end
 						<div class="card-header" style="font-size: 14px;">
 							<div class="left"><i class="iconfont icon-cascades" style="font-size: 16px;"></i> $!{job.title}</div>
