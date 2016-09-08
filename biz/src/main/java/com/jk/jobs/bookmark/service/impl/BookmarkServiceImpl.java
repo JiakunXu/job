@@ -11,10 +11,12 @@ import org.springframework.stereotype.Service;
 
 import com.jk.jobs.api.bookmark.IBookmarkService;
 import com.jk.jobs.api.bookmark.bo.Bookmark;
+import com.jk.jobs.api.cache.IMemcachedCacheService;
 import com.jk.jobs.api.job.IJobService;
 import com.jk.jobs.api.job.bo.Job;
 import com.jk.jobs.bookmark.dao.IBookmarkDao;
 import com.jk.jobs.framework.bo.BooleanResult;
+import com.jk.jobs.framework.exception.ServiceException;
 import com.jk.jobs.framework.log.Logger4jCollection;
 import com.jk.jobs.framework.log.Logger4jExtend;
 import com.jk.jobs.framework.util.LogUtil;
@@ -30,6 +32,9 @@ public class BookmarkServiceImpl implements IBookmarkService {
 	private Logger4jExtend logger = Logger4jCollection.getLogger(BookmarkServiceImpl.class);
 
 	@Resource
+	private IMemcachedCacheService memcachedCacheService;
+
+	@Resource
 	private IJobService jobService;
 
 	@Resource
@@ -37,7 +42,38 @@ public class BookmarkServiceImpl implements IBookmarkService {
 
 	@Override
 	public int getBookmarkCount(Long jobId) {
-		return getBookmarkCount(null, jobId);
+		if (jobId == null) {
+			return 0;
+		}
+
+		Long key = jobId;
+
+		Integer count = null;
+
+		try {
+			count = (Integer) memcachedCacheService.get(IMemcachedCacheService.CACHE_KEY_BOOKMARK_JOB_ID + key);
+		} catch (ServiceException e) {
+			logger.error(IMemcachedCacheService.CACHE_KEY_BOOKMARK_JOB_ID + key, e);
+		}
+
+		if (count != null) {
+			return count;
+		}
+
+		count = getBookmarkCount(null, jobId);
+
+		if (count == null) {
+			return 0;
+		}
+
+		// not null then set to cache
+		try {
+			memcachedCacheService.set(IMemcachedCacheService.CACHE_KEY_BOOKMARK_JOB_ID + key, count);
+		} catch (ServiceException e) {
+			logger.error(IMemcachedCacheService.CACHE_KEY_BOOKMARK_JOB_ID + key, e);
+		}
+
+		return count;
 	}
 
 	@Override
