@@ -100,7 +100,11 @@
 								#foreach($job in $!{jobList})
 								<ul>
 									<li class="card" style="border-radius: 5px; margin: 10px 5px;">
+										#if($!{user.userId} == $!{job.userId})
+										<span class="by"></span>
+										#else
 										<span class="bw"></span>
+										#end
 										<div class="card-header" style="font-size: 14px;">
                 							<div class="left"><i class="iconfont icon-cascades" style="font-size: 16px;"></i> $!{job.title}</div>
 											<div><i class="iconfont icon-post" style="font-size: 14px;"></i> $!{job.userName}</div>
