@@ -30,6 +30,11 @@ public interface IUserJobService {
 	String REVOKE = "revoke";
 
 	/**
+	 * 删除.
+	 */
+	String DELETE = "delete";
+
+	/**
 	 * 
 	 * @param userId
 	 * @param jobId
@@ -52,6 +57,15 @@ public interface IUserJobService {
 	 * @return
 	 */
 	BooleanResult revoke(Long userId, String jobId);
+
+	/**
+	 * 删除.
+	 * 
+	 * @param userId
+	 * @param jobId
+	 * @return
+	 */
+	BooleanResult delete(Long userId, String jobId);
 
 	// >>>>>>>>>>以下是项目相关简历<<<<<<<<<<
 

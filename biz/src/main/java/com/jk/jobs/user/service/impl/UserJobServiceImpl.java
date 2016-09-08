@@ -95,7 +95,25 @@ public class UserJobServiceImpl implements IUserJobService {
 			return result;
 		}
 
-		// 判断用户是否已维护简历
+		// 1. 判断是否已投递简历
+
+		// 1.1 只查询投递状态的简历
+		userJob.setType(IUserJobService.DELIVER);
+		int count = getUserJobCount(userJob);
+		if (count > 0) {
+			result.setCode("简历已投递");
+			return result;
+		}
+
+		// 1.2 只查询被拒绝状态的简历
+		userJob.setType(IUserJobService.IGNORE);
+		count = getUserJobCount(userJob);
+		if (count > 0) {
+			result.setCode("简历已投递");
+			return result;
+		}
+
+		// 2. 判断用户是否已维护简历
 		Resume resume = resumeService.getResume(userId);
 
 		if (resume == null) {
@@ -279,6 +297,51 @@ public class UserJobServiceImpl implements IUserJobService {
 
 		return result;
 	}
+
+	@Override
+	public BooleanResult delete(Long userId, String jobId) {
+		BooleanResult result = new BooleanResult();
+		result.setResult(false);
+
+		if (userId == null) {
+			result.setCode("用户信息不能为空");
+			return result;
+		}
+
+		if (StringUtils.isBlank(jobId)) {
+			result.setCode("项目信息不能为空");
+			return result;
+		}
+
+		UserJob userJob = new UserJob();
+
+		userJob.setUserId(userId);
+		userJob.setModifyUser(userId.toString());
+
+		try {
+			userJob.setJobId(Long.valueOf(jobId));
+		} catch (NumberFormatException e) {
+			logger.error(e);
+
+			result.setCode("项目信息不能为空");
+			return result;
+		}
+
+		userJob.setType(IUserJobService.DELETE);
+
+		try {
+			userJobDao.updateUserJob(userJob);
+			result.setResult(true);
+		} catch (Exception e) {
+			logger.error(LogUtil.parserBean(userJob), e);
+
+			result.setCode("简历撤销失败，请稍后再试");
+		}
+
+		return result;
+	}
+
+	// >>>>>>>>>>以下是项目相关简历<<<<<<<<<<
 
 	@Override
 	public int getUserCount(Long jobId) {

@@ -58,6 +58,9 @@
 		<if test="jobId != null">
 		<![CDATA[ AND t.job_id = #{jobId} ]]>
 		</if>
+		<if test="userId != null">
+		<![CDATA[ AND t.user_id = #{userId} ]]>
+		</if>
 	</select>
 	
 	<select id="getUserJobList" parameterType="userJob" resultType="userJob">
@@ -120,6 +123,11 @@
 		UPDATE basis_tb_user_job t
 		   SET t.modify_date = NOW(),
 			   t.modify_user = #{modifyUser},
+	]]>
+		<if test="type == 'delete'">
+		<![CDATA[ t.state = 'D', ]]>
+		</if>
+	<![CDATA[
 			   t.`TYPE` = #{type}
 		 WHERE t.state = 'U'
 		   AND t.`TYPE` <> #{type}

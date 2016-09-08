@@ -36,31 +36,31 @@
 				<ul>
 					<li class="card" style="border-radius: 5px; margin: 10px 5px;">
 						<div class="card-header" style="font-size: 14px;">
-							<div class="left"><i class="iconfont icon-countdown" style="font-size: 16px;"></i> $!{job.createDate}</div>
+							<div class="left"><i class="iconfont icon-time" style="font-size: 16px;"></i> $!{job.createDate}</div>
 							<div class="right">
 								#if($!{job.type} == 'revoke') 已撤销 #else 已投递 #end
 							</div>
 						</div>
 						<div class="card-content">
-							<div class="item-content">
-    							<a class="item-inner" href="$!{env.appUrl}/job/detail.htm?jobId=$!{job.jobId}" data-ignore-cache="true">
+							<a class="item-content" href="$!{env.appUrl}/job/detail.htm?jobId=$!{job.jobId}" data-ignore-cache="true">
+    							<div class="item-inner">
     								<div class="item-title-row">
                                         <div class="item-title">$!{job.title}</div>
     								</div>
     								#parse("/jobs/job/content.vm")
-                                </a>
+                                </div>
 								<div class="item-after">
-									<a href="$!{env.appUrl}/job/detail.htm?jobId=$!{job.jobId}" data-ignore-cache="true">
-										<i class="iconfont icon-edit color-base"></i>
-									</a>
+									<i class="iconfont icon-form color-base"></i>
 								</div>
-                            </div>
+                            </a>
 						</div>
 						<div class="card-footer">
                             <div class="left"></div>
 							<div class="right">
 								#if($!{job.type} == 'deliver' or $!{job.type} == 'ignore')
-								<a href="javascript:user_job_list_revoke('$!{job.jobId}');" class="button color-red">撤销</a>
+								<a href="javascript:user_job_list_revoke('$!{job.jobId}');" class="button">撤销</a>
+								#elseif($!{job.type} == 'revoke')
+								<a href="javascript:user_job_list_delete('$!{job.jobId}');" class="button color-red">删除</a>
 								#end
                             </div>
 						</div>
@@ -69,8 +69,11 @@
 				#end
             </div>
 			
-			<form id="user/job/list/revoke" action="$!{env.appUrl}/user/job/revoke.htm" method="POST" class="ajax-submit user-job-list-form">
-            	<input type="hidden" name="jobId" id="user_job_list_jobId"/>
+			<form id="user/job/list/revoke" action="$!{env.appUrl}/user/job/revoke.htm" method="POST" class="ajax-submit user-job-list-revoke">
+            	<input type="hidden" name="jobId" id="user_job_list_revoke_jobId"/>
+            </form>
+			<form id="user/job/list/delete" action="$!{env.appUrl}/user/job/delete.htm" method="POST" class="ajax-submit user-job-list-delete">
+            	<input type="hidden" name="jobId" id="user_job_list_delete_jobId"/>
             </form>
         </div>
     </div>

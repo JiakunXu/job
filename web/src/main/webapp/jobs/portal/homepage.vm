@@ -111,16 +111,14 @@
 											<div class="right">$!{job.star} <i class="iconfont icon-favorfill" style="font-size: 14px;"></i></div>
                 						</div>
 										<div class="card-content">
-											<div class="item-content">
-                    							<a class="item-inner" href="$!{env.appUrl}/job/detail.htm?jobId=$!{job.jobId}" data-ignore-cache="true">
+											<a class="item-content" href="$!{env.appUrl}/job/detail.htm?jobId=$!{job.jobId}" data-ignore-cache="true">
+                    							<div class="item-inner">
 													#parse("/jobs/job/content.vm")
-                                                </a>
+                                                </div>
 												<div class="item-after">
-													<a href="$!{env.appUrl}/job/detail.htm?jobId=$!{job.jobId}" data-ignore-cache="true">
-														<i class="iconfont icon-edit color-base"></i>
-													</a>
+													<i class="iconfont icon-form color-base"></i>
 												</div>
-                                            </div>
+                                            </a>
 										</div>
 										<div class="card-footer" style="min-height: 0; padding: 5px 15px;">
                                             <span style="font-size: 12px;">

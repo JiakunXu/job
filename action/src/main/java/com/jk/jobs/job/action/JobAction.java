@@ -57,6 +57,20 @@ public class JobAction extends BaseAction {
 
 	private UserJob resume;
 
+	public String stats() {
+		StringBuilder sb = new StringBuilder();
+
+		Long userId = this.getUser().getUserId();
+
+		sb.append(jobService.getJobCount(userId, "publish")).append("&");
+		sb.append(jobService.getJobCount(userId, "finish")).append("&");
+		sb.append(jobService.getJobCount(userId, "revoke"));
+
+		this.setResourceResult(sb.toString());
+
+		return RESOURCE_RESULT;
+	}
+
 	/**
 	 * 项目列表 所有人可见.
 	 * 

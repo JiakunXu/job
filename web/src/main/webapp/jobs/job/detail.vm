@@ -27,7 +27,13 @@
 		<div class="page-content" style="padding-bottom: 44px;">
 			<div class="card" style="border-radius: 5px; margin: 10px 5px;">
 				<div class="card-header" style="font-size: 14px;">
-					<div class="left"><i class="iconfont icon-time" style="font-size: 14px;"></i> $!{job.createDate}</div>
+					<div class="left">
+						#set($quot = $!{dateUtil.getQuot($!{job.createDate}, $!{dateUtil.getNowDatetimeStr()}, 'yyyy-MM-dd HH:mm:ss')})
+						<i class="iconfont icon-countdown" style="font-size: 14px;"></i>
+						#if($!{quot} == 0) 今天发布
+						#else $!{quot}天前发布
+						#end
+					</div>
 					<div class="right"><i class="iconfont icon-write" style="font-size: 14px;"></i> $!{job.userName}</div>
 				</div>
 				<div class="card-content">

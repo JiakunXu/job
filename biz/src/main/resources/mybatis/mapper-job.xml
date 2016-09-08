@@ -222,7 +222,6 @@
 		UPDATE basis_tb_job t
 		   SET t.modify_date = NOW(),
 			   t.modify_user = #{modifyUser},
-			   t.`TYPE` = #{type},
 			   t.state = 'D'
 		 WHERE t.state = 'U'
 		   AND t.`TYPE` IN ('finish', 'revoke')

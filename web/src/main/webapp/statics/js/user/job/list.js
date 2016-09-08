@@ -15,18 +15,33 @@ myApp.onPageInit('user.job.list', function(page) {
 								}, 1000);
 					});
 
-			$$('form.ajax-submit.user-job-list-form').on('beforeSubmit',
+			$$('form.ajax-submit.user-job-list-revoke').on('beforeSubmit',
+					function(e) {
+					});
+			$$('form.ajax-submit.user-job-list-delete').on('beforeSubmit',
 					function(e) {
 					});
 
-			$$('form.ajax-submit.user-job-list-form').on('submitted',
+			$$('form.ajax-submit.user-job-list-revoke').on('submitted',
+					function(e) {
+						myApp.hideIndicator();
+						var xhr = e.detail.xhr;
+						myApp.getCurrentView().router.refreshPage();
+					});
+			$$('form.ajax-submit.user-job-list-delete').on('submitted',
 					function(e) {
 						myApp.hideIndicator();
 						var xhr = e.detail.xhr;
 						myApp.getCurrentView().router.refreshPage();
 					});
 
-			$$('form.ajax-submit.user-job-list-form').on('submitError',
+			$$('form.ajax-submit.user-job-list-revoke').on('submitError',
+					function(e) {
+						myApp.hideIndicator();
+						var xhr = e.detail.xhr;
+						myApp.alert(xhr.responseText, '错误');
+					});
+			$$('form.ajax-submit.user-job-list-delete').on('submitError',
 					function(e) {
 						myApp.hideIndicator();
 						var xhr = e.detail.xhr;
@@ -38,7 +53,16 @@ function user_job_list_revoke(jobId) {
 	myApp.confirm('确定撤销？', '简历管理', function() {
 				myApp.showIndicator();
 
-				$$('#user_job_list_jobId').val(jobId);
+				$$('#user_job_list_revoke_jobId').val(jobId);
 				$$('#user/job/list/revoke').trigger("submit");
+			});
+}
+
+function user_job_list_delete(jobId) {
+	myApp.confirm('确定删除？', '简历管理', function() {
+				myApp.showIndicator();
+
+				$$('#user_job_list_delete_jobId').val(jobId);
+				$$('#user/job/list/delete').trigger("submit");
 			});
 }

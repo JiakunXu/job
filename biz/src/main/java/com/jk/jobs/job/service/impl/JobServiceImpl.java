@@ -74,6 +74,19 @@ public class JobServiceImpl implements IJobService {
 	}
 
 	@Override
+	public int getJobCount(Long userId, String type) {
+		if (userId == null || StringUtils.isBlank(type)) {
+			return 0;
+		}
+
+		Job job = new Job();
+		job.setUserId(userId);
+		job.setType(type.trim());
+
+		return getJobCount(job);
+	}
+
+	@Override
 	public List<Job> getJobList(Job job) {
 		if (job == null) {
 			return null;
@@ -495,8 +508,6 @@ public class JobServiceImpl implements IJobService {
 			result.setCode("项目信息不能为空");
 			return result;
 		}
-
-		job.setType(IJobService.DELETE);
 
 		try {
 			int c = jobDao.deleteJob(job);

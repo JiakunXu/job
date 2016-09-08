@@ -128,6 +128,9 @@ public class BookmarkServiceImpl implements IBookmarkService {
 			bookmarkDao.createBookmark(bookmark);
 			result.setCode(bookmark.getId().toString());
 			result.setResult(true);
+
+			// remove cache
+			remove(jobId.trim());
 		} catch (Exception e) {
 			logger.error(LogUtil.parserBean(bookmark), e);
 
@@ -169,6 +172,9 @@ public class BookmarkServiceImpl implements IBookmarkService {
 		try {
 			bookmarkDao.deleteBookmark(bookmark);
 			result.setResult(true);
+
+			// remove cache
+			remove(jobId.trim());
 		} catch (Exception e) {
 			logger.error(LogUtil.parserBean(bookmark), e);
 
@@ -213,6 +219,14 @@ public class BookmarkServiceImpl implements IBookmarkService {
 		}
 
 		return null;
+	}
+
+	private void remove(String key) {
+		try {
+			memcachedCacheService.remove(IMemcachedCacheService.CACHE_KEY_BOOKMARK_JOB_ID + key);
+		} catch (Exception e) {
+			logger.error(e);
+		}
 	}
 
 }

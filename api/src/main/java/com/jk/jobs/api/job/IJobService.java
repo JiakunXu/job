@@ -34,16 +34,19 @@ public interface IJobService {
 	String REVOKE = "revoke";
 
 	/**
-	 * 删除.
-	 */
-	String DELETE = "delete";
-
-	/**
 	 * 
 	 * @param job
 	 * @return
 	 */
 	int getJobCount(Job job);
+
+	/**
+	 * 
+	 * @param userId
+	 * @param type
+	 * @return
+	 */
+	int getJobCount(Long userId, String type);
 
 	/**
 	 * 

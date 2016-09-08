@@ -4,7 +4,11 @@
 <struts>
 	<package name="{http://jobs}jobs$job"
 		extends="{http://jobs}jobs$framework" namespace="/job">
-
+		
+		<action name="stats" class="jobAction" method="stats">
+			<interceptor-ref name="authenticationStack" />
+		</action>
+		
 		<action name="list" class="jobAction" method="list">
 			<interceptor-ref name="authenticationStack" />
 			<result name="success">/jobs/job/list.vm</result>

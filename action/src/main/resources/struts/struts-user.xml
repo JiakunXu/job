@@ -36,6 +36,11 @@
 		<action name="revoke" class="userJobAction" method="revoke">
 			<interceptor-ref name="authenticationStack" />
 		</action>
+		
+		<!-- 删除简历 -->
+		<action name="delete" class="userJobAction" method="delete">
+			<interceptor-ref name="authenticationStack" />
+		</action>
 	</package>
 	
 	<package name="{http://jobs}jobs$user/role"

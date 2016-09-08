@@ -83,16 +83,6 @@ public interface IMemcachedCacheService extends ICacheService<String, Object> {
 
 	String CACHE_KEY_WX_TICKET = "jobs:key_wx_ticket_";
 
-	// >>>>>>>>>>以下是交易相关<<<<<<<<<<
-
-	String CACHE_KEY_TRADE_NO = "jobs:key_trade_no_";
-
-	int CACHE_KEY_TRADE_NO_DEFAULT_EXP = 30;
-
-	// >>>>>>>>>>以下是店铺相关<<<<<<<<<<
-
-	String CACHE_KEY_SHOP_ID = "jobs:key_shop_id_";
-
 	// >>>>>>>>>>以下是项目相关<<<<<<<<<<
 
 	String CACHE_KEY_JOB_CAT_ID = "jobs:key_job_cat_id_";
