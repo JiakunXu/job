@@ -9,5 +9,5 @@
     </div>
 </div>
 <div class="item-title-row">
-    <div class="content-block" style="font-size: 13px; padding: 0;">$!{detail.content}</div>
+    <div class="content-block" style="font-size: 13px; padding: 0;">$!{esc.htmlText($!{detail.content})}</div>
 </div>
