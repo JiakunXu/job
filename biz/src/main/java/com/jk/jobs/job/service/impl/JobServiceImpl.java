@@ -546,6 +546,9 @@ public class JobServiceImpl implements IJobService {
 			int c = jobDao.finishJob(job);
 			if (c == 1) {
 				result.setResult(true);
+
+				// remove cache
+				remove(jobId.trim());
 			} else {
 				result.setCode("项目已撤销或结束，请稍后再试");
 			}
@@ -592,6 +595,9 @@ public class JobServiceImpl implements IJobService {
 			int c = jobDao.revokeJob(job);
 			if (c == 1) {
 				result.setResult(true);
+
+				// remove cache
+				remove(jobId.trim());
 			} else {
 				result.setCode("项目已结束或撤销，请稍后再试");
 			}
@@ -636,6 +642,9 @@ public class JobServiceImpl implements IJobService {
 			int c = jobDao.deleteJob(job);
 			if (c == 1) {
 				result.setResult(true);
+
+				// remove cache
+				remove(jobId.trim());
 			} else {
 				result.setCode("项目尚未撤销或已删除，请稍后再试");
 			}
