@@ -20,7 +20,7 @@
 </div>
 <div class="item-title-row">
 	<div class="row no-gutter">
-		<div class="col-50">
+		<div class="col-100">
 			<div class="item-subtitle">擅长模块：
 				#foreach($jobCat in $!{resume.resumeJobCatList})
 				$!{jobCat.jobCName}
@@ -31,6 +31,5 @@
 				#end
 			</div>
         </div>
-		<div class="col-50"></div>
     </div>
 </div>

@@ -12,6 +12,7 @@ import org.springframework.transaction.TransactionStatus;
 import org.springframework.transaction.support.TransactionCallback;
 import org.springframework.transaction.support.TransactionTemplate;
 
+import com.jk.jobs.api.cache.IMemcachedCacheService;
 import com.jk.jobs.api.job.IJobCatService;
 import com.jk.jobs.api.job.bo.JobCat;
 import com.jk.jobs.api.resume.IResumeService;
@@ -19,6 +20,7 @@ import com.jk.jobs.api.resume.bo.Resume;
 import com.jk.jobs.api.resume.bo.ResumeDetail;
 import com.jk.jobs.api.resume.bo.ResumeJobCat;
 import com.jk.jobs.framework.bo.BooleanResult;
+import com.jk.jobs.framework.exception.ServiceException;
 import com.jk.jobs.framework.log.Logger4jCollection;
 import com.jk.jobs.framework.log.Logger4jExtend;
 import com.jk.jobs.framework.util.LogUtil;
@@ -38,6 +40,9 @@ public class ResumeServiceImpl implements IResumeService {
 
 	@Resource
 	private TransactionTemplate transactionTemplate;
+
+	@Resource
+	private IMemcachedCacheService memcachedCacheService;
 
 	@Resource
 	private IJobCatService jobCatService;
@@ -100,7 +105,21 @@ public class ResumeServiceImpl implements IResumeService {
 			return null;
 		}
 
-		Resume resume = new Resume();
+		Long key = userId;
+
+		Resume resume = null;
+
+		try {
+			resume = (Resume) memcachedCacheService.get(IMemcachedCacheService.CACHE_KEY_RESUME_USER_ID + key);
+		} catch (ServiceException e) {
+			logger.error(IMemcachedCacheService.CACHE_KEY_RESUME_USER_ID + key, e);
+		}
+
+		if (resume != null) {
+			return resume;
+		}
+
+		resume = new Resume();
 		resume.setUserId(userId);
 
 		resume = getResume(resume);
@@ -111,6 +130,13 @@ public class ResumeServiceImpl implements IResumeService {
 
 		resume.setResumeDetailList(getResumeDetailList(resume.getResumeId()));
 		resume.setResumeJobCatList(getResumeJobCatList(resume.getResumeId()));
+
+		// not null then set to cache
+		try {
+			memcachedCacheService.set(IMemcachedCacheService.CACHE_KEY_RESUME_USER_ID + key, resume);
+		} catch (ServiceException e) {
+			logger.error(IMemcachedCacheService.CACHE_KEY_RESUME_USER_ID + key, e);
+		}
 
 		return resume;
 	}
@@ -294,6 +320,11 @@ public class ResumeServiceImpl implements IResumeService {
 			}
 		});
 
+		if (res.getResult()) {
+			// remove cache
+			remove(userId);
+		}
+
 		return res;
 	}
 
@@ -414,6 +445,19 @@ public class ResumeServiceImpl implements IResumeService {
 		}
 
 		return null;
+	}
+
+	/**
+	 * remove cache.
+	 * 
+	 * @param key
+	 */
+	private void remove(Long key) {
+		try {
+			memcachedCacheService.remove(IMemcachedCacheService.CACHE_KEY_RESUME_USER_ID + key);
+		} catch (ServiceException e) {
+			logger.error(e);
+		}
 	}
 
 }

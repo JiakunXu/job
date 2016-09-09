@@ -67,7 +67,7 @@ public class UserServiceImpl implements IUserService {
 			return null;
 		}
 
-		String key = userId.toString();
+		Long key = userId;
 
 		User user = null;
 
@@ -84,13 +84,7 @@ public class UserServiceImpl implements IUserService {
 		user = new User();
 		user.setUserId(userId);
 
-		try {
-			user = userDao.getUser(user);
-		} catch (Exception e) {
-			logger.error(LogUtil.parserBean(user), e);
-
-			user = null;
-		}
+		user = getUser(user);
 
 		if (user == null) {
 			return null;
@@ -104,6 +98,70 @@ public class UserServiceImpl implements IUserService {
 		}
 
 		return user;
+	}
+
+	@Override
+	public BooleanResult setUserName(Long userId, String userName) {
+		BooleanResult result = new BooleanResult();
+		result.setResult(false);
+
+		User user = new User();
+
+		if (userId == null) {
+			result.setCode("用户信息不能为空");
+			return result;
+		}
+
+		user.setUserId(userId);
+		user.setModifyUser(userId.toString());
+
+		if (StringUtils.isBlank(userName)) {
+			result.setCode("名字信息不能为空");
+			return result;
+		}
+
+		user.setUserName(userName.trim());
+
+		try {
+			int c = userDao.updateUser(user);
+			if (c == 1) {
+				result.setResult(true);
+
+				// remove cache
+				remove(userId);
+			} else {
+				result.setCode("修改用户信息失败");
+			}
+		} catch (Exception e) {
+			logger.error(LogUtil.parserBean(user), e);
+
+			result.setCode("修改用户信息失败");
+		}
+
+		return result;
+	}
+
+	private User getUser(User user) {
+		try {
+			return userDao.getUser(user);
+		} catch (Exception e) {
+			logger.error(LogUtil.parserBean(user), e);
+		}
+
+		return null;
+	}
+
+	/**
+	 * remove cache.
+	 * 
+	 * @param key
+	 */
+	private void remove(Long key) {
+		try {
+			memcachedCacheService.remove(IMemcachedCacheService.CACHE_KEY_USER_ID + key);
+		} catch (ServiceException e) {
+			logger.error(e);
+		}
 	}
 
 }

@@ -25,4 +25,12 @@ public interface IUserService {
 	 */
 	User getUser(Long userId);
 
+	/**
+	 * 
+	 * @param userId
+	 * @param userName
+	 * @return
+	 */
+	BooleanResult setUserName(Long userId, String userName);
+
 }

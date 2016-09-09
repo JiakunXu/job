@@ -23,4 +23,11 @@ public interface IUserDao {
 	 */
 	User getUser(User user);
 
+	/**
+	 * 
+	 * @param user
+	 * @return
+	 */
+	int updateUser(User user);
+
 }

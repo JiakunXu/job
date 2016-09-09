@@ -11,6 +11,7 @@ import org.springframework.transaction.support.TransactionCallback;
 import org.springframework.transaction.support.TransactionTemplate;
 
 import com.jk.jobs.api.bookmark.IBookmarkService;
+import com.jk.jobs.api.cache.IMemcachedCacheService;
 import com.jk.jobs.api.job.IJobCatService;
 import com.jk.jobs.api.job.IJobService;
 import com.jk.jobs.api.job.bo.Job;
@@ -21,6 +22,7 @@ import com.jk.jobs.api.user.IUserService;
 import com.jk.jobs.api.user.bo.User;
 import com.jk.jobs.api.user.bo.UserJob;
 import com.jk.jobs.framework.bo.BooleanResult;
+import com.jk.jobs.framework.exception.ServiceException;
 import com.jk.jobs.framework.log.Logger4jCollection;
 import com.jk.jobs.framework.log.Logger4jExtend;
 import com.jk.jobs.framework.util.LogUtil;
@@ -39,6 +41,9 @@ public class JobServiceImpl implements IJobService {
 
 	@Resource
 	private TransactionTemplate transactionTemplate;
+
+	@Resource
+	private IMemcachedCacheService memcachedCacheService;
 
 	@Resource
 	private IUserService userService;
@@ -179,7 +184,38 @@ public class JobServiceImpl implements IJobService {
 
 	@Override
 	public Job getJob(String jobId) {
-		return getJob(null, jobId);
+		if (StringUtils.isBlank(jobId)) {
+			return null;
+		}
+
+		String key = jobId;
+
+		Job job = null;
+
+		try {
+			job = (Job) memcachedCacheService.get(IMemcachedCacheService.CACHE_KEY_JOB_ID + key);
+		} catch (ServiceException e) {
+			logger.error(IMemcachedCacheService.CACHE_KEY_JOB_ID + key, e);
+		}
+
+		if (job != null) {
+			return job;
+		}
+
+		job = getJob(null, jobId);
+
+		if (job == null) {
+			return null;
+		}
+
+		// not null then set to cache
+		try {
+			memcachedCacheService.set(IMemcachedCacheService.CACHE_KEY_JOB_ID + key, job);
+		} catch (ServiceException e) {
+			logger.error(IMemcachedCacheService.CACHE_KEY_JOB_ID + key, e);
+		}
+
+		return job;
 	}
 
 	@Override
@@ -385,6 +421,11 @@ public class JobServiceImpl implements IJobService {
 				return result;
 			}
 		});
+
+		if (res.getResult()) {
+			// remove cache
+			remove(res.getCode());
+		}
 
 		return res;
 	}
@@ -597,6 +638,8 @@ public class JobServiceImpl implements IJobService {
 		return res;
 	}
 
+	// >>>>>>>>>>以下是项目相关简历<<<<<<<<<<
+
 	@Override
 	public List<UserJob> getUserList(Long userId, String jobId) {
 		if (userId == null || StringUtils.isBlank(jobId)) {
@@ -682,6 +725,19 @@ public class JobServiceImpl implements IJobService {
 		}
 
 		return null;
+	}
+
+	/**
+	 * remove cache.
+	 * 
+	 * @param key
+	 */
+	private void remove(String key) {
+		try {
+			memcachedCacheService.remove(IMemcachedCacheService.CACHE_KEY_JOB_ID + key);
+		} catch (ServiceException e) {
+			logger.error(e);
+		}
 	}
 
 }

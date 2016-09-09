@@ -10,6 +10,15 @@
 			<interceptor-ref name="authenticationStack" />
 			<result name="success">/jobs/user/detail.vm</result>
 		</action>
+		
+		<action name="setUserName" class="userAction" method="setUserName">
+			<interceptor-ref name="authenticationStack" />
+			<result name="success">/jobs/user/setUserName.vm</result>
+		</action>
+		
+		<action name="updateUserName" class="userAction" method="updateUserName">
+			<interceptor-ref name="authenticationStack" />
+		</action>
 	</package>
 	
 	<package name="{http://jobs}jobs$user/job"

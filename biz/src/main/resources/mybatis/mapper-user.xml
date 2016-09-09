@@ -52,4 +52,15 @@
 	]]>
 	</insert>
 	
+	<update id="updateUser" parameterType="user">
+	<![CDATA[
+		UPDATE basis_tb_user t
+		   SET t.modify_date = NOW(),
+			   t.modify_user = #{modifyUser},
+			   t.`USER_NAME` = #{userName}
+		 WHERE t.state = 'U'
+		   AND t.user_id = #{userId}
+	]]>
+	</update>
+	
 </mapper>

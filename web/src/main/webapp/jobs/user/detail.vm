@@ -17,7 +17,7 @@
 			<div class="list-block">
 				<ul>
 					<li>
-						<a href="#" class="item-link item-content" data-ignore-cache="true">
+						<a href="$!{env.appUrl}/user/setUserName.htm" class="item-link item-content" data-ignore-cache="true">
 							<div class="item-inner">
 								<div class="item-title">名字</div>
 								<div class="item-after" id="user/detail/userName">$!{user.userName}</div>
@@ -33,14 +33,6 @@
 							<div class="item-inner">
 								<div class="item-title">登录账号</div>
 								<div class="item-after">$!{user.passport}</div>
-							</div>
-						</a>
-					</li>
-					<li>
-						<a href="javascript:user_detail_password();" class="item-link item-content">
-							<div class="item-inner">
-								<div class="item-title">账号密码</div>
-								<div class="item-after"></div>
 							</div>
 						</a>
 					</li>

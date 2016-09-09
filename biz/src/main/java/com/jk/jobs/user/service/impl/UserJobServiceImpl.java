@@ -13,6 +13,7 @@ import org.springframework.transaction.TransactionStatus;
 import org.springframework.transaction.support.TransactionCallback;
 import org.springframework.transaction.support.TransactionTemplate;
 
+import com.jk.jobs.api.cache.IMemcachedCacheService;
 import com.jk.jobs.api.job.IJobCatService;
 import com.jk.jobs.api.job.IJobService;
 import com.jk.jobs.api.job.bo.Job;
@@ -26,6 +27,7 @@ import com.jk.jobs.api.user.bo.UserJob;
 import com.jk.jobs.api.user.bo.UserJobCat;
 import com.jk.jobs.api.user.bo.UserJobDetail;
 import com.jk.jobs.framework.bo.BooleanResult;
+import com.jk.jobs.framework.exception.ServiceException;
 import com.jk.jobs.framework.log.Logger4jCollection;
 import com.jk.jobs.framework.log.Logger4jExtend;
 import com.jk.jobs.framework.util.LogUtil;
@@ -45,6 +47,9 @@ public class UserJobServiceImpl implements IUserJobService {
 
 	@Resource
 	private TransactionTemplate transactionTemplate;
+
+	@Resource
+	private IMemcachedCacheService memcachedCacheService;
 
 	@Resource
 	private IResumeService resumeService;
@@ -391,17 +396,30 @@ public class UserJobServiceImpl implements IUserJobService {
 
 	@Override
 	public UserJob detail(Long jobId, String userJobId) {
-		UserJob userJob = new UserJob();
-
 		if (jobId == null) {
 			return null;
 		}
 
-		userJob.setJobId(jobId);
-
 		if (StringUtils.isBlank(userJobId)) {
 			return null;
 		}
+
+		String key = jobId + "&" + userJobId.trim();
+
+		UserJob userJob = null;
+
+		try {
+			userJob = (UserJob) memcachedCacheService.get(IMemcachedCacheService.CACHE_KEY_USER_JOB_ID + key);
+		} catch (ServiceException e) {
+			logger.error(IMemcachedCacheService.CACHE_KEY_USER_JOB_ID + key, e);
+		}
+
+		if (userJob != null) {
+			return userJob;
+		}
+
+		userJob = new UserJob();
+		userJob.setJobId(jobId);
 
 		try {
 			userJob.setUserJobId(Long.valueOf(userJobId));
@@ -419,6 +437,13 @@ public class UserJobServiceImpl implements IUserJobService {
 
 		userJob.setUserJobDetailList(getUserJobDetailList(userJob.getUserJobId()));
 		userJob.setUserJobCatList(getUserJobCatList(userJob.getUserJobId()));
+
+		// not null then set to cache
+		try {
+			memcachedCacheService.set(IMemcachedCacheService.CACHE_KEY_USER_JOB_ID + key, userJob);
+		} catch (ServiceException e) {
+			logger.error(IMemcachedCacheService.CACHE_KEY_USER_JOB_ID + key, e);
+		}
 
 		return userJob;
 	}
