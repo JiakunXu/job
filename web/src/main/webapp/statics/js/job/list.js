@@ -15,3 +15,7 @@ myApp.onPageInit('job.list', function(page) {
 								}, 1000);
 					});
 		});
+
+function job_list_refresh() {
+	myApp.getCurrentView().router.refreshPage();
+}

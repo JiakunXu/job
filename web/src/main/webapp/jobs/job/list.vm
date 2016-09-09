@@ -6,7 +6,7 @@
 		<div class="center sliding">找项目</div>
 		<div class="right">
 			<!-- Right link contains only icon - additional "icon-only" class-->
-			<a href="$!{env.appUrl}/job/template.htm" class="link icon-only" data-ignore-cache="true"> <i class="iconfont icon-more color-gray"></i><span></span></a>
+			<a href="javascript:job_list_refresh();" class="link icon-only"> <i class="iconfont icon-refresh color-gray"></i></a>
 		</div>
 	</div>
 </div>

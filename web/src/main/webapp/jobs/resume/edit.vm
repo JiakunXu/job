@@ -6,6 +6,7 @@
 		<div class="center sliding">我的简历</div>
 		<div class="right">
 			<!-- Right link contains only icon - additional "icon-only" class-->
+			<a href="$!{env.appUrl}/help/resume.htm" class="link icon-only"> <i class="iconfont icon-question color-gray"></i></a>
 		</div>
 	</div>
 </div>

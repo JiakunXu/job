@@ -1,0 +1,28 @@
+<!-- We don't need full layout here, because this page will be parsed with Ajax-->
+<!-- Top Navbar-->
+<div class="navbar">
+	<div class="navbar-inner">
+		<div class="left"><a href="#" class="back link"> <i class="icon icon-back"></i><span></span></a></div>
+		<div class="center sliding">帮助中心－项目模版</div>
+		<div class="right">
+			<!-- Right link contains only icon - additional "icon-only" class-->
+		</div>
+	</div>
+</div>
+<div class="pages">
+	<!-- Page, data-page contains page name-->
+	<div data-page="help.job" class="page no-tabbar">
+		<!-- Scrollable page content-->
+		<div class="page-content">
+			<div class="list-block">
+				<ul>
+					<li class="item-content">
+						<div class="item-inner">
+                            <div class="item-title">1. 完成后请点击发布</div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

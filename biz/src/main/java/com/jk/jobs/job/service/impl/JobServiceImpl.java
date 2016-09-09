@@ -1,5 +1,6 @@
 package com.jk.jobs.job.service.impl;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -272,6 +273,87 @@ public class JobServiceImpl implements IJobService {
 		return job;
 	}
 
+	/**
+	 * 
+	 * @param job
+	 * @return
+	 */
+	private BooleanResult validate(Job job) {
+		BooleanResult result = new BooleanResult();
+		result.setResult(false);
+
+		if (job == null) {
+			result.setCode("项目信息不能为空");
+			return result;
+		}
+
+		Long jobCId = job.getJobCId();
+		if (jobCId == null) {
+			result.setCode("项目类型不能为空");
+			return result;
+		}
+
+		String title = job.getTitle();
+		if (StringUtils.isBlank(title)) {
+			result.setCode("项目标题不能为空");
+			return result;
+		}
+
+		int cycle = job.getCycle();
+		if (cycle <= 0) {
+			result.setCode("项目周期不能为空");
+			return result;
+		}
+
+		BigDecimal salary = job.getSalary();
+		if (salary == null) {
+			result.setCode("项目薪水不能为空");
+			return result;
+		}
+
+		String workAddress = job.getWorkAddress();
+		if (StringUtils.isBlank(workAddress)) {
+			result.setCode("项目地点不能为空");
+			return result;
+		}
+
+		String jobNature = job.getJobNature();
+		if (StringUtils.isBlank(jobNature)) {
+			result.setCode("项目性质不能为空");
+			return result;
+		}
+
+		String workYear = job.getWorkYear();
+		if (StringUtils.isBlank(workYear)) {
+			result.setCode("工作经验不能为空");
+			return result;
+		}
+
+		String education = job.getEducation();
+		if (StringUtils.isBlank(education)) {
+			result.setCode("最高学历不能为空");
+			return result;
+		}
+
+		List<JobDetail> jobDetailList = job.getJobDetailList();
+
+		if (jobDetailList == null || jobDetailList.size() == 0) {
+			result.setCode("项目介绍不能为空");
+			return result;
+		}
+
+		for (JobDetail jobDetail : jobDetailList) {
+			String content = jobDetail.getContent();
+			if (StringUtils.isBlank(content)) {
+				result.setCode("项目介绍不能为空");
+				return result;
+			}
+		}
+
+		result.setResult(true);
+		return result;
+	}
+
 	@Override
 	public BooleanResult publish(Long userId, final Job job) {
 		BooleanResult result = new BooleanResult();
@@ -282,8 +364,8 @@ public class JobServiceImpl implements IJobService {
 			return result;
 		}
 
-		if (job == null) {
-			result.setCode("项目信息不能为空");
+		result = validate(job);
+		if (!result.getResult()) {
 			return result;
 		}
 
@@ -350,8 +432,8 @@ public class JobServiceImpl implements IJobService {
 			return result;
 		}
 
-		if (job == null) {
-			result.setCode("项目信息不能为空");
+		result = validate(job);
+		if (!result.getResult()) {
 			return result;
 		}
 

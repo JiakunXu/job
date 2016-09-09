@@ -1,0 +1,21 @@
+<!DOCTYPE struts PUBLIC
+ "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+ "http://struts.apache.org/dtds/struts-2.5.dtd">
+<struts>
+	<package name="{http://jobs}jobs$help"
+		extends="{http://jobs}jobs$framework" namespace="/help">
+		
+		<action name="deliver" class="helpAction" method="deliver">
+			<result name="success">/jobs/help/deliver.vm</result>
+		</action>
+		
+		<action name="job" class="helpAction" method="job">
+			<result name="success">/jobs/help/job.vm</result>
+		</action>
+		
+		<action name="resume" class="helpAction" method="resume">
+			<result name="success">/jobs/help/resume.vm</result>
+		</action>
+		
+	</package>
+</struts>

@@ -39,9 +39,7 @@ var view2 = myApp.addView('#view-2', {
 $$('#href-2').on('click', function() {
 			if (view2.history.length == 1) {
 				view2.router.load({
-							url : appUrl + "/job/list.htm",
-							ignoreCache : true,
-							reload : true
+							url : appUrl + "/job/list.htm"
 						});
 			}
 		});
@@ -63,9 +61,7 @@ var view4 = myApp.addView('#view-4', {
 $$('#href-4').on('click', function() {
 			if (view4.history.length == 1) {
 				view4.router.load({
-							url : appUrl + "/resume/list.htm",
-							ignoreCache : true,
-							reload : true
+							url : appUrl + "/resume/list.htm"
 						});
 			}
 		});

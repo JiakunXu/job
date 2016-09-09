@@ -141,6 +141,87 @@ public class ResumeServiceImpl implements IResumeService {
 		return resume;
 	}
 
+	/**
+	 * 
+	 * @param resume
+	 * @return
+	 */
+	private BooleanResult validate(Resume resume) {
+		BooleanResult result = new BooleanResult();
+		result.setResult(false);
+
+		if (resume == null) {
+			result.setCode("简历信息不能为空");
+			return result;
+		}
+
+		String name = resume.getName();
+		if (StringUtils.isBlank(name)) {
+			result.setCode("姓名不能为空");
+			return result;
+		}
+
+		String sex = resume.getSex();
+		if (StringUtils.isBlank(sex)) {
+			result.setCode("性别不能为空");
+			return result;
+		}
+
+		String birthday = resume.getBirthday();
+		if (StringUtils.isBlank(birthday)) {
+			result.setCode("出生年月不能为空");
+			return result;
+		}
+
+		String tel = resume.getTel();
+		if (StringUtils.isBlank(tel)) {
+			result.setCode("联系方式不能为空");
+			return result;
+		}
+
+		String workYear = resume.getWorkYear();
+		if (StringUtils.isBlank(workYear)) {
+			result.setCode("工作经验不能为空");
+			return result;
+		}
+
+		String education = resume.getEducation();
+		if (StringUtils.isBlank(education)) {
+			result.setCode("最高学历不能为空");
+			return result;
+		}
+
+		List<ResumeDetail> resumeDetailList = resume.getResumeDetailList();
+
+		// 允许没有项目经验
+		if (resumeDetailList == null || resumeDetailList.size() == 0) {
+			result.setResult(true);
+			return result;
+		}
+
+		for (ResumeDetail resumeDetail : resumeDetailList) {
+			Long jobCId = resumeDetail.getJobCId();
+			if (jobCId == null) {
+				result.setCode("项目类型不能为空");
+				return result;
+			}
+
+			int cycle = resumeDetail.getCycle();
+			if (cycle <= 0) {
+				result.setCode("项目周期不能为空");
+				return result;
+			}
+
+			String content = resumeDetail.getContent();
+			if (StringUtils.isBlank(content)) {
+				continue;
+			}
+		}
+
+		result.setResult(true);
+		return result;
+	}
+
 	@Override
 	public BooleanResult saveOrUpdate(Long userId, final Resume resume) {
 		BooleanResult result = new BooleanResult();
@@ -151,8 +232,8 @@ public class ResumeServiceImpl implements IResumeService {
 			return result;
 		}
 
-		if (resume == null) {
-			result.setCode("简历信息不能为空");
+		result = validate(resume);
+		if (!result.getResult()) {
 			return result;
 		}
 
