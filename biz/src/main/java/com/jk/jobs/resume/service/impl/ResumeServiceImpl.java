@@ -369,6 +369,9 @@ public class ResumeServiceImpl implements IResumeService {
 			int c = resumeDetailDao.deleteResumeDetail(resumeDetail);
 			if (c == 1) {
 				result.setResult(true);
+
+				// remove cache
+				remove(userId);
 			} else {
 				result.setCode("简历明细信息删除失败，请稍后再试");
 			}
