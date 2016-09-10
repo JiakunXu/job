@@ -30,6 +30,12 @@ public class BookmarkAction extends BaseAction {
 
 	private List<Job> jobList;
 
+	public String stats() {
+		this.setResourceResult(String.valueOf(bookmarkService.getBookmarkCount(this.getUser().getUserId(), null)));
+
+		return RESOURCE_RESULT;
+	}
+
 	public String save() {
 		BooleanResult result = bookmarkService.save(this.getUser().getUserId(), jobId);
 

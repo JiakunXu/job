@@ -5,6 +5,10 @@
 	<package name="{http://jobs}jobs$bookmark"
 		extends="{http://jobs}jobs$framework" namespace="/bookmark">
 		
+		<action name="stats" class="bookmarkAction" method="stats">
+			<interceptor-ref name="authenticationStack" />
+		</action>
+		
 		<action name="save" class="bookmarkAction" method="save">
 			<interceptor-ref name="authenticationStack" />
 		</action>

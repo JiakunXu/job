@@ -23,6 +23,10 @@
 	
 	<package name="{http://jobs}jobs$user/job"
 		extends="{http://jobs}jobs$framework" namespace="/user/job">
+		
+		<action name="stats" class="bookmarkAction" method="stats">
+			<interceptor-ref name="authenticationStack" />
+		</action>
 
 		<!-- 投简历 -->
 		<action name="resume" class="userJobAction" method="resume">

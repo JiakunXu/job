@@ -159,6 +159,9 @@ public class ResumeServiceImpl implements IResumeService {
 		if (StringUtils.isBlank(name)) {
 			result.setCode("姓名不能为空");
 			return result;
+		} else if (name.length() > 32) {
+			result.setCode("姓名不能超过32个字");
+			return result;
 		}
 
 		String sex = resume.getSex();
@@ -215,6 +218,9 @@ public class ResumeServiceImpl implements IResumeService {
 			String content = resumeDetail.getContent();
 			if (StringUtils.isBlank(content)) {
 				continue;
+			} else if (content.length() > 128) {
+				result.setCode("项目介绍不能超过128个字");
+				return result;
 			}
 		}
 

@@ -297,6 +297,9 @@ public class JobServiceImpl implements IJobService {
 		if (StringUtils.isBlank(title)) {
 			result.setCode("项目标题不能为空");
 			return result;
+		} else if (title.length() > 32) {
+			result.setCode("项目标题不能超过32个字");
+			return result;
 		}
 
 		int cycle = job.getCycle();
@@ -346,6 +349,9 @@ public class JobServiceImpl implements IJobService {
 			String content = jobDetail.getContent();
 			if (StringUtils.isBlank(content)) {
 				result.setCode("项目介绍不能为空");
+				return result;
+			} else if (content.length() > 128) {
+				result.setCode("项目介绍不能超过128个字");
 				return result;
 			}
 		}

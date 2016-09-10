@@ -103,16 +103,14 @@ public class UserJobServiceImpl implements IUserJobService {
 		// 1. 判断是否已投递简历
 
 		// 1.1 只查询投递状态的简历
-		userJob.setType(IUserJobService.DELIVER);
-		int count = getUserJobCount(userJob);
+		int count = getJobCount(userId, IUserJobService.DELIVER);
 		if (count > 0) {
 			result.setCode("简历已投递");
 			return result;
 		}
 
 		// 1.2 只查询被拒绝状态的简历
-		userJob.setType(IUserJobService.IGNORE);
-		count = getUserJobCount(userJob);
+		count = getJobCount(userId, IUserJobService.IGNORE);
 		if (count > 0) {
 			result.setCode("简历已投递");
 			return result;
@@ -218,6 +216,19 @@ public class UserJobServiceImpl implements IUserJobService {
 		});
 
 		return res;
+	}
+
+	@Override
+	public int getJobCount(Long userId, String type) {
+		if (userId == null) {
+			return 0;
+		}
+
+		UserJob userJob = new UserJob();
+		userJob.setUserId(userId);
+		userJob.setType(type);
+
+		return getUserJobCount(userJob);
 	}
 
 	@Override

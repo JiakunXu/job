@@ -78,7 +78,7 @@ public class BookmarkServiceImpl implements IBookmarkService {
 
 	@Override
 	public int getBookmarkCount(Long userId, Long jobId) {
-		if (jobId == null) {
+		if (userId == null && jobId == null) {
 			return 0;
 		}
 

@@ -43,6 +43,21 @@ public class UserJobAction extends BaseAction {
 
 	private List<Job> jobList;
 
+	public String stats() {
+		StringBuilder sb = new StringBuilder();
+
+		Long userId = this.getUser().getUserId();
+
+		sb.append(
+			userJobService.getJobCount(userId, IUserJobService.DELIVER)
+				+ userJobService.getJobCount(userId, IUserJobService.IGNORE)).append("&");
+		sb.append(userJobService.getJobCount(userId, IUserJobService.REVOKE));
+
+		this.setResourceResult(sb.toString());
+
+		return RESOURCE_RESULT;
+	}
+
 	/**
 	 * 预览简历.
 	 * 

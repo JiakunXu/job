@@ -9,10 +9,12 @@
 		SELECT COUNT(1)
 		  FROM basis_tb_bookmark t
 		 WHERE t.state = 'U'
-		   AND t.job_id = #{jobId}
 	]]>
 		<if test="userId != null">
 		<![CDATA[ AND t.user_id = #{userId} ]]>
+		</if>
+		<if test="jobId != null">
+		<![CDATA[ AND t.job_id = #{jobId} ]]>
 		</if>
 	</select>
 	

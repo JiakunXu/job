@@ -62,9 +62,9 @@ public class JobAction extends BaseAction {
 
 		Long userId = this.getUser().getUserId();
 
-		sb.append(jobService.getJobCount(userId, "publish")).append("&");
-		sb.append(jobService.getJobCount(userId, "finish")).append("&");
-		sb.append(jobService.getJobCount(userId, "revoke"));
+		sb.append(jobService.getJobCount(userId, IJobService.PUBLISH)).append("&");
+		sb.append(jobService.getJobCount(userId, IJobService.FINISH)).append("&");
+		sb.append(jobService.getJobCount(userId, IJobService.REVOKE));
 
 		this.setResourceResult(sb.toString());
 

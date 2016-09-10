@@ -29,6 +29,18 @@
 				</ul>
             </div>
 			<div class="list-block">
+				<ul class="page-settings after-height-0">
+					<li class="row" style="text-align: center;">
+						<div class="col-50" style="width: 50%;">
+							<h3 id="member/index/user/job/deliver">0</h3>
+							<div class="color-gray color-gray-0">已投递</div>
+                        </div>
+						<div class="col-50" style="width: 50%;">
+							<h3 id="member/index/user/job/revoke">0</h3>
+							<div class="color-gray color-gray-0">已撤销</div>
+                        </div>
+					</li>
+                </ul>
 				<ul>
 					<li>
 						<a href="$!{env.appUrl}/resume/my.htm" class="item-link item-content">
@@ -48,9 +60,10 @@
 					</li>
 					<li>
 						<a href="$!{env.appUrl}/bookmark/list.htm" class="item-link item-content" data-ignore-cache="true">
-							<div class="item-media"><i class="iconfont icon-favor"></i></div>
+							<div class="item-media"><i class="iconfont icon-favorfill"></i></div>
 							<div class="item-inner">
 								<div class="item-title">关注项目</div>
+								<div class="item-after" id="member/index/bookmark">0</div>
 							</div>
 						</a>
 					</li>
@@ -60,15 +73,15 @@
 				<ul class="page-settings after-height-0">
 					<li class="row" style="text-align: center;">
 						<div class="col-33" style="width: 33%;">
-							<h3 id="member/index/publish">0</h3>
+							<h3 id="member/index/job/publish">0</h3>
 							<div class="color-gray color-gray-0">发布中</div>
                         </div>
 						<div class="col-33" style="width: 33%;">
-							<h3 id="member/index/finish">0</h3>
+							<h3 id="member/index/job/finish">0</h3>
 							<div class="color-gray color-gray-0">已完成</div>
                         </div>
 						<div class="col-33" style="width: 33%;">
-							<h3 id="member/index/revoke">0</h3>
+							<h3 id="member/index/job/revoke">0</h3>
 							<div class="color-gray color-gray-0">已撤销</div>
                         </div>
 					</li>

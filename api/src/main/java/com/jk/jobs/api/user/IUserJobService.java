@@ -45,6 +45,14 @@ public interface IUserJobService {
 	/**
 	 * 
 	 * @param userId
+	 * @param type
+	 * @return
+	 */
+	int getJobCount(Long userId, String type);
+
+	/**
+	 * 
+	 * @param userId
 	 * @return
 	 */
 	List<Job> getJobList(Long userId);
