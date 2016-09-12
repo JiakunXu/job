@@ -1,0 +1,17 @@
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.jk.jobs.notify.dao.INotifyCatDao">
+	
+	<select id="getNotifyCat" parameterType="notifyCat" resultType="notifyCat">
+	<![CDATA[
+		SELECT t.`NOTIFY_CID` AS notifyCId,
+			   t.`NOTIFY_CNAME` AS notifyCName
+		  FROM basis_tb_notify_cat t
+		 WHERE t.state = 'U'
+		   AND t.notify_cid = #{notifyCId}
+	]]>
+	</select>
+	
+</mapper>

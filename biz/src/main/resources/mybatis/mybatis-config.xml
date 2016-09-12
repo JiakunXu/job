@@ -25,6 +25,7 @@
 		<package name="com.jk.jobs.api.bookmark.bo" />
 		<package name="com.jk.jobs.api.job.bo" />
 		<package name="com.jk.jobs.api.monitor.bo" />
+		<package name="com.jk.jobs.api.notify.bo" />
 		<package name="com.jk.jobs.api.region.bo" />
 		<package name="com.jk.jobs.api.resume.bo" />
 		<package name="com.jk.jobs.api.role.bo" />
@@ -66,6 +67,8 @@
 		<mapper resource="mybatis/mapper-monitor.action.xml" />
 		<mapper resource="mybatis/mapper-monitor.log.xml" />
 		<mapper resource="mybatis/mapper-monitor.method.xml" />
+		<mapper resource="mybatis/mapper-notify.cat.xml" />
+		<mapper resource="mybatis/mapper-notify.xml" />
 		<mapper resource="mybatis/mapper-region.xml" />
 		<mapper resource="mybatis/mapper-resume.detail.xml" />
 		<mapper resource="mybatis/mapper-resume.job.cat.xml" />

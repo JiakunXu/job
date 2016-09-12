@@ -105,6 +105,10 @@ public interface IMemcachedCacheService extends ICacheService<String, Object> {
 
 	String CACHE_KEY_ROLE_USER_ID = "jobs:key_role_user_id_";
 
+	// >>>>>>>>>>以下是通知相关<<<<<<<<<<
+
+	String CACHE_KEY_NOTIFY_CAT_ID = "jobs:key_notify_cat_id_";
+
 	// >>>>>>>>>>end<<<<<<<<<<
 
 	/**

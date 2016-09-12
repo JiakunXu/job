@@ -41,6 +41,10 @@
 							-->
                             好项目 - 做专业的自由顾问平台
 						</div>
+						<div class="right">
+                			<!-- Right link contains only icon - additional "icon-only" class-->
+							<a href="$!{env.appUrl}/notify/list.htm" class="link icon-only"> <i class="iconfont icon-comment color-gray"></i></a>
+                		</div>
 					</div>
 				</div>
 				<!-- Pages container, because we use fixed-through navbar and toolbar, it has additional appropriate classes-->
@@ -207,6 +211,7 @@
 		<script src="$!{env.imgUrl}/js/user/job/list.js" async="async"></script>
 		<script src="$!{env.imgUrl}/js/user/setUserName.js" async="async"></script>
 		<script src="$!{env.imgUrl}/js/member/index.js" async="async"></script>
+		<script src="$!{env.imgUrl}/js/notify/list.js" async="async"></script>
 		<script>
         wx.config({
         			debug : false,

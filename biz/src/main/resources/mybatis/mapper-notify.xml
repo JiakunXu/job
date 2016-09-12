@@ -1,0 +1,21 @@
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.jk.jobs.notify.dao.INotifyDao">
+	
+	<select id="getNotifyList" parameterType="notify" resultType="notify">
+	<![CDATA[
+		SELECT t.`NOTIFY_ID` AS notifyId,
+			   t.`USER_ID` AS userId,
+			   t.`NOTIFY_CID` AS notifyCId,
+			   t.`CONTENT`,
+			   DATE_FORMAT(t.create_date, '%Y-%m-%d %T') AS createDate
+		  FROM basis_tb_notify t
+		 WHERE t.state = 'U'
+		   AND t.`USER_ID` = #{userId}
+		 ORDER BY `CREATE_DATE` DESC
+	]]>
+	</select>
+	
+</mapper>

@@ -13,7 +13,7 @@
 	<!-- Page, data-page contains page name-->
 	<div data-page="job.resume.list" class="page no-tabbar">
 		<!-- Search bar -->
-		<form data-search-list=".list-block-search" data-search-in=".item-subtitle" class="searchbar searchbar-init item-list-searchbar">
+		<form data-search-list=".list-block-search" data-search-in=".item-subtitle" class="searchbar searchbar-init">
 			<div class="searchbar-input">
 				<input type="search" placeholder="搜索" /><a href="#" class="searchbar-clear"></a>
 			</div><a href="#" class="searchbar-cancel">取消</a>
