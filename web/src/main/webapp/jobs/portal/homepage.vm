@@ -212,6 +212,7 @@
 		<script src="$!{env.imgUrl}/js/user/setUserName.js" async="async"></script>
 		<script src="$!{env.imgUrl}/js/member/index.js" async="async"></script>
 		<script src="$!{env.imgUrl}/js/notify/list.js" async="async"></script>
+		<script src="$!{env.imgUrl}/js/bookmark/list.js" async="async"></script>
 		<script>
         wx.config({
         			debug : false,

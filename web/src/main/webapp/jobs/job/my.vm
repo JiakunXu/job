@@ -61,7 +61,7 @@
 						</div>
 						<div class="card-footer">
                             <div class="left">
-								<a href="$!{env.appUrl}/job/resume.htm?jobId=$!{job.jobId}" class="button color-gray" data-ignore-cache="true">
+								<a href="$!{env.appUrl}/job/resume.htm?jobId=$!{job.jobId}" class="button color-gray">
 									#if($!{job.count} > 0)简历($!{job.count})#else简历#end
 								</a>
 							</div>

@@ -6,6 +6,7 @@
 		<div class="center sliding">我的收藏</div>
 		<div class="right">
 			<!-- Right link contains only icon - additional "icon-only" class-->
+			<a href="javascript:bookmark_list_refresh();" class="link icon-only"> <i class="iconfont icon-refresh color-gray"></i></a>
 		</div>
 	</div>
 </div>

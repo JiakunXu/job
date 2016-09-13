@@ -66,3 +66,7 @@ function user_job_list_delete(jobId) {
 				$$('#user/job/list/delete').trigger("submit");
 			});
 }
+
+function user_job_list_refresh() {
+	myApp.getCurrentView().router.refreshPage();
+}

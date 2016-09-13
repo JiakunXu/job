@@ -18,4 +18,11 @@ public interface INotifyDao {
 	 */
 	List<Notify> getNotifyList(Notify notify);
 
+	/**
+	 * 
+	 * @param notify
+	 * @return
+	 */
+	int createNotify(Notify notify);
+
 }

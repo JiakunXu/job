@@ -6,6 +6,7 @@
 		<div class="center sliding">我的应聘</div>
 		<div class="right">
 			<!-- Right link contains only icon - additional "icon-only" class-->
+			<a href="javascript:user_job_list_refresh();" class="link icon-only"> <i class="iconfont icon-refresh color-gray"></i></a>
 		</div>
 	</div>
 </div>

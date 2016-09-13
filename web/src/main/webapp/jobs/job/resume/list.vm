@@ -6,6 +6,7 @@
 		<div class="center sliding">收到的简历</div>
 		<div class="right">
 			<!-- Right link contains only icon - additional "icon-only" class-->
+			<a href="javascript:job_resume_list_refresh();" class="link icon-only"> <i class="iconfont icon-refresh color-gray"></i></a>
 		</div>
 	</div>
 </div>
@@ -44,16 +45,14 @@
 							</div>
 						</div>
 						<div class="card-content">
-							<div class="item-content">
-    							<a class="item-inner" href="$!{env.appUrl}/job/resume/detail.htm?jobId=$!{jobId}&userJobId=$!{resume.userJobId}">
+							<a class="item-content" href="$!{env.appUrl}/job/resume/detail.htm?jobId=$!{jobId}&userJobId=$!{resume.userJobId}">
+    							<div class="item-inner">
     								#parse("/jobs/resume/content.vm")
-                                </a>
+                                </div>
 								<div class="item-after">
-									<a href="$!{env.appUrl}/job/resume/detail.htm?jobId=$!{jobId}&userJobId=$!{resume.userJobId}">
-										<i class="iconfont icon-profile color-base"></i>
-									</a>
+									<i class="iconfont icon-profile color-base"></i>
 								</div>
-                            </div>
+                            </a>
 						</div>
 						<div class="card-footer">
                             <div class="left"></div>

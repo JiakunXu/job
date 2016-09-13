@@ -18,6 +18,7 @@ import com.jk.jobs.api.job.IJobCatService;
 import com.jk.jobs.api.job.IJobService;
 import com.jk.jobs.api.job.bo.Job;
 import com.jk.jobs.api.job.bo.JobCat;
+import com.jk.jobs.api.notify.INotifyService;
 import com.jk.jobs.api.resume.IResumeService;
 import com.jk.jobs.api.resume.bo.Resume;
 import com.jk.jobs.api.resume.bo.ResumeDetail;
@@ -59,6 +60,9 @@ public class UserJobServiceImpl implements IUserJobService {
 
 	@Resource
 	private IJobCatService jobCatService;
+
+	@Resource
+	private INotifyService notifyService;
 
 	@Resource
 	private IUserJobDao userJobDao;
@@ -495,6 +499,27 @@ public class UserJobServiceImpl implements IUserJobService {
 		userJob.setType(IUserJobService.IGNORE);
 		userJob.setModifyUser(modifyUser);
 
+		// 1. 获取 userJob 信息
+		UserJob uj = detail(jobId, userJobId);
+
+		if (uj == null) {
+			result.setCode("投递简历信息不能为空");
+			return result;
+		}
+
+		if (!IUserJobService.DELIVER.equals(uj.getType())) {
+			result.setCode("当前投递简历已撤销或删除");
+			return result;
+		}
+
+		// 2. 获取 job 信息
+		Job job = jobService.getJob(uj.getJobId().toString());
+
+		if (job == null) {
+			result.setCode("项目信息不能为空");
+			return result;
+		}
+
 		try {
 			userJobDao.updateUserJob(userJob);
 			result.setResult(true);
@@ -502,6 +527,11 @@ public class UserJobServiceImpl implements IUserJobService {
 			logger.error(LogUtil.parserBean(userJob), e);
 
 			result.setCode("简历忽略失败，请稍后再试");
+		}
+
+		if (result.getResult()) {
+			notifyService.notify(uj.getUserId(), "感谢来自你的简历，但是，与项目 " + job.getTitle() + " 要求暂不匹配，希望今后有机会再合作。",
+				modifyUser);
 		}
 
 		return result;

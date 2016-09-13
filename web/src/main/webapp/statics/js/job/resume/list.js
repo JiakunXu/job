@@ -42,3 +42,7 @@ function job_resume_list_ignore(userJobId) {
 				$$('#job/resume/list/ignore').trigger("submit");
 			});
 }
+
+function job_resume_list_refresh() {
+	myApp.getCurrentView().router.refreshPage();
+}

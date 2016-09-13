@@ -18,4 +18,32 @@
 	]]>
 	</select>
 	
+	<insert id="createNotify" parameterType="notify" useGeneratedKeys="true" keyProperty="notifyId">
+	<![CDATA[
+		INSERT
+		INTO basis_tb_notify
+		  (
+			USER_ID,
+			NOTIFY_CID,
+			CONTENT,
+			STATE,
+			CREATE_DATE,
+			CREATE_USER,
+			MODIFY_DATE,
+			MODIFY_USER
+		  )
+		  VALUES
+		  (
+			#{userId},
+			#{notifyCId},
+			#{content},
+			'U',
+			NOW(),
+			#{modifyUser},
+			NOW(),
+			#{modifyUser}
+		  )
+	]]>
+	</insert>
+	
 </mapper>

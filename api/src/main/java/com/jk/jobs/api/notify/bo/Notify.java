@@ -21,6 +21,8 @@ public class Notify implements Serializable {
 
 	private String createDate;
 
+	private String modifyUser;
+
 	// >>>>>>>>>>以下是辅助属性<<<<<<<<<<
 
 	private String notifyCName;
@@ -63,6 +65,14 @@ public class Notify implements Serializable {
 
 	public void setCreateDate(String createDate) {
 		this.createDate = createDate;
+	}
+
+	public String getModifyUser() {
+		return modifyUser;
+	}
+
+	public void setModifyUser(String modifyUser) {
+		this.modifyUser = modifyUser;
 	}
 
 	public String getNotifyCName() {
