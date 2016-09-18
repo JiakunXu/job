@@ -1,0 +1,17 @@
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.jk.jobs.expert.dao.IExpertDao">
+	
+	<select id="getExpertList" parameterType="expert" resultType="expert">
+	<![CDATA[
+		SELECT t.`EXPERT_ID` AS expertId,
+			   t.`USER_ID` AS userId,
+			   t.`PRICE` AS price
+		  FROM basis_tb_expert t
+		 WHERE t.state = 'U'
+	]]>
+	</select>
+	
+</mapper>

@@ -8,6 +8,7 @@
 	<include file="struts/struts-auth.xml" />
 	<include file="struts/struts-bookmark.xml" />
 	<include file="struts/struts-error.xml" />
+	<include file="struts/struts-expert.xml" />
 	<include file="struts/struts-facebook.xml" />
 	<include file="struts/struts-help.xml" />
 	<include file="struts/struts-job.xml" />

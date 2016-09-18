@@ -28,6 +28,14 @@ public class HelpAction extends BaseAction {
 	 * 
 	 * @return
 	 */
+	public String expert() {
+		return SUCCESS;
+	}
+
+	/**
+	 * 
+	 * @return
+	 */
 	public String job() {
 		return SUCCESS;
 	}

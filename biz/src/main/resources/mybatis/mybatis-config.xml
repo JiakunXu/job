@@ -23,6 +23,7 @@
 
 	<typeAliases>
 		<package name="com.jk.jobs.api.bookmark.bo" />
+		<package name="com.jk.jobs.api.expert.bo" />
 		<package name="com.jk.jobs.api.job.bo" />
 		<package name="com.jk.jobs.api.monitor.bo" />
 		<package name="com.jk.jobs.api.notify.bo" />
@@ -61,6 +62,7 @@
 	<mappers>
 		<mapper resource="mybatis/global.xml" />
 		<mapper resource="mybatis/mapper-bookmark.xml" />
+		<mapper resource="mybatis/mapper-expert.xml" />
 		<mapper resource="mybatis/mapper-job.cat.xml" />
 		<mapper resource="mybatis/mapper-job.detail.xml" />
 		<mapper resource="mybatis/mapper-job.xml" />

@@ -9,6 +9,10 @@
 			<result name="success">/jobs/help/deliver.vm</result>
 		</action>
 		
+		<action name="expert" class="helpAction" method="expert">
+			<result name="success">/jobs/help/expert.vm</result>
+		</action>
+		
 		<action name="job" class="helpAction" method="job">
 			<result name="success">/jobs/help/job.vm</result>
 		</action>

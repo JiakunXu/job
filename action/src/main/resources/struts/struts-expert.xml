@@ -1,0 +1,14 @@
+<!DOCTYPE struts PUBLIC
+ "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+ "http://struts.apache.org/dtds/struts-2.5.dtd">
+<struts>
+	<package name="{http://jobs}jobs$expert"
+		extends="{http://jobs}jobs$framework" namespace="/expert">
+		
+		<action name="list" class="expertAction" method="list">
+			<interceptor-ref name="authenticationStack" />
+			<result name="success">/jobs/expert/list.vm</result>
+		</action>
+		
+	</package>
+</struts>
