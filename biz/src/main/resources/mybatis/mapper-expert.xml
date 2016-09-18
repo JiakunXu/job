@@ -8,7 +8,8 @@
 	<![CDATA[
 		SELECT t.`EXPERT_ID` AS expertId,
 			   t.`USER_ID` AS userId,
-			   t.`PRICE` AS price
+			   t.`PRICE`,
+			   t.`REMARK`
 		  FROM basis_tb_expert t
 		 WHERE t.state = 'U'
 	]]>

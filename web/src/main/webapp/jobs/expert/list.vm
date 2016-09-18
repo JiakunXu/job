@@ -58,14 +58,14 @@
                                         <div class="item-subtitle"><span class="little-tag">专家</span>$!{expert.userName}</div>
     								</div>
     								<div class="item-title-row">
-    									<div class="item-subtitle">擅长 各种疑难问题</div>
+    									<div class="item-subtitle">$!{expert.remark}</div>
     								</div>
 									<div class="item-title-row">
     									<div class="item-subtitle">￥$!{expert.price}</div>
     								</div>
                                 </div>
 								<div class="item-after">
-									<i class="iconfont icon-question color-base"></i>
+									<i class="iconfont icon-message color-base"></i>
 								</div>
     						</a>
     					</li>
