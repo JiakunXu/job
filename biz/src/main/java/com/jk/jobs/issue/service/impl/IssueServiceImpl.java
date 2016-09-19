@@ -90,6 +90,29 @@ public class IssueServiceImpl implements IIssueService {
 	}
 
 	@Override
+	public int getIssueCount(Long userId, String type) {
+		if (userId == null || StringUtils.isBlank(type)) {
+			return 0;
+		}
+
+		Issue issue = new Issue();
+
+		if ("U".equals(type)) {
+			issue.setUserId(userId);
+		} else if ("E".equals(type)) {
+			Expert expert = expertService.getExpert(userId);
+			if (expert == null) {
+				return 0;
+			}
+			issue.setExpertId(expert.getExpertId());
+		} else {
+			return 0;
+		}
+
+		return getIssueCount(issue);
+	}
+
+	@Override
 	public List<Issue> getIssueList(Long userId, String type) {
 		if (userId == null || StringUtils.isBlank(type)) {
 			return null;
@@ -128,6 +151,21 @@ public class IssueServiceImpl implements IIssueService {
 		}
 
 		return issueList;
+	}
+
+	/**
+	 * 
+	 * @param issue
+	 * @return
+	 */
+	private int getIssueCount(Issue issue) {
+		try {
+			return issueDao.getIssueCount(issue);
+		} catch (Exception e) {
+			logger.error(LogUtil.parserBean(issue), e);
+		}
+
+		return 0;
 	}
 
 	/**

@@ -109,6 +109,12 @@ public interface IMemcachedCacheService extends ICacheService<String, Object> {
 
 	String CACHE_KEY_NOTIFY_CAT_ID = "jobs:key_notify_cat_id_";
 
+	// >>>>>>>>>>以下是专家相关<<<<<<<<<<
+
+	String CACHE_KEY_EXPERT_EXPERT_ID = "jobs:key_expert_expert_id_";
+
+	String CACHE_KEY_EXPERT_USER_ID = "jobs:key_expert_user_id_";
+
 	// >>>>>>>>>>end<<<<<<<<<<
 
 	/**

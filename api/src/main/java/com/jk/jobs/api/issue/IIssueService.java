@@ -26,6 +26,14 @@ public interface IIssueService {
 	 * @param type
 	 * @return
 	 */
+	int getIssueCount(Long userId, String type);
+
+	/**
+	 * 
+	 * @param userId
+	 * @param type
+	 * @return
+	 */
 	List<Issue> getIssueList(Long userId, String type);
 
 }

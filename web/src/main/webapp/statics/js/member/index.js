@@ -19,4 +19,10 @@ function member_index_stats() {
 				$$('#member/index/job/finish').html(stats[1]);
 				$$('#member/index/job/revoke').html(stats[2]);
 			});
+
+	$$.get(appUrl + '/issue/stats.htm', {}, function(data) {
+				var stats = data.split("&");
+				$$('#member/index/issue/u').html(stats[0]);
+				$$('#member/index/issue/e').html(stats[1]);
+			});
 }

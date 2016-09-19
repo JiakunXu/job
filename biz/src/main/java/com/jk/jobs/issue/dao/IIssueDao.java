@@ -23,6 +23,13 @@ public interface IIssueDao {
 	 * @param issue
 	 * @return
 	 */
+	int getIssueCount(Issue issue);
+
+	/**
+	 * 
+	 * @param issue
+	 * @return
+	 */
 	List<Issue> getIssueList(Issue issue);
 
 }

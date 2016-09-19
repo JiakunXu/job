@@ -5,6 +5,10 @@
 	<package name="{http://jobs}jobs$issue"
 		extends="{http://jobs}jobs$framework" namespace="/issue">
 		
+		<action name="stats" class="issueAction" method="stats">
+			<interceptor-ref name="authenticationStack" />
+		</action>
+		
 		<action name="submit" class="issueAction" method="submit">
 			<interceptor-ref name="authenticationStack" />
 		</action>

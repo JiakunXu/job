@@ -112,6 +112,7 @@
 							<div class="item-media"><i class="iconfont icon-question"></i></div>
 							<div class="item-inner">
 								<div class="item-title">我的咨询</div>
+								<div class="item-after" id="member/index/issue/u">0</div>
 							</div>
 						</a>
 					</li>
@@ -120,6 +121,7 @@
 							<div class="item-media"><i class="iconfont icon-message"></i></div>
 							<div class="item-inner">
 								<div class="item-title">咨询我的</div>
+								<div class="item-after" id="member/index/issue/e">0</div>
 							</div>
 						</a>
 					</li>

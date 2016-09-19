@@ -13,6 +13,7 @@ import com.jk.jobs.api.expert.bo.Expert;
 import com.jk.jobs.api.user.IUserService;
 import com.jk.jobs.api.user.bo.User;
 import com.jk.jobs.expert.dao.IExpertDao;
+import com.jk.jobs.framework.exception.ServiceException;
 import com.jk.jobs.framework.log.Logger4jCollection;
 import com.jk.jobs.framework.log.Logger4jExtend;
 import com.jk.jobs.framework.util.LogUtil;
@@ -67,7 +68,21 @@ public class ExpertServiceImpl implements IExpertService {
 			return null;
 		}
 
-		Expert expert = new Expert();
+		String key = expertId.trim();
+
+		Expert expert = null;
+
+		try {
+			expert = (Expert) memcachedCacheService.get(IMemcachedCacheService.CACHE_KEY_EXPERT_EXPERT_ID + key);
+		} catch (ServiceException e) {
+			logger.error(IMemcachedCacheService.CACHE_KEY_EXPERT_EXPERT_ID + key, e);
+		}
+
+		if (expert != null) {
+			return expert;
+		}
+
+		expert = new Expert();
 
 		try {
 			expert.setExpertId(Long.valueOf(expertId));
@@ -87,6 +102,13 @@ public class ExpertServiceImpl implements IExpertService {
 			expert.setUserName(user.getUserName());
 		}
 
+		// not null then set to cache
+		try {
+			memcachedCacheService.set(IMemcachedCacheService.CACHE_KEY_EXPERT_EXPERT_ID + key, expert);
+		} catch (ServiceException e) {
+			logger.error(IMemcachedCacheService.CACHE_KEY_EXPERT_EXPERT_ID + key, e);
+		}
+
 		return expert;
 	}
 
@@ -96,10 +118,36 @@ public class ExpertServiceImpl implements IExpertService {
 			return null;
 		}
 
-		Expert expert = new Expert();
+		Long key = userId;
+
+		Expert expert = null;
+
+		try {
+			expert = (Expert) memcachedCacheService.get(IMemcachedCacheService.CACHE_KEY_EXPERT_USER_ID + key);
+		} catch (ServiceException e) {
+			logger.error(IMemcachedCacheService.CACHE_KEY_EXPERT_USER_ID + key, e);
+		}
+
+		if (expert != null) {
+			return expert;
+		}
+
+		expert = new Expert();
 		expert.setUserId(userId);
 
-		return getExpert(expert);
+		expert = getExpert(expert);
+		if (expert == null) {
+			return null;
+		}
+
+		// not null then set to cache
+		try {
+			memcachedCacheService.set(IMemcachedCacheService.CACHE_KEY_EXPERT_USER_ID + key, expert);
+		} catch (ServiceException e) {
+			logger.error(IMemcachedCacheService.CACHE_KEY_EXPERT_USER_ID + key, e);
+		}
+
+		return expert;
 	}
 
 	private List<Expert> getExpertList(Expert expert) {

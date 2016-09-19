@@ -34,6 +34,20 @@
 	]]>
 	</insert>
 	
+	<select id="getIssueCount" parameterType="issue" resultType="java.lang.Integer">
+	<![CDATA[
+		SELECT COUNT(1)
+		  FROM basis_tb_issue t
+		 WHERE t.state = 'U'
+	]]>
+		<if test="userId != null">
+		<![CDATA[ AND t.`USER_ID` = #{userId} ]]>
+		</if>
+		<if test="expertId != null">
+		<![CDATA[ AND t.`EXPERT_ID` = #{expertId} ]]>
+		</if>
+	</select>
+	
 	<select id="getIssueList" parameterType="issue" resultType="issue">
 	<![CDATA[
 		SELECT t.`ISSUE_ID` AS issueId,
@@ -45,11 +59,11 @@
 		  FROM basis_tb_issue t
 		 WHERE t.state = 'U'
 	]]>
-		<if test="expertId != null">
-		<![CDATA[ AND t.`EXPERT_ID` = #{expertId} ]]>
-		</if>
 		<if test="userId != null">
 		<![CDATA[ AND t.`USER_ID` = #{userId} ]]>
+		</if>
+		<if test="expertId != null">
+		<![CDATA[ AND t.`EXPERT_ID` = #{expertId} ]]>
 		</if>
 	</select>
 	

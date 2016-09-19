@@ -39,6 +39,23 @@ public class IssueAction extends BaseAction {
 	 * 
 	 * @return
 	 */
+	public String stats() {
+		StringBuilder sb = new StringBuilder();
+
+		Long userId = this.getUser().getUserId();
+
+		sb.append(issueService.getIssueCount(userId, "U")).append("&");
+		sb.append(issueService.getIssueCount(userId, "E"));
+
+		this.setResourceResult(sb.toString());
+
+		return RESOURCE_RESULT;
+	}
+
+	/**
+	 * 
+	 * @return
+	 */
 	public String submit() {
 		BooleanResult result = issueService.submit(this.getUser().getUserId(), issue);
 
