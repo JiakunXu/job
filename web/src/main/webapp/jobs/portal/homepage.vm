@@ -95,6 +95,24 @@
 								</ul>
 							</div>
 							-->
+							<div class="list-block">
+                				<ul class="page-settings">
+                					<li class="row" style="text-align: center;">
+                						<div class="col-33" style="width: 33%;">
+											<i class="icon iconfont icon-community color-gray" style="font-size: 25px; margin-top: 0.2rem;"></i>
+                							<div class="color-gray color-gray-0">我的应聘</div>
+                                        </div>
+                						<div class="col-33" style="width: 33%;">
+											<i class="icon iconfont icon-cascades color-gray" style="font-size: 25px; margin-top: 0.2rem;"></i>
+                							<div class="color-gray color-gray-0">我的项目</div>
+                                        </div>
+                						<div class="col-33" style="width: 33%;">
+											<i class="icon iconfont icon-message color-gray" style="font-size: 25px; margin-top: 0.2rem;"></i>
+                							<div class="color-gray color-gray-0">我的咨询</div>
+                                        </div>
+                					</li>
+                                </ul>
+                            </div>
 							
 							<div class="list-block">
 								<div class="ch"><span><i class="ct cw"></i>最新项目</span></div>
@@ -212,6 +230,8 @@
 		<script src="$!{env.imgUrl}/js/notify/list.js" async="async"></script>
 		<script src="$!{env.imgUrl}/js/bookmark/list.js" async="async"></script>
 		<script src="$!{env.imgUrl}/js/expert/list.js" async="async"></script>
+		<script src="$!{env.imgUrl}/js/expert/detail.js" async="async"></script>
+		<script src="$!{env.imgUrl}/js/issue/list.js" async="async"></script>
 		<script>
         wx.config({
         			debug : false,

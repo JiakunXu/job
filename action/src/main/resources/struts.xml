@@ -11,6 +11,7 @@
 	<include file="struts/struts-expert.xml" />
 	<include file="struts/struts-facebook.xml" />
 	<include file="struts/struts-help.xml" />
+	<include file="struts/struts-issue.xml" />
 	<include file="struts/struts-job.xml" />
 	<include file="struts/struts-login.xml" />
 	<include file="struts/struts-member.xml" />

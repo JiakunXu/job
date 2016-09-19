@@ -90,6 +90,18 @@ public class ExpertServiceImpl implements IExpertService {
 		return expert;
 	}
 
+	@Override
+	public Expert getExpert(Long userId) {
+		if (userId == null) {
+			return null;
+		}
+
+		Expert expert = new Expert();
+		expert.setUserId(userId);
+
+		return getExpert(expert);
+	}
+
 	private List<Expert> getExpertList(Expert expert) {
 		try {
 			return expertDao.getExpertList(expert);

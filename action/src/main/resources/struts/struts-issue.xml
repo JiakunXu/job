@@ -1,0 +1,18 @@
+<!DOCTYPE struts PUBLIC
+ "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+ "http://struts.apache.org/dtds/struts-2.5.dtd">
+<struts>
+	<package name="{http://jobs}jobs$issue"
+		extends="{http://jobs}jobs$framework" namespace="/issue">
+		
+		<action name="submit" class="issueAction" method="submit">
+			<interceptor-ref name="authenticationStack" />
+		</action>
+		
+		<action name="list" class="issueAction" method="list">
+			<interceptor-ref name="authenticationStack" />
+			<result name="success">/jobs/issue/list.vm</result>
+		</action>
+		
+	</package>
+</struts>

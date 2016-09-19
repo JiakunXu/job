@@ -31,4 +31,11 @@ public interface IExpertService {
 	 */
 	Expert getExpert(String expertId);
 
+	/**
+	 * 
+	 * @param userId
+	 * @return
+	 */
+	Expert getExpert(Long userId);
+
 }

@@ -25,8 +25,13 @@
 			   t.`SCORE`
 		  FROM basis_tb_expert t
 		 WHERE t.state = 'U'
-		   AND t.`EXPERT_ID` = #{expertId}
 	]]>
+		<if test="expertId != null">
+		<![CDATA[ AND t.`EXPERT_ID` = #{expertId} ]]>
+		</if>
+		<if test="userId != null">
+		<![CDATA[ AND t.`USER_ID` = #{userId} ]]>
+		</if>
 	</select>
 	
 </mapper>
