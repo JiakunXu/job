@@ -10,5 +10,10 @@
 			<result name="success">/jobs/expert/list.vm</result>
 		</action>
 		
+		<action name="detail" class="expertAction" method="detail">
+			<interceptor-ref name="authenticationStack" />
+			<result name="success">/jobs/expert/detail.vm</result>
+		</action>
+		
 	</package>
 </struts>

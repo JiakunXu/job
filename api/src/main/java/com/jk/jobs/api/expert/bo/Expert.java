@@ -21,6 +21,8 @@ public class Expert extends User {
 
 	private String remark;
 
+	private int score;
+
 	public Long getExpertId() {
 		return expertId;
 	}
@@ -51,6 +53,14 @@ public class Expert extends User {
 
 	public void setRemark(String remark) {
 		this.remark = remark;
+	}
+
+	public int getScore() {
+		return score;
+	}
+
+	public void setScore(int score) {
+		this.score = score;
 	}
 
 }

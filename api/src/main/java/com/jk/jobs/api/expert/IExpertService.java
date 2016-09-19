@@ -17,4 +17,18 @@ public interface IExpertService {
 	 */
 	List<Expert> getExpertList();
 
+	/**
+	 * 
+	 * @param jobCId
+	 * @return
+	 */
+	List<Expert> getExpertList(String jobCId);
+
+	/**
+	 * 
+	 * @param expertId
+	 * @return
+	 */
+	Expert getExpert(String expertId);
+
 }

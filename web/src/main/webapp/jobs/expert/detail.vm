@@ -1,0 +1,70 @@
+<!-- We don't need full layout here, because this page will be parsed with Ajax-->
+<!-- Top Navbar-->
+<div class="navbar">
+	<div class="navbar-inner">
+		<div class="left"><a href="#" class="back link"> <i class="icon icon-back"></i><span></span></a></div>
+		<div class="center sliding">专家咨询</div>
+		<div class="right">
+			<!-- Right link contains only icon - additional "icon-only" class-->
+			<a href="$!{env.appUrl}/help/expert.htm" class="link icon-only"> <i class="iconfont icon-question color-gray"></i></a>
+		</div>
+	</div>
+</div>
+<div class="pages">
+	<!-- Page, data-page contains page name-->
+	<div data-page="expert.detail" class="page no-tabbar">
+		<!-- Scrollable page content-->
+		<div class="page-content" style="padding-bottom: 44px;">
+			<div class="card" style="border-radius: 5px; margin: 10px 5px;">
+				<div class="card-header" style="font-size: 14px;">
+					<div class="left">$!{expert.userName}</div>
+					<div class="right"></div>
+				</div>
+				<div class="card-content">
+					<div class="list-block">
+						<ul>
+    						<li class="item-content">
+    							<div class="item-inner"></div>
+    							<div class="item-after"></div>
+                            </li>
+                        </ul>
+					</div>
+				</div>
+			</div>
+			
+			<div class="card" style="border-radius: 5px; margin: 10px 5px;">
+				<div class="card-header" style="font-size: 14px;">
+					<div class="left"></div>
+					<div class="right"></div>
+				</div>
+				<div class="card-content">
+					<div class="list-block">
+						<ul>
+    						<li class="item-content">
+    							<div class="item-inner">
+									<div class="item-title label">问题</div>
+									<div class="item-input">
+    									<textarea name="content"></textarea>
+    								</div>
+								</div>
+                            </li>
+                        </ul>
+					</div>
+				</div>
+			</div>
+        </div>
+		
+		<div class="toolbar">
+			<div class="toolbar-inner" style="padding: 0;">
+				<div class="row no-gutter" style="width: 100%;">
+					<div class="col-33">
+						<a href="＃" class="back button button-big button-fill color-white">取消</a>
+					</div>
+					<div class="col-66">
+						<a href="#" class="button button-big button-fill" style="border-radius: 0;" data-ignore-cache="true">咨询</a>
+					</div>
+				</div>   
+			</div>
+		</div>
+    </div>
+</div>

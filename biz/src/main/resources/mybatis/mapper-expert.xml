@@ -9,9 +9,23 @@
 		SELECT t.`EXPERT_ID` AS expertId,
 			   t.`USER_ID` AS userId,
 			   t.`PRICE`,
-			   t.`REMARK`
+			   t.`REMARK`,
+			   t.`SCORE`
 		  FROM basis_tb_expert t
 		 WHERE t.state = 'U'
+	]]>
+	</select>
+	
+	<select id="getExpert" parameterType="expert" resultType="expert">
+	<![CDATA[
+		SELECT t.`EXPERT_ID` AS expertId,
+			   t.`USER_ID` AS userId,
+			   t.`PRICE`,
+			   t.`REMARK`,
+			   t.`SCORE`
+		  FROM basis_tb_expert t
+		 WHERE t.state = 'U'
+		   AND t.`EXPERT_ID` = #{expertId}
 	]]>
 	</select>
 	

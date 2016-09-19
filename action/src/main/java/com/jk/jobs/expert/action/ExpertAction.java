@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
@@ -30,22 +31,47 @@ public class ExpertAction extends BaseAction {
 	@Resource
 	private IJobCatService jobCatService;
 
+	private String jobCId;
+
 	private List<Expert> expertList;
 
 	private List<JobCat> jobCatList;
 
-	private String jobCId;
+	/**
+	 * 专家.
+	 */
+	private String expertId;
+
+	private Expert expert;
 
 	/**
 	 * 
 	 * @return
 	 */
 	public String list() {
-		expertList = expertService.getExpertList();
+		expertList = StringUtils.isBlank(jobCId) ? expertService.getExpertList() : expertService.getExpertList(jobCId);
 
 		jobCatList = jobCatService.getJobCatList(new JobCat());
 
 		return SUCCESS;
+	}
+
+	/**
+	 * 
+	 * @return
+	 */
+	public String detail() {
+		expert = expertService.getExpert(expertId);
+
+		return SUCCESS;
+	}
+
+	public String getJobCId() {
+		return jobCId;
+	}
+
+	public void setJobCId(String jobCId) {
+		this.jobCId = jobCId;
 	}
 
 	public List<Expert> getExpertList() {
@@ -64,12 +90,20 @@ public class ExpertAction extends BaseAction {
 		this.jobCatList = jobCatList;
 	}
 
-	public String getJobCId() {
-		return jobCId;
+	public String getExpertId() {
+		return expertId;
 	}
 
-	public void setJobCId(String jobCId) {
-		this.jobCId = jobCId;
+	public void setExpertId(String expertId) {
+		this.expertId = expertId;
+	}
+
+	public Expert getExpert() {
+		return expert;
+	}
+
+	public void setExpert(Expert expert) {
+		this.expert = expert;
 	}
 
 }

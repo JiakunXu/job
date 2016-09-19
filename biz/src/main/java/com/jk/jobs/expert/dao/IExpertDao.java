@@ -18,4 +18,11 @@ public interface IExpertDao {
 	 */
 	List<Expert> getExpertList(Expert expert);
 
+	/**
+	 * 
+	 * @param expert
+	 * @return
+	 */
+	Expert getExpert(Expert expert);
+
 }
