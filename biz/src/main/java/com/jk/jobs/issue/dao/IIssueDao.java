@@ -32,4 +32,18 @@ public interface IIssueDao {
 	 */
 	List<Issue> getIssueList(Issue issue);
 
+	/**
+	 * 
+	 * @param issue
+	 * @return
+	 */
+	Issue getIssue(Issue issue);
+
+	/**
+	 * 
+	 * @param issue
+	 * @return
+	 */
+	int updateIssue(Issue issue);
+
 }

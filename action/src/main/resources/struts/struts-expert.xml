@@ -5,6 +5,15 @@
 	<package name="{http://jobs}jobs$expert"
 		extends="{http://jobs}jobs$framework" namespace="/expert">
 		
+		<action name="index" class="expertAction" method="index">
+			<interceptor-ref name="authenticationStack" />
+			<result name="success">/jobs/expert/index.vm</result>
+		</action>
+		
+		<action name="saveOrUpdate" class="expertAction" method="saveOrUpdate">
+			<interceptor-ref name="authenticationStack" />
+		</action>
+		
 		<action name="list" class="expertAction" method="list">
 			<interceptor-ref name="authenticationStack" />
 			<result name="success">/jobs/expert/list.vm</result>

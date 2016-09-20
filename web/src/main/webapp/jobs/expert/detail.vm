@@ -25,9 +25,7 @@
 						<ul>
     						<li class="item-content">
     							<div class="item-inner">
-									<div class="item-input">
-										$!{expert.remark}
-    								</div>
+									<div class="content-block" style="padding: 0;">$!{esc.htmlText($!{expert.content})}</div>
 								</div>
                             </li>
                         </ul>
@@ -37,29 +35,31 @@
 			
 			<div class="card" style="border-radius: 5px; margin: 10px 5px;">
 				<div class="card-header" style="font-size: 14px;">
-					<div class="left">$!{user.userName}</div>
-					<div class="right"></div>
+					<div class="left">咨询：$!{user.userName}</div>
+					<div class="right">
+						<a href="$!{env.appUrl}/issue/list.htm?type=U&op=select&issueId=$!{issueId}">
+							<i class="iconfont icon-roundadd color-base" style="font-size: 17px;"></i>
+                        </a>
+					</div>
 				</div>
 				<div class="card-content">
 					<form id="expert/detail/submit" action="$!{env.appUrl}/issue/submit.htm" method="POST" class="ajax-submit expert-detail-form">
     					<input type="hidden" name="issue.expertId" value="$!{expert.expertId}" />
 						<div class="list-block">
     						<ul>
-    							<li>
-            						<div class="item-content">
-            							<div class="item-inner">
-            								<div class="item-title label">联系方式</div>
-            								<div class="item-input">
-            									<input type="text" name="issue.tel" placeholder="" />
-            								</div>
-            							</div>
-            						</div>
-            					</li>
         						<li class="item-content">
         							<div class="item-inner">
-    									<div class="item-title label">问题</div>
+        								<div class="item-title label">联系方式</div>
+        								<div class="item-input">
+        									<input type="text" name="issue.tel" value="$!{issue.tel}" placeholder="让专家第一时间联系到你" />
+        								</div>
+        							</div>
+        						</li>
+        						<li class="item-content">
+        							<div class="item-inner">
+    									<div class="item-title label">问题详情</div>
     									<div class="item-input">
-        									<textarea name="issue.content"></textarea>
+        									<textarea name="issue.content" placeholder="长话短说 简明扼要">$!{issue.content}</textarea>
         								</div>
     								</div>
                                 </li>

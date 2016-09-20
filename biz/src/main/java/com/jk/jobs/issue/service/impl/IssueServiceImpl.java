@@ -52,6 +52,18 @@ public class IssueServiceImpl implements IIssueService {
 			return result;
 		}
 
+		String tel = issue.getTel();
+		if (StringUtils.isBlank(tel)) {
+			result.setCode("联系方式不能为空");
+			return result;
+		}
+
+		String content = issue.getContent();
+		if (StringUtils.isBlank(content)) {
+			result.setCode("问题详情不能为空");
+			return result;
+		}
+
 		result.setResult(true);
 		return result;
 	}
@@ -75,6 +87,8 @@ public class IssueServiceImpl implements IIssueService {
 
 		issue.setUserId(userId);
 		issue.setModifyUser(userId.toString());
+
+		issue.setType(IIssueService.SUBMIT);
 
 		try {
 			issueDao.createIssue(issue);
@@ -105,6 +119,7 @@ public class IssueServiceImpl implements IIssueService {
 				return 0;
 			}
 			issue.setExpertId(expert.getExpertId());
+			issue.setType(IIssueService.SUBMIT);
 		} else {
 			return 0;
 		}
@@ -128,6 +143,7 @@ public class IssueServiceImpl implements IIssueService {
 				return null;
 			}
 			issue.setExpertId(expert.getExpertId());
+			issue.setType(IIssueService.SUBMIT);
 		} else {
 			return null;
 		}
@@ -153,6 +169,217 @@ public class IssueServiceImpl implements IIssueService {
 		return issueList;
 	}
 
+	@Override
+	public Issue getIssue(Long userId, String issueId) {
+		if (userId == null || StringUtils.isBlank(issueId)) {
+			return null;
+		}
+
+		try {
+			return getIssue(userId, Long.valueOf(issueId));
+		} catch (NumberFormatException e) {
+			logger.error(e);
+		}
+
+		return null;
+	}
+
+	/**
+	 * 
+	 * @param userId
+	 * @param issueId
+	 * @return
+	 */
+	private Issue getIssue(Long userId, Long issueId) {
+		Issue issue = new Issue();
+		issue.setUserId(userId);
+		issue.setIssueId(issueId);
+
+		return getIssue(issue);
+	}
+
+	@Override
+	public BooleanResult revoke(Long userId, String issueId) {
+		BooleanResult result = new BooleanResult();
+		result.setResult(false);
+
+		if (userId == null) {
+			result.setCode("用户信息不能为空");
+			return result;
+		}
+
+		if (StringUtils.isBlank(issueId)) {
+			result.setCode("问题信息不能为空");
+			return result;
+		}
+
+		Issue issue = new Issue();
+		issue.setUserId(userId);
+
+		try {
+			issue.setIssueId(Long.valueOf(issueId));
+		} catch (NumberFormatException e) {
+			logger.error(e);
+
+			result.setCode("问题信息不能为空");
+			return result;
+		}
+
+		issue.setType(IIssueService.REVOKE);
+		issue.setModifyUser(userId.toString());
+
+		Issue isseu = getIssue(userId, issue.getIssueId());
+
+		if (isseu == null) {
+			result.setCode("问题信息不能为空");
+			return result;
+		}
+
+		if (!IIssueService.SUBMIT.equals(isseu.getType()) && !IIssueService.IGNORE.equals(isseu.getType())) {
+			result.setCode("当前咨询问题已撤销或删除");
+			return result;
+		}
+
+		try {
+			int c = issueDao.updateIssue(issue);
+			if (c == 1) {
+				result.setResult(true);
+			} else {
+				result.setCode("问题撤销失败，请稍后再试");
+			}
+		} catch (Exception e) {
+			logger.error(LogUtil.parserBean(issue), e);
+
+			result.setCode("问题撤销失败，请稍后再试");
+		}
+
+		return result;
+	}
+
+	@Override
+	public BooleanResult delete(Long userId, String issueId) {
+		BooleanResult result = new BooleanResult();
+		result.setResult(false);
+
+		if (userId == null) {
+			result.setCode("用户信息不能为空");
+			return result;
+		}
+
+		if (StringUtils.isBlank(issueId)) {
+			result.setCode("问题信息不能为空");
+			return result;
+		}
+
+		Issue issue = new Issue();
+		issue.setUserId(userId);
+
+		try {
+			issue.setIssueId(Long.valueOf(issueId));
+		} catch (NumberFormatException e) {
+			logger.error(e);
+
+			result.setCode("问题信息不能为空");
+			return result;
+		}
+
+		issue.setType(IIssueService.DELETE);
+		issue.setModifyUser(userId.toString());
+
+		Issue isseu = getIssue(userId, issue.getIssueId());
+
+		if (isseu == null) {
+			result.setCode("问题信息不能为空");
+			return result;
+		}
+
+		if (!IIssueService.REVOKE.equals(isseu.getType())) {
+			result.setCode("当前咨询问题已删除");
+			return result;
+		}
+
+		try {
+			int c = issueDao.updateIssue(issue);
+			if (c == 1) {
+				result.setResult(true);
+			} else {
+				result.setCode("问题删除失败，请稍后再试");
+			}
+		} catch (Exception e) {
+			logger.error(LogUtil.parserBean(issue), e);
+
+			result.setCode("问题删除失败，请稍后再试");
+		}
+
+		return result;
+	}
+
+	// >>>>>>>>>>以下是专家相关问题<<<<<<<<<<
+
+	@Override
+	public BooleanResult ignore(Long userId, String issueId) {
+		BooleanResult result = new BooleanResult();
+		result.setResult(false);
+
+		if (userId == null) {
+			result.setCode("专家信息不能为空");
+			return result;
+		}
+
+		if (StringUtils.isBlank(issueId)) {
+			result.setCode("问题信息不能为空");
+			return result;
+		}
+
+		Expert expert = expertService.getExpert(userId);
+		if (expert == null) {
+			result.setCode("专家信息不能为空");
+			return result;
+		}
+
+		Issue issue = new Issue();
+		issue.setExpertId(expert.getExpertId());
+
+		try {
+			issue.setIssueId(Long.valueOf(issueId));
+		} catch (NumberFormatException e) {
+			logger.error(e);
+
+			result.setCode("问题信息不能为空");
+			return result;
+		}
+
+		issue.setType(IIssueService.IGNORE);
+		issue.setModifyUser(userId.toString());
+
+		Issue isseu = getIssue(userId, issue.getIssueId());
+
+		if (isseu == null) {
+			result.setCode("问题信息不能为空");
+			return result;
+		}
+
+		if (!IIssueService.SUBMIT.equals(isseu.getType())) {
+			result.setCode("当前咨询问题已撤销或删除");
+			return result;
+		}
+
+		try {
+			int c = issueDao.updateIssue(issue);
+			if (c == 1) {
+				result.setResult(true);
+			} else {
+				result.setCode("问题忽略失败，请稍后再试");
+			}
+		} catch (Exception e) {
+			logger.error(LogUtil.parserBean(issue), e);
+
+			result.setCode("问题忽略失败，请稍后再试");
+		}
+
+		return result;
+	}
+
 	/**
 	 * 
 	 * @param issue
@@ -176,6 +403,21 @@ public class IssueServiceImpl implements IIssueService {
 	private List<Issue> getIssueList(Issue issue) {
 		try {
 			return issueDao.getIssueList(issue);
+		} catch (Exception e) {
+			logger.error(LogUtil.parserBean(issue), e);
+		}
+
+		return null;
+	}
+
+	/**
+	 * 
+	 * @param issue
+	 * @return
+	 */
+	private Issue getIssue(Issue issue) {
+		try {
+			return issueDao.getIssue(issue);
 		} catch (Exception e) {
 			logger.error(LogUtil.parserBean(issue), e);
 		}

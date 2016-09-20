@@ -25,4 +25,17 @@ public interface IExpertDao {
 	 */
 	Expert getExpert(Expert expert);
 
+	/**
+	 * 
+	 * @param expert
+	 * @return
+	 */
+	int createExpert(Expert expert);
+
+	/**
+	 * 
+	 * @param expert
+	 * @return
+	 */
+	int updateExpert(Expert expert);
 }

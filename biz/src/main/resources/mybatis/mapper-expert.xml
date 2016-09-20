@@ -8,11 +8,12 @@
 	<![CDATA[
 		SELECT t.`EXPERT_ID` AS expertId,
 			   t.`USER_ID` AS userId,
+			   t.`CONTENT`,
 			   t.`PRICE`,
-			   t.`REMARK`,
 			   t.`SCORE`
 		  FROM basis_tb_expert t
 		 WHERE t.state = 'U'
+		   AND t.`TYPE` = #{type}
 	]]>
 	</select>
 	
@@ -20,8 +21,8 @@
 	<![CDATA[
 		SELECT t.`EXPERT_ID` AS expertId,
 			   t.`USER_ID` AS userId,
+			   t.`CONTENT`,
 			   t.`PRICE`,
-			   t.`REMARK`,
 			   t.`SCORE`
 		  FROM basis_tb_expert t
 		 WHERE t.state = 'U'
@@ -33,5 +34,50 @@
 		<![CDATA[ AND t.`USER_ID` = #{userId} ]]>
 		</if>
 	</select>
+	
+	<insert id="createExpert" parameterType="expert" useGeneratedKeys="true" keyProperty="expertId">
+	<![CDATA[
+		INSERT
+		INTO basis_tb_expert
+		  (
+			USER_ID,
+			CONTENT,
+			PRICE,
+			SCORE,
+			TYPE,
+			STATE,
+			CREATE_DATE,
+			CREATE_USER,
+			MODIFY_DATE,
+			MODIFY_USER
+		  )
+		  VALUES
+		  (
+			#{userId},
+			#{content},
+			#{price},
+			0,
+			#{type},
+			'U',
+			NOW(),
+			#{modifyUser},
+			NOW(),
+			#{modifyUser}
+		  )
+	]]>
+	</insert>
+	
+	<update id="updateExpert" parameterType="expert">
+	<![CDATA[
+		UPDATE basis_tb_expert t
+		   SET t.modify_date = NOW(),
+			   t.modify_user = #{modifyUser},
+			   t.`CONTENT` = #{content},
+			   t.`PRICE` = #{price}
+		 WHERE t.state = 'U'
+		   AND t.`USER_ID` = #{userId}
+		   AND t.`EXPERT_ID` = #{expertId}
+	]]>
+	</update>
 	
 </mapper>

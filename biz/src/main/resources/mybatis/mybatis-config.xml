@@ -63,6 +63,7 @@
 	<mappers>
 		<mapper resource="mybatis/global.xml" />
 		<mapper resource="mybatis/mapper-bookmark.xml" />
+		<mapper resource="mybatis/mapper-expert.job.cat.xml" />
 		<mapper resource="mybatis/mapper-expert.xml" />
 		<mapper resource="mybatis/mapper-issue.xml" />
 		<mapper resource="mybatis/mapper-job.cat.xml" />

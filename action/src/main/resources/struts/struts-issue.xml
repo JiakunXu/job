@@ -18,5 +18,18 @@
 			<result name="success">/jobs/issue/list.vm</result>
 		</action>
 		
+		<action name="revoke" class="issueAction" method="revoke">
+			<interceptor-ref name="authenticationStack" />
+		</action>
+		
+		<action name="delete" class="issueAction" method="delete">
+			<interceptor-ref name="authenticationStack" />
+		</action>
+		
+		<!-- 专家忽略 -->
+		<action name="ignore" class="issueAction" method="ignore">
+			<interceptor-ref name="authenticationStack" />
+		</action>
+		
 	</package>
 </struts>

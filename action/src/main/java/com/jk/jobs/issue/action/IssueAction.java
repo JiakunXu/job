@@ -33,6 +33,13 @@ public class IssueAction extends BaseAction {
 	 */
 	private String type;
 
+	/**
+	 * 操作.
+	 */
+	private String op;
+
+	private String issueId;
+
 	private List<Issue> issueList;
 
 	/**
@@ -79,6 +86,47 @@ public class IssueAction extends BaseAction {
 		return SUCCESS;
 	}
 
+	public String revoke() {
+		BooleanResult result = issueService.revoke(this.getUser().getUserId(), issueId);
+
+		if (result.getResult()) {
+			this.setResourceResult("撤销成功");
+		} else {
+			this.getServletResponse().setStatus(599);
+			this.setResourceResult(result.getCode());
+		}
+
+		return RESOURCE_RESULT;
+	}
+
+	public String delete() {
+		BooleanResult result = issueService.delete(this.getUser().getUserId(), issueId);
+
+		if (result.getResult()) {
+			this.setResourceResult("删除成功");
+		} else {
+			this.getServletResponse().setStatus(599);
+			this.setResourceResult(result.getCode());
+		}
+
+		return RESOURCE_RESULT;
+	}
+
+	// >>>>>>>>>>以下是专家相关问题<<<<<<<<<<
+
+	public String ignore() {
+		BooleanResult result = issueService.ignore(this.getUser().getUserId(), issueId);
+
+		if (result.getResult()) {
+			this.setResourceResult("忽略成功");
+		} else {
+			this.getServletResponse().setStatus(599);
+			this.setResourceResult(result.getCode());
+		}
+
+		return RESOURCE_RESULT;
+	}
+
 	public Issue getIssue() {
 		return issue;
 	}
@@ -93,6 +141,22 @@ public class IssueAction extends BaseAction {
 
 	public void setType(String type) {
 		this.type = type;
+	}
+
+	public String getOp() {
+		return op;
+	}
+
+	public void setOp(String op) {
+		this.op = op;
+	}
+
+	public String getIssueId() {
+		return issueId;
+	}
+
+	public void setIssueId(String issueId) {
+		this.issueId = issueId;
 	}
 
 	public List<Issue> getIssueList() {

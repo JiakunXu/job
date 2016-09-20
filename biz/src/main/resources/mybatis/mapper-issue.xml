@@ -13,6 +13,7 @@
 			EXPERT_ID,
 			TEL,
 			CONTENT,
+			TYPE,
 			STATE,
 			CREATE_DATE,
 			CREATE_USER,
@@ -25,6 +26,7 @@
 			#{expertId},
 			#{tel},
 			#{content},
+			#{type},
 			'U',
 			NOW(),
 			#{modifyUser},
@@ -46,6 +48,9 @@
 		<if test="expertId != null">
 		<![CDATA[ AND t.`EXPERT_ID` = #{expertId} ]]>
 		</if>
+		<if test="type != null and type != ''">
+		<![CDATA[ AND t.`TYPE` = #{type} ]]>
+		</if>
 	</select>
 	
 	<select id="getIssueList" parameterType="issue" resultType="issue">
@@ -55,6 +60,7 @@
 			   t.`EXPERT_ID` AS expertId,
 			   t.`TEL`,
 			   t.`CONTENT`,
+			   t.`TYPE`,
 			   DATE_FORMAT(t.create_date, '%Y-%m-%d %T') AS createDate
 		  FROM basis_tb_issue t
 		 WHERE t.state = 'U'
@@ -65,6 +71,50 @@
 		<if test="expertId != null">
 		<![CDATA[ AND t.`EXPERT_ID` = #{expertId} ]]>
 		</if>
+		<if test="type != null and type != ''">
+		<![CDATA[ AND t.`TYPE` = #{type} ]]>
+		</if>
+	<![CDATA[
+		 ORDER BY `CREATE_DATE` DESC
+	]]>
 	</select>
+	
+	<select id="getIssue" parameterType="issue" resultType="issue">
+	<![CDATA[
+		SELECT t.`ISSUE_ID` AS issueId,
+			   t.`USER_ID` AS userId,
+			   t.`EXPERT_ID` AS expertId,
+			   t.`TEL`,
+			   t.`CONTENT`,
+			   t.`TYPE`,
+			   DATE_FORMAT(t.create_date, '%Y-%m-%d %T') AS createDate
+		  FROM basis_tb_issue t
+		 WHERE t.state = 'U'
+		   AND t.`ISSUE_ID` = #{issueId}
+	]]>
+	</select>
+	
+	<update id="updateIssue" parameterType="issue">
+	<![CDATA[
+		UPDATE basis_tb_issue t
+		   SET t.modify_date = NOW(),
+			   t.modify_user = #{modifyUser},
+	]]>
+		<if test="type == 'delete'">
+		<![CDATA[ t.state = 'D', ]]>
+		</if>
+	<![CDATA[
+			   t.`TYPE` = #{type}
+		 WHERE t.state = 'U'
+		   AND t.`TYPE` <> #{type}
+		   AND t.`ISSUE_ID` = #{issueId}
+	]]>
+		<if test="userId != null">
+		<![CDATA[ AND t.user_id = #{userId} ]]>
+		</if>
+		<if test="expertId != null">
+		<![CDATA[ AND t.`EXPERT_ID` = #{expertId} ]]>
+		</if>
+	</update>
 	
 </mapper>

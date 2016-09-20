@@ -17,7 +17,7 @@
 			<div class="list-block">
 				<ul>
 					<li>
-						<a href="$!{env.appUrl}/user/setUserName.htm" class="item-link item-content" data-ignore-cache="true">
+						<a href="$!{env.appUrl}/user/setUserName.htm" class="item-link item-content">
 							<div class="item-inner">
 								<div class="item-title">名字</div>
 								<div class="item-after" id="user/detail/userName">$!{user.userName}</div>
@@ -77,7 +77,7 @@
 			<div class="list-block">
 				<ul>
 					<li>
-						<a href="#" class="item-link item-content">
+						<a href="$!{env.appUrl}/expert/index.htm" class="item-link item-content">
 							<div class="item-inner">
 								<div class="item-title">申请专家</div>
 							</div>

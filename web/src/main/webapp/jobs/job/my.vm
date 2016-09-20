@@ -37,7 +37,7 @@
 				<ul>
 					<li class="card" style="border-radius: 5px; margin: 10px 5px;">
 						<div class="card-header" style="font-size: 14px;">
-							<div class="left"><i class="iconfont icon-time" style="font-size: 14px;"></i> $!{job.createDate}</div>
+							<div class="left"><i class="iconfont icon-time" style="font-size: 14px;"></i> $!{dateUtil.datetime($!{dateUtil.datetime($!{job.createDate})}, 'MM-dd HH:mm')}</div>
 							<div>$!{job.star} <i class="iconfont icon-favorfill" style="font-size: 14px;"></i></div>
 							<div class="right">
 								#if($!{job.type} == 'publish') 已发布

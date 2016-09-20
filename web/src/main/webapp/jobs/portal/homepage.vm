@@ -229,6 +229,7 @@
 		<script src="$!{env.imgUrl}/js/member/index.js" async="async"></script>
 		<script src="$!{env.imgUrl}/js/notify/list.js" async="async"></script>
 		<script src="$!{env.imgUrl}/js/bookmark/list.js" async="async"></script>
+		<script src="$!{env.imgUrl}/js/expert/index.js" async="async"></script>
 		<script src="$!{env.imgUrl}/js/expert/list.js" async="async"></script>
 		<script src="$!{env.imgUrl}/js/expert/detail.js" async="async"></script>
 		<script src="$!{env.imgUrl}/js/issue/list.js" async="async"></script>

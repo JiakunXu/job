@@ -1,6 +1,7 @@
 package com.jk.jobs.api.expert.bo;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 import com.jk.jobs.api.user.bo.User;
 
@@ -17,11 +18,19 @@ public class Expert extends User {
 
 	private Long userId;
 
+	private String content;
+
 	private BigDecimal price;
 
-	private String remark;
-
 	private int score;
+
+	private String type;
+
+	private String modifyUser;
+
+	// >>>>>>>>>>以下是辅助属性<<<<<<<<<<
+
+	private List<ExpertJobCat> expertJobCatList;
 
 	public Long getExpertId() {
 		return expertId;
@@ -39,6 +48,14 @@ public class Expert extends User {
 		this.userId = userId;
 	}
 
+	public String getContent() {
+		return content;
+	}
+
+	public void setContent(String content) {
+		this.content = content;
+	}
+
 	public BigDecimal getPrice() {
 		return price;
 	}
@@ -47,20 +64,36 @@ public class Expert extends User {
 		this.price = price;
 	}
 
-	public String getRemark() {
-		return remark;
-	}
-
-	public void setRemark(String remark) {
-		this.remark = remark;
-	}
-
 	public int getScore() {
 		return score;
 	}
 
 	public void setScore(int score) {
 		this.score = score;
+	}
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
+
+	public String getModifyUser() {
+		return modifyUser;
+	}
+
+	public void setModifyUser(String modifyUser) {
+		this.modifyUser = modifyUser;
+	}
+
+	public List<ExpertJobCat> getExpertJobCatList() {
+		return expertJobCatList;
+	}
+
+	public void setExpertJobCatList(List<ExpertJobCat> expertJobCatList) {
+		this.expertJobCatList = expertJobCatList;
 	}
 
 }

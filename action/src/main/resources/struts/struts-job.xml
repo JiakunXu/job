@@ -29,7 +29,7 @@
 			<interceptor-ref name="authenticationStack" />
 		</action>
 		
-		<!--  我发布的项目 -->
+		<!-- 我发布的项目 -->
 		<action name="my" class="jobAction" method="my">
 			<interceptor-ref name="authenticationStack" />
 			<result name="success">/jobs/job/my.vm</result>
