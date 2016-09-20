@@ -6,7 +6,7 @@
 		<div class="center sliding">专家咨询</div>
 		<div class="right">
 			<!-- Right link contains only icon - additional "icon-only" class-->
-			<a href="$!{env.appUrl}/help/expert.htm" class="link icon-only"> <i class="iconfont icon-question color-gray"></i></a>
+			<a href="javascript:expert_detail_refresh();" class="link icon-only"> <i class="iconfont icon-refresh color-gray"></i></a>
 		</div>
 	</div>
 </div>

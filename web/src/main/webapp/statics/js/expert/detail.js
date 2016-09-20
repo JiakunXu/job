@@ -22,6 +22,10 @@ myApp.onPageInit('expert.detail', function(page) {
 			});
 });
 
+function expert_detail_refresh() {
+	myApp.getCurrentView().router.refreshPage();
+}
+
 function expert_detail_submit() {
 	myApp.showIndicator();
 

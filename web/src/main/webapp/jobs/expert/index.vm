@@ -74,7 +74,9 @@
 						<a href="＃" class="back button button-big button-fill color-white">取消</a>
 					</div>
 					<div class="col-66">
-						<a href="javascript:expert_index_saveOrUpdate();" class="button button-big button-fill" style="border-radius: 0;">申请</a>
+						<a href="javascript:expert_index_saveOrUpdate();" class="button button-big button-fill" style="border-radius: 0;">
+							#if($!{expert.expertId})修改#else申请#end
+						</a>
 					</div>
 				</div>
 			</div>

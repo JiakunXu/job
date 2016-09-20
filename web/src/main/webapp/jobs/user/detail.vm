@@ -77,7 +77,7 @@
 			<div class="list-block">
 				<ul>
 					<li>
-						<a href="$!{env.appUrl}/expert/index.htm" class="item-link item-content">
+						<a href="$!{env.appUrl}/expert/index.htm" class="item-link item-content" data-ignore-cache="true">
 							<div class="item-inner">
 								<div class="item-title">申请专家</div>
 							</div>
