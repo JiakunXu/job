@@ -35,8 +35,8 @@
 			<div class="list-block cards-list media-list list-block-search searchbar-found">
 				#foreach($job in $!{jobList})
 				<ul>
-					<li class="card" style="border-radius: 5px; margin: 10px 5px;">
-						<div class="card-header" style="font-size: 14px;">
+					<li class="card">
+						<div class="card-header">
 							<div class="left"><i class="iconfont icon-cascades" style="font-size: 16px;"></i> $!{job.title}</div>
 							<div><i class="iconfont icon-write" style="font-size: 14px;"></i> $!{job.userName}</div>
 							<div class="right">$!{job.star} <i class="iconfont icon-favorfill" style="font-size: 14px;"></i></div>
@@ -51,10 +51,8 @@
 								</div>
                             </a>
 						</div>
-						<div class="card-footer" style="min-height: 0; padding: 5px 15px;">
-                            <span style="font-size: 12px;">
-								<i class="iconfont icon-notification" style="font-size: 12px;"></i> $!{job.remark}
-							</span>
+						<div class="card-footer">
+                            <span><i class="iconfont icon-notification" style="font-size: 13px;"></i> $!{job.remark}</span>
 						</div>
 					</li>
 				</ul>

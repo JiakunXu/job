@@ -10,6 +10,7 @@
 			   t.`USER_ID` AS userId,
 			   t.`CONTENT`,
 			   t.`PRICE`,
+			   t.`REMARK`,
 			   t.`SCORE`
 		  FROM basis_tb_expert t
 	]]>
@@ -35,6 +36,7 @@
 			   t.`USER_ID` AS userId,
 			   t.`CONTENT`,
 			   t.`PRICE`,
+			   t.`REMARK`,
 			   t.`SCORE`
 		  FROM basis_tb_expert t
 		 WHERE t.state = 'U'
@@ -55,6 +57,7 @@
 			USER_ID,
 			CONTENT,
 			PRICE,
+			REMARK,
 			SCORE,
 			TYPE,
 			STATE,
@@ -68,6 +71,7 @@
 			#{userId},
 			#{content},
 			#{price},
+			#{remark},
 			0,
 			#{type},
 			'U',
@@ -85,7 +89,8 @@
 		   SET t.modify_date = NOW(),
 			   t.modify_user = #{modifyUser},
 			   t.`CONTENT` = #{content},
-			   t.`PRICE` = #{price}
+			   t.`PRICE` = #{price},
+			   t.`REMARK` = #{remark}
 		 WHERE t.state = 'U'
 		   AND t.`USER_ID` = #{userId}
 		   AND t.`EXPERT_ID` = #{expertId}

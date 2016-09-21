@@ -62,6 +62,16 @@
     							</div>
     						</div>
     					</li>
+						<li>
+							<div class="item-content">
+								<div class="item-inner">
+    								<div class="item-title label">备注</div>
+    								<div class="item-input">
+    									<input type="text" name="expert.remark" placeholder="" />
+    								</div>
+								</div>
+							</div>
+						</li>
     				</ul>
                 </div>
 			</form>

@@ -120,7 +120,7 @@
     							</div>
     						</div>
     					</li>
-						 <li class="align-top">
+						<li class="align-top">
 							<div class="item-content">
 								<div class="item-inner">
 									<div class="item-title label">项目介绍</div>
@@ -129,17 +129,17 @@
 									</div>
 								</div>
 							</div>
-						 </li>
-						 <li>
-    						<div class="item-content">
-    							<div class="item-inner">
+						</li>
+						<li>
+							<div class="item-content">
+								<div class="item-inner">
     								<div class="item-title label">备注</div>
     								<div class="item-input">
     									<input type="text" name="job.remark" placeholder="" />
     								</div>
-    							</div>
-    						</div>
-    					</li>
+								</div>
+							</div>
+						</li>
     				</ul>
                 </div>
 			</form>

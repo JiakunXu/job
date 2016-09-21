@@ -14,8 +14,8 @@
 	<div data-page="resume.detail" class="page no-tabbar">
 		<!-- Scrollable page content-->
 		<div class="page-content">
-			<div class="card" style="border-radius: 5px; margin: 10px 5px;">
-				<div class="card-header" style="font-size: 14px;">
+			<div class="card">
+				<div class="card-header">
 					<div class="left"><i class="iconfont icon-profile" style="font-size: 16px;"></i> $!{resume.name}</div>
 					<div class="right"><i class="iconfont icon-phone" style="font-size: 14px;"></i> $!{resume.tel}</div>
 				</div>
@@ -30,13 +30,11 @@
                         </ul>
 					</div>
 				</div>
-				<div class="card-footer" style="min-height: 0; padding: 5px 15px;">
-                     <span style="font-size: 12px;">
-						<i class="iconfont icon-notification" style="font-size: 12px;"></i> $!{resume.remark}
-					</span>
+				<div class="card-footer">
+					<span><i class="iconfont icon-notification" style="font-size: 13px;"></i> $!{resume.remark}</span>
 				</div>
 			</div>
-			<div class="card" style="border-radius: 5px; margin: 10px 5px;">
+			<div class="card">
     			<div class="card-content">
 					<div class="list-block media-list">
 						<ul>

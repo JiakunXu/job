@@ -22,6 +22,8 @@ public class Expert extends User {
 
 	private BigDecimal price;
 
+	private String remark;
+
 	private int score;
 
 	private String type;
@@ -64,6 +66,14 @@ public class Expert extends User {
 
 	public void setPrice(BigDecimal price) {
 		this.price = price;
+	}
+
+	public String getRemark() {
+		return remark;
+	}
+
+	public void setRemark(String remark) {
+		this.remark = remark;
 	}
 
 	public int getScore() {
