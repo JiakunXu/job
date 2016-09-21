@@ -62,6 +62,14 @@ public class ExpertServiceImpl implements IExpertService {
 		Expert expert = new Expert();
 		expert.setType(IExpertService.APPLIED);
 
+		if (StringUtils.isNotBlank(jobCId)) {
+			try {
+				expert.setJobCId(Long.valueOf(jobCId));
+			} catch (NumberFormatException e) {
+				logger.error(e);
+			}
+		}
+
 		List<Expert> expertList = getExpertList(expert);
 
 		if (expertList == null || expertList.size() == 0) {

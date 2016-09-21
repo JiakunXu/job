@@ -32,6 +32,8 @@ public class Expert extends User {
 
 	private List<ExpertJobCat> expertJobCatList;
 
+	private Long jobCId;
+
 	public Long getExpertId() {
 		return expertId;
 	}
@@ -94,6 +96,14 @@ public class Expert extends User {
 
 	public void setExpertJobCatList(List<ExpertJobCat> expertJobCatList) {
 		this.expertJobCatList = expertJobCatList;
+	}
+
+	public Long getJobCId() {
+		return jobCId;
+	}
+
+	public void setJobCId(Long jobCId) {
+		this.jobCId = jobCId;
 	}
 
 }

@@ -10,6 +10,7 @@
 			   t.`JOB_CNAME` AS jobCName
 		  FROM basis_tb_job_cat t
 		 WHERE t.state = 'U'
+		 ORDER BY t.`RANK`
 	]]>
 	</select>
 	

@@ -12,9 +12,21 @@
 			   t.`PRICE`,
 			   t.`SCORE`
 		  FROM basis_tb_expert t
+	]]>
+		<if test="jobCId != null">
+		<![CDATA[ , basis_tb_expert_job_cat p ]]>
+		</if>
+	<![CDATA[
 		 WHERE t.state = 'U'
 		   AND t.`TYPE` = #{type}
 	]]>
+		<if test="jobCId != null">
+		<![CDATA[
+			AND t.`EXPERT_ID` = p.`EXPERT_ID`
+			AND p.state = 'U'
+			AND p.`JOB_CID` = #{jobCId}
+		]]>
+		</if>
 	</select>
 	
 	<select id="getExpert" parameterType="expert" resultType="expert">
