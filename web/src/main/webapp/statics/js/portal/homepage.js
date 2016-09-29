@@ -25,11 +25,11 @@ var mainView = myApp.addView('.view-main', {
 			dynamicNavbar : true
 		});
 
-new Swiper('.swiper-container', {
-			speed : 1000,
-			autoplay : 2000,
-			loop : true
-		});
+//new Swiper('.swiper-container', {
+//			speed : 1000,
+//			autoplay : 2000,
+//			loop : true
+//		});
 
 // ==============================
 
